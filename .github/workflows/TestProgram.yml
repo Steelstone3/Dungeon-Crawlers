@@ -1,4 +1,4 @@
-name: .NET
+name: .NET Core
 
 on:
   push:
@@ -13,13 +13,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
+        dotnet-version: 3.1.301
+
+    - name: Install dungeon crawlers app dependencies
+      working-directory: ./DungeonCrawlers
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Build dungeon crawlers app
+      working-directory: ./DungeonCrawlers
+      run: dotnet build --configuration Release --no-restore
+    - name: Install dungeon crawlers app test dependencies
+      working-directory: ./DungeonCrawlersTests
+      run: dotnet restore
+    - name: Test dungeon crawlers app
+      working-directory: ./DungeonCrawlersTests
+      run: dotnet test --no-restore --verbosity normal
