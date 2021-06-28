@@ -1,3 +1,5 @@
+using DungeonCrawlers.Game.Characters.CharacterRaces;
+
 namespace DungeonCrawlers.Game.CharacterRaces
 {
     public class Human : CharacterRace

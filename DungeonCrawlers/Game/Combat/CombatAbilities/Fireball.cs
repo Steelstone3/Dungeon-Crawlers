@@ -1,7 +1,6 @@
 using DungeonCrawlers.Game.Combat.DamageTypes;
-using DungeonCrawlers.Game.CombatClasses.CombatAbilities;
 
-namespace DungeonCrawlers.Game.CombatClasses
+namespace DungeonCrawlers.Game.Combat.CombatAbilities
 {
     public class Fireball : CombatAbility
     {

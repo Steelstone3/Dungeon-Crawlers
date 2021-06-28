@@ -19,6 +19,7 @@ Dungeon Crawlers
     The Archer has the ability to hit enemies from a long distance
     The Rouge has the ability to disable traps and pick locks
     The Assasin has the ability to inflitrate the enemies lines and deal a critical battle-changing blow
+    The Ranger has inbuilt tracking and animal friendships
 
     Magic Types
 
@@ -26,12 +27,24 @@ Dungeon Crawlers
     The Sorcerer has the natural ability to cast destructive magics
     The Warlock has a pact with a diaty that can manipulate the course of events
     The Druid has the ability to turn into different animals and use nature based spells
+    The Bard class has crowd control effects for both friends and foe
+    The Cleric has healing magic as their specialism
 
     Races
 
     Human
     Elf
     Dwarf
+    Gnome
+    Half-Elf
+    Half-Giant
+    Half-Orc
+    Halfling
+    Lizardfolk
+    Orc
+    Wolfen
+
+    That have race abilities
 
     Each party member has 4 attack slots
 

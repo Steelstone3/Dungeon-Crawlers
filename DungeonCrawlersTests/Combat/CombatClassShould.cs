@@ -1,5 +1,4 @@
 using DungeonCrawlers.Game.CombatClasses;
-using DungeonCrawlers.Game.CombatClasses.CombatAbilities;
 using Xunit;
 
 namespace DungeonCrawlersTests.Combat

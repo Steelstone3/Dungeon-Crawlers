@@ -1,5 +1,4 @@
-using DungeonCrawlers.Game.CombatClasses;
-using DungeonCrawlers.Game.CombatClasses.CombatAbilities;
+using DungeonCrawlers.Game.Combat.CombatAbilities;
 using Xunit;
 
 namespace DungeonCrawlersTests
@@ -17,7 +16,7 @@ namespace DungeonCrawlersTests
             Assert.NotInRange(violentFury.Damage, int.MinValue, 0);
         }
 
-         [Fact]
+        [Fact]
         public void ContainHeaderDamageAndDamageTypeForFireball()
         {
             var fireball = new Fireball();

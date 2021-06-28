@@ -1,5 +1,3 @@
-using DungeonCrawlers.Game.CharacterRaces;
-
 namespace DungeonCrawlers.Game.Characters.CharacterRaces
 {
     public class Dwarf : CharacterRace

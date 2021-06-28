@@ -1,7 +1,7 @@
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.General;
 
-namespace DungeonCrawlers.Game.CharacterRaces
+namespace DungeonCrawlers.Game.Characters.CharacterRaces
 {
     public abstract class CharacterRace : ICharacterRace, IHeader
     {

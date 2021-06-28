@@ -1,6 +1,6 @@
 using DungeonCrawlers.Game.Combat.DamageTypes;
 
-namespace DungeonCrawlers.Game.CombatClasses.CombatAbilities
+namespace DungeonCrawlers.Game.Combat.CombatAbilities
 {
     public class ViolentFury : CombatAbility
     {
