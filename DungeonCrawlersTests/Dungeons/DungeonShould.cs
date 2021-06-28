@@ -21,6 +21,7 @@ namespace DungeonCrawlersTests
         [InlineData(3)]
         [InlineData(10)]
         [InlineData(11)]
+        [InlineData(-1)]
         public void ContainNoMoreThanTenRooms(int numberOfRooms)
         {
             var dungeon = new Dungeon(numberOfRooms);

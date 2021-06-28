@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Game.Characters.CharacterRaces
     {
         public HalfGiant()
         {
-            Name = nameof(HalfGiant.GetType);
+            Name = nameof(HalfGiant);
             Description = "A tall extremely rare half breed race between elves/humans and giants that nomadically roam the wilds";
         }
     }

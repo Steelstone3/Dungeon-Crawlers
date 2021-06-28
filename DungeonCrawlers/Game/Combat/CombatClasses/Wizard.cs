@@ -8,7 +8,7 @@ namespace DungeonCrawlers.Game.CombatClasses
     {
         public Wizard()
         {
-            Name = nameof(Knight.GetType);
+            Name = nameof(Wizard);
             Description = "A fierce defensive and heavily armoured soldier";
             CombatAbilities = new List<ICombatAbility>(){
                 new Fireball(),

@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Game.Characters.CharacterRaces
     {
         public HalfOrc()
         {
-            Name = nameof(HalfOrc.GetType);
+            Name = nameof(HalfOrc);
             Description = "A half breed of Orcs and Humans/ Elves A more savage, primative and wild people that roam the mountains";
         }
     }

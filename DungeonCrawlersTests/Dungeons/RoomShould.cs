@@ -20,6 +20,7 @@ namespace DungeonCrawlersTests.Dungeons
         [InlineData(5)]
         [InlineData(6)]
         [InlineData(10)]
+        [InlineData(-1)]
         public void ContainsAtNoMoreThanFiveEncountersPerRoom(int numberOfEncounters)
         {
             var room = new Room(numberOfEncounters);

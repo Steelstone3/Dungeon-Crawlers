@@ -8,6 +8,7 @@ namespace DungeonCrawlers.Game.Dungeons
     public class Room : IRoom
     {
         private const int _maxNumberOfEncounters = 5;
+        private const int _minNumberOfEncounters = 1;
 
         public Room(int numberOfEncounters)
         {
@@ -35,6 +36,10 @@ namespace DungeonCrawlers.Game.Dungeons
             if (numberOfEncounters > _maxNumberOfEncounters)
             {
                 return _maxNumberOfEncounters;
+            }
+            else if (numberOfEncounters < 0)
+            {
+                return _minNumberOfEncounters;
             }
             else
             {

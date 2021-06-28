@@ -11,6 +11,7 @@ namespace DungeonCrawlersTests.Characters
             var goblin = new Goblin();
 
             Assert.NotNull(goblin.Name);
+            Assert.Equal("Goblin", goblin.Name);
             Assert.NotNull(goblin.Description);
             Assert.NotNull(goblin.Biome);
         }

@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Game.Characters.CharacterRaces
     {
          public Halfling()
         {
-            Name = nameof(Halfling.GetType);
+            Name = nameof(Halfling);
             Description = "A small sub-breed of humans that dwell within the cities";
         }
     }

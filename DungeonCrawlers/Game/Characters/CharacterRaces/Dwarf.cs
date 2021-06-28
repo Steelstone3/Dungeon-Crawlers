@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Game.Characters.CharacterRaces
     {
         public Dwarf()
         {
-            Name = nameof(Dwarf.GetType);
+            Name = nameof(Dwarf);
             Description = "A short, stubborn, grumpy cave dwelling people found in vast mountain ranges";
         }
     }

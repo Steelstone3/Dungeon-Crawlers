@@ -4,7 +4,7 @@ using DungeonCrawlers.Contracts.Combat;
 using DungeonCrawlers.Game.CharacterRaces;
 using DungeonCrawlers.Game.CombatClasses;
 
-namespace DungeonCrawlersTests
+namespace DungeonCrawlers.Game.Characters
 {
     public class Character : ICharacter
     {

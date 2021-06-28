@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Game.Characters.CharacterRaces
     {
           public Wolfen()
         {
-            Name = nameof(Wolfen.GetType);
+            Name = nameof(Wolfen);
             Description = "A furry, large and nomadic race that live within the forrests";
         }
     }

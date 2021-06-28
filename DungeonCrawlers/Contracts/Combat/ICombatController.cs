@@ -1,6 +1,6 @@
 namespace DungeonCrawlers.Contracts.Combat
 {
-    public interface ICombatSystem
+    public interface ICombatController
     {
         
     }

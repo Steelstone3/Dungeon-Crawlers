@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Game.Characters.CharacterRaces
     {
         public HalfElf()
         {
-            Name = nameof(HalfElf.GetType);
+            Name = nameof(HalfElf);
             Description = "A rare half breed between humans and elves often left as orphans living within cities, fields and forrests";
         }
     }

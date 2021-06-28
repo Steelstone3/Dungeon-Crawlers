@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Game.Characters.CharacterRaces
     {
         public Lizardfolk()
         {
-            Name = nameof(Lizardfolk.GetType);
+            Name = nameof(Lizardfolk);
             Description = "A scaled, cold and sly lizard humanoid that lives within swampy regions";
         }
     }

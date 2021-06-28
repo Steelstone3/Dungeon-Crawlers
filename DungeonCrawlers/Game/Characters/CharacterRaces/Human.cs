@@ -6,7 +6,7 @@ namespace DungeonCrawlers.Game.CharacterRaces
     {
        public Human()
        {
-           Name = nameof(Human.GetType);
+           Name = nameof(Human);
            Description = "A diverse, common and nomadic race";
        }
     }

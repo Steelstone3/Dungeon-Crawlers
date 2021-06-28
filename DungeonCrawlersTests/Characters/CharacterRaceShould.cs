@@ -12,6 +12,7 @@ namespace DungeonCrawlersTests.Characters
             var human = new Human();
 
             Assert.NotNull(human.Name);
+            Assert.Equal("Human", human.Name);
             Assert.NotNull(human.Description);
         }
 
@@ -21,6 +22,7 @@ namespace DungeonCrawlersTests.Characters
             var elf = new Elf();
 
             Assert.NotNull(elf.Name);
+            Assert.Equal("Elf", elf.Name);
             Assert.NotNull(elf.Description);
         }
 
@@ -30,6 +32,7 @@ namespace DungeonCrawlersTests.Characters
             var dwarf = new Dwarf();
 
             Assert.NotNull(dwarf.Name);
+            Assert.Equal("Dwarf", dwarf.Name);
             Assert.NotNull(dwarf.Description);
         }
 
@@ -39,6 +42,7 @@ namespace DungeonCrawlersTests.Characters
             var gnome = new Gnome();
 
             Assert.NotNull(gnome.Name);
+            Assert.Equal("Gnome", gnome.Name);
             Assert.NotNull(gnome.Description);
         }
 
@@ -48,6 +52,7 @@ namespace DungeonCrawlersTests.Characters
             var halfElf = new HalfElf();
 
             Assert.NotNull(halfElf.Name);
+            Assert.Equal("HalfElf", halfElf.Name);
             Assert.NotNull(halfElf.Description);
         }
 
@@ -57,6 +62,7 @@ namespace DungeonCrawlersTests.Characters
             var halfGiant = new HalfGiant();
 
             Assert.NotNull(halfGiant.Name);
+            Assert.Equal("HalfGiant", halfGiant.Name);
             Assert.NotNull(halfGiant.Description);
         }
 
@@ -66,6 +72,7 @@ namespace DungeonCrawlersTests.Characters
             var halfOrc = new HalfOrc();
 
             Assert.NotNull(halfOrc.Name);
+            Assert.Equal("HalfOrc", halfOrc.Name);
             Assert.NotNull(halfOrc.Description);
         }
 
@@ -75,6 +82,7 @@ namespace DungeonCrawlersTests.Characters
             var halfling = new Halfling();
 
             Assert.NotNull(halfling.Name);
+            Assert.Equal("Halfling", halfling.Name);
             Assert.NotNull(halfling.Description);
         }
 
@@ -84,6 +92,7 @@ namespace DungeonCrawlersTests.Characters
             var lizardfolk = new Lizardfolk();
 
             Assert.NotNull(lizardfolk.Name);
+            Assert.Equal("Lizardfolk", lizardfolk.Name);
             Assert.NotNull(lizardfolk.Description);
         }
 
@@ -93,6 +102,7 @@ namespace DungeonCrawlersTests.Characters
             var orc = new Orc();
 
             Assert.NotNull(orc.Name);
+            Assert.Equal("Orc", orc.Name);
             Assert.NotNull(orc.Description);
         }
 
@@ -102,6 +112,7 @@ namespace DungeonCrawlersTests.Characters
             var wolfen = new Wolfen();
 
             Assert.NotNull(wolfen.Name);
+            Assert.Equal("Wolfen", wolfen.Name);
             Assert.NotNull(wolfen.Description);
         }
     }
