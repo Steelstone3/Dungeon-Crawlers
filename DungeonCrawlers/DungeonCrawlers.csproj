@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ArmorySystem\**" />
+    <EmbeddedResource Remove="ArmorySystem\**" />
+    <None Remove="ArmorySystem\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="WorldSystem\" />
+  </ItemGroup>
+
+</Project>
