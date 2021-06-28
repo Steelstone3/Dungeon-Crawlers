@@ -7,5 +7,7 @@ namespace DungeonCrawlers.Contracts.Character
         IEnumerable<ICharacter> CharacterParty{get;}
         void CreateACharacterParty(int numberOfCharacters);
         void DisplayCharacterPartyMembers();
+        void DisplayCharacterPartyMemberAbilities(ICharacter partyMember);
+        void CreateAMainCharacter();
     }
 }

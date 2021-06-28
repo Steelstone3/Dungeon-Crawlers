@@ -42,7 +42,7 @@ namespace DungeonCrawlersTests
             Assert.NotInRange(characterPartyController.CharacterParty.ToList().Count, 5, int.MaxValue);
         }
 
-        [Fact(Skip ="Not sure what to do about testing this")]
+        /*[Fact(Skip ="Not sure what to do about testing this")]
         public void DisplayCharacterParty()
         {
             var characterPartyController = new CharacterPartyController();
@@ -51,6 +51,6 @@ namespace DungeonCrawlersTests
 
             //Assert.NotNull(characterPartyController.CharacterParty);
             //Assert.NotEmpty(characterPartyController.CharacterParty);
-        }
+        }*/
     }
 }
