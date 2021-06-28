@@ -1,0 +1,34 @@
+name: .NET Core
+
+on:
+  push:
+    branches: 
+    - '**'
+  pull_request:
+    branches: 
+    - '**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.102
+
+    - name: Install dungeon crawlers app dependencies
+      working-directory: ./DungeonCrawlers
+      run: dotnet restore
+    - name: Build dungeon crawlers app
+      working-directory: ./DungeonCrawlers
+      run: dotnet build --configuration Release --no-restore
+    - name: Install dungeon crawlers app test dependencies
+      working-directory: ./DungeonCrawlersTests
+      run: dotnet restore
+    - name: Test dungeon crawlers app
+      working-directory: ./DungeonCrawlersTests
+      run: dotnet test --no-restore --verbosity normal
