@@ -10,16 +10,17 @@ namespace DungeonCrawlersTests.Characters
         [Fact]
         public void CreateCharacterParty()
         {
+            var characterBuilder = new Mock<ICharacterBuilder>();
             var characterPartyController = new Mock<ICharacterPartyController>();
-            characterPartyController.Setup(x => x.CreateAMainCharacter());
-            characterPartyController.Setup(x => x.CreateACharacterParty(3));
+            characterPartyController.Setup(x => x.CreateCharacter(characterBuilder.Object));
+            characterPartyController.Setup(x => x.CreateCharacterParty(3, characterBuilder.Object));
 
             var characterPartyService = new CharacterPartyService(characterPartyController.Object);
 
-            characterPartyService.CreateCharacterParty();
+            characterPartyService.CreateCharacterParty(characterBuilder.Object);
 
-            characterPartyController.Verify(x => x.CreateAMainCharacter());
-            characterPartyController.Verify(x => x.CreateACharacterParty(3));
+            characterPartyController.Verify(x => x.CreateCharacter(characterBuilder.Object));
+            characterPartyController.Verify(x => x.CreateCharacterParty(3, characterBuilder.Object));
         }
     }
 }

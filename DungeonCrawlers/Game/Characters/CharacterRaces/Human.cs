@@ -1,13 +1,11 @@
-using DungeonCrawlers.Game.Characters.CharacterRaces;
-
-namespace DungeonCrawlers.Game.CharacterRaces
+namespace DungeonCrawlers.Game.Characters.CharacterRaces
 {
     public class Human : CharacterRace
     {
-       public Human()
-       {
-           Name = nameof(Human);
-           Description = "A diverse, common and nomadic race";
-       }
+        public Human()
+        {
+            Name = nameof(Human);
+            Description = "A diverse, common and nomadic race";
+        }
     }
 }

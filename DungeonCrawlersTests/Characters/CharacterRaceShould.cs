@@ -1,4 +1,3 @@
-using DungeonCrawlers.Game.CharacterRaces;
 using DungeonCrawlers.Game.Characters.CharacterRaces;
 using Xunit;
 

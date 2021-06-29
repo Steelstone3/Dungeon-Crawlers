@@ -1,6 +1,9 @@
 using System;
 using DungeonCrawlers.Contracts.Character;
 using DungeonCrawlers.Contracts.Game;
+using DungeonCrawlers.Controllers.Characters;
+using DungeonCrawlers.Helpers;
+using DungeonCrawlers.Services.Character;
 
 namespace DungeonCrawlers.States
 {
@@ -17,12 +20,14 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            //TODO AH Generic Display
-            //TODO AH Character Builder
-            Console.WriteLine("Character Creation");
+            var display = new GenericDisplayHelper();          
+            var characterBuilder = new CharacterBuilder(display);
+            var characterPartyService = new CharacterPartyService(_characterPartyController);
 
-            _characterPartyController.CreateACharacterParty(4);
-            _characterPartyController.DisplayCharacterPartyMembers();
+            display.DisplayText("Character Creation");
+
+            characterPartyService.CreateCharacterParty(characterBuilder);
+            characterPartyService.DisplayCharacterParty();
 
             StopState();
         }

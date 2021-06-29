@@ -1,19 +1,11 @@
 using System;
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Helper;
-using DungeonCrawlersTests.Helpers;
 
 namespace DungeonCrawlers.Helpers
 {
     public class GenericDisplayHelper : IGenericDisplayHelper
     {
-        private IDisplayer _displayer;
-
-        public GenericDisplayHelper(IDisplayer displayer)
-        {
-            _displayer = displayer;
-        }
-
         public int ReadUserNumericInput(string message, int lowerBound, int upperBound)
         {
             string input;
@@ -21,7 +13,7 @@ namespace DungeonCrawlers.Helpers
 
             do
             {
-                input = _displayer.Read(message);
+                input = ReadUserString(message);
             } while (!int.TryParse(input, out validValue) || validValue < lowerBound || validValue > upperBound);
 
             return validValue;
@@ -34,40 +26,24 @@ namespace DungeonCrawlers.Helpers
 
             do
             {
-                input = _displayer.Read(message);
+                input = ReadUserString(message);
             } while (!double.TryParse(input, out validValue) || validValue < lowerBound || validValue > upperBound);
 
             return validValue;
         }
 
-        public string ReadUserText(string message)
+        public string ReadUserString(string message)
         {
-            return _displayer.Read(message);
+            Console.WriteLine(message);
+            return Console.ReadLine();
         }
 
-        public string ReadUserText()
+        public string ReadUserString()
         {
-            return _displayer.Read();
+            return Console.ReadLine();
         }
 
         public void DisplayMenu(IEnumerable<string> menu)
-        {
-            _displayer.WriteMenu(menu);
-        }
-
-        public void DisplayText(string text)
-        {
-            _displayer.Write(text);
-        }
-
-        #region Wrapper for unit testing
-
-        public void Write(string text)
-        {
-            Console.WriteLine(text);
-        }
-
-        public void WriteMenu(IEnumerable<string> menu)
         {
             foreach (var menuItem in menu)
             {
@@ -75,17 +51,9 @@ namespace DungeonCrawlers.Helpers
             }
         }
 
-        public string Read()
+        public void DisplayText(string text)
         {
-            return Console.ReadLine();
+            Console.WriteLine(text);
         }
-
-        public string Read(string message)
-        {
-            Console.WriteLine(message);
-            return Console.ReadLine();
-        }
-
-        #endregion
     }
 }

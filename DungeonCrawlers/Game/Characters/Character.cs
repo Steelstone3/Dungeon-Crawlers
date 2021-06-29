@@ -1,7 +1,7 @@
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Character;
 using DungeonCrawlers.Contracts.Combat;
-using DungeonCrawlers.Game.CharacterRaces;
+using DungeonCrawlers.Game.Characters.CharacterRaces;
 using DungeonCrawlers.Game.CombatClasses;
 
 namespace DungeonCrawlers.Game.Characters

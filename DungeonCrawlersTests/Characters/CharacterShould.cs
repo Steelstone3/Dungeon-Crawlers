@@ -1,5 +1,5 @@
-using DungeonCrawlers.Game.CharacterRaces;
 using DungeonCrawlers.Game.Characters;
+using DungeonCrawlers.Game.Characters.CharacterRaces;
 using DungeonCrawlers.Game.CombatClasses;
 using Xunit;
 

@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 
 namespace DungeonCrawlers.Contracts.Character
 {
     public interface ICharacterPartyController
     {
-        IEnumerable<ICharacter> CharacterParty{get;}
-        void CreateACharacterParty(int numberOfCharacters);
+        IList<ICharacter> CharacterParty{get;}
+        void CreateCharacterParty(int numberOfCharacters, ICharacterBuilder characterBuilder);
         void DisplayCharacterPartyMembers();
         void DisplayCharacterPartyMemberAbilities(ICharacter partyMember);
-        void CreateAMainCharacter();
+        void CreateCharacter(ICharacterBuilder characterBuilder);
     }
 }

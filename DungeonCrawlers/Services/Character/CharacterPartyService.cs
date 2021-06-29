@@ -1,4 +1,3 @@
-using System;
 using DungeonCrawlers.Contracts.Character;
 
 namespace DungeonCrawlers.Services.Character
@@ -12,10 +11,15 @@ namespace DungeonCrawlers.Services.Character
             _characterPartyController = characterPartyController;
         }
 
-        public void CreateCharacterParty()
+        public void CreateCharacterParty(ICharacterBuilder characterBuilder)
         {
-            _characterPartyController.CreateAMainCharacter();
-            _characterPartyController.CreateACharacterParty(3);
+            _characterPartyController.CreateCharacter(characterBuilder);
+            _characterPartyController.CreateCharacterParty(3, characterBuilder);
+        }
+
+        public void DisplayCharacterParty()
+        {
+            _characterPartyController.DisplayCharacterPartyMembers();
         }
     }
 }

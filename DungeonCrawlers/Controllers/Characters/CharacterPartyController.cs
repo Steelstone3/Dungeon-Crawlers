@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Character;
-using DungeonCrawlers.Game.CharacterRaces;
-using DungeonCrawlers.Game.Characters;
-using DungeonCrawlers.Game.CombatClasses;
 
 namespace DungeonCrawlers.Controllers.Characters
 {
@@ -12,27 +9,22 @@ namespace DungeonCrawlers.Controllers.Characters
         private const int _maxNumberOfCharacterPartyMembers = 4;
         private const int _minNumberOfCharacterPartyMembers = 1;
 
-        public IEnumerable<ICharacter> CharacterParty { get; private set; }
+        public IList<ICharacter> CharacterParty { get; private set; } = new List<ICharacter>();
 
-        public void CreateAMainCharacter()
+        public void CreateCharacter(ICharacterBuilder characterBuilder)
         {
-            
-            /*new CharacterBuilder();
-            new Character("bob", new Human(), new Knight());*/
+            CharacterParty.Add(characterBuilder.BuildCharacter());
         }
 
-        public void CreateACharacterParty(int numberOfCharacters)
+        public void CreateCharacterParty(int numberOfCharacters, ICharacterBuilder characterBuilder)
         {
-            var characterParty = new List<ICharacter>();
-
+            var random = new Random();
             var limitedNumberOfCharacters = SetCharacterPartyLimit(numberOfCharacters);
 
             for (int i = 0; i < limitedNumberOfCharacters; i++)
             {
-                characterParty.Add(new Character());
+                CharacterParty.Add(characterBuilder.BuildRandomCharacter(random.Next(0,8), random.Next(0,9), random.Next(0,1)));
             }
-
-            CharacterParty = characterParty;
         }
 
         public void DisplayCharacterPartyMembers()

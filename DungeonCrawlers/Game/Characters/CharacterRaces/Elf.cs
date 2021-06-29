@@ -1,6 +1,4 @@
-using DungeonCrawlers.Game.Characters.CharacterRaces;
-
-namespace DungeonCrawlers.Game.CharacterRaces
+namespace DungeonCrawlers.Game.Characters.CharacterRaces
 {
     public class Elf : CharacterRace
     {
