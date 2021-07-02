@@ -7,9 +7,6 @@ namespace DungeonCrawlersTests
 {
     public class CharacterCreationStateShould
     {
-        private Mock<IDisplayer> _displayer;
-        private Mock<IGameController> _gameController;
-
         [Fact]
         public void ExecutesTheStartState()
         {

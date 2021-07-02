@@ -1,4 +1,6 @@
 using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Controllers;
+using DungeonCrawlers.Services;
 
 namespace DungeonCrawlers.States
 {
@@ -28,7 +30,7 @@ namespace DungeonCrawlers.States
         public override void StopState()
         {
             _displayer.Write("Starting game...");
-            GoToState(new ExplorationState(_displayer, _gameController, _characterController));
+            GoToState(new ExplorationState(_displayer, _gameController, _characterController, new LocationService(), new LocationController()));
         }
     }
 }
