@@ -1,26 +1,26 @@
-using DungeonCrawlers.Contracts.Character;
-using DungeonCrawlers.Contracts.Game;
+using DungeonCrawlers.Contracts;
 
 namespace DungeonCrawlers.States
 {
     public abstract class GameState : IGameState
     {
-        private readonly IGameController _gameController;
-        private readonly ICharacterPartyController _locationController;
+        private IDisplayer _diplayer;
+        private IGameController _gameController;
 
-        public GameState(IGameController gameController, ICharacterPartyController characterPartyController)
+        public GameState(IDisplayer displayer, IGameController gameController)
         {
+            _diplayer = displayer;
             _gameController = gameController;
-            _locationController = characterPartyController;
         }
+
+        public abstract void StartState();
+
+        public abstract void StopState();
 
         public void GoToState(IGameState newState)
         {
             _gameController.CurrentGameState = newState;
             _gameController.CurrentGameState.StartState();
         }
-
-        public abstract void StartState();
-        public abstract void StopState();
     }
 }

@@ -1,28 +1,22 @@
-using System;
-using DungeonCrawlers.Contracts.Character;
-using DungeonCrawlers.Contracts.Game;
+using DungeonCrawlers.Contracts;
 
 namespace DungeonCrawlers.States
 {
     public class ExplorationState : GameState
     {
-        IGameController _gameController;
-        ICharacterPartyController _characterPartyController;
-
-        public ExplorationState(IGameController gameController, ICharacterPartyController characterPartyController) : base(gameController, characterPartyController)
+        public ExplorationState(IDisplayer displayer, IGameController gameController, ICharacterController characterController) : base(displayer, gameController)
         {
-            _gameController = gameController;
-            _characterPartyController = characterPartyController;
+
         }
 
         public override void StartState()
         {
-            StopState();
+            throw new System.NotImplementedException();
         }
 
         public override void StopState()
         {
-            //GoToState(new ExplorationState());
+            throw new System.NotImplementedException();
         }
     }
 }

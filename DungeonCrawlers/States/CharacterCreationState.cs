@@ -1,40 +1,34 @@
-using System;
-using DungeonCrawlers.Contracts.Character;
-using DungeonCrawlers.Contracts.Game;
-using DungeonCrawlers.Controllers.Characters;
-using DungeonCrawlers.Helpers;
-using DungeonCrawlers.Services.Character;
+using DungeonCrawlers.Contracts;
 
 namespace DungeonCrawlers.States
 {
     public class CharacterCreationState : GameState
     {
-        IGameController _gameController;
-        ICharacterPartyController _characterPartyController;
+        private IDisplayer _displayer;
+        private IGameController _gameController;
+        private ICharacterCreationService _characterCreationService;
+        private ICharacterController _characterController;
 
-        public CharacterCreationState(IGameController gameController, ICharacterPartyController characterPartyController) : base(gameController, characterPartyController)
+        public CharacterCreationState(IDisplayer displayer, IGameController gameController, ICharacterCreationService characterCreationService ,ICharacterController characterController) : base(displayer, gameController)
         {
+            _displayer = displayer;
             _gameController = gameController;
-            _characterPartyController = characterPartyController;
+            _characterCreationService = characterCreationService;
+            _characterController = characterController;
         }
 
         public override void StartState()
         {
-            var display = new GenericDisplayHelper();          
-            var characterBuilder = new CharacterBuilder(display);
-            var characterPartyService = new CharacterPartyService(_characterPartyController);
-
-            display.DisplayText("Character Creation");
-
-            characterPartyService.CreateCharacterParty(characterBuilder);
-            characterPartyService.DisplayCharacterParty();
+            _displayer.Write("Character creation");
+            _characterCreationService.CreateCharacterParty(_characterController, 3);
 
             StopState();
         }
 
         public override void StopState()
         {
-            GoToState(new ExplorationState(_gameController, _characterPartyController));
+            _displayer.Write("Starting game...");
+            GoToState(new ExplorationState(_displayer, _gameController, _characterController));
         }
     }
 }
