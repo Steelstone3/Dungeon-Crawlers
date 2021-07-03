@@ -2,6 +2,7 @@ using DungeonCrawlers.States;
 using DungeonCrawlers.Contracts;
 using Moq;
 using Xunit;
+using DungeonCrawlers.Contracts.Builders;
 
 namespace DungeonCrawlersTests
 {
@@ -14,12 +15,14 @@ namespace DungeonCrawlersTests
             var message = "Character creation";
             var displayer = SetupDisplayerMock(message);
             var characterController = SetupCharacterController();
-            var characterCreationService = SetupCharacterCreationService(characterController);
-            var gameController = SetupGameController(displayer, characterCreationService, characterController);
+            var characterBuilder = SetupCharacterBuilderMock(displayer);
+            var characterCreationService = SetupCharacterCreationService(displayer, characterController, characterBuilder);
+            var gameController = SetupGameController(displayer, characterCreationService, characterBuilder, characterController);
 
             var characterCreationState = new CharacterCreationState(displayer.Object,
             gameController.Object,
             characterCreationService.Object,
+            characterBuilder.Object,
             characterController.Object);
 
             //When
@@ -27,7 +30,7 @@ namespace DungeonCrawlersTests
 
             //Then
             displayer.Verify(x => x.Write(message));
-            characterCreationService.Verify(x => x.CreateCharacterParty(characterController.Object, 3));
+            characterCreationService.Verify(x => x.CreateCharacterParty(displayer.Object, characterController.Object, characterBuilder.Object, 3));
         }
 
         [Fact]
@@ -37,11 +40,16 @@ namespace DungeonCrawlersTests
             var message = "Starting game...";
             var displayer = SetupDisplayerMock(message);
             var characterController = SetupCharacterController();
-            var characterCreationService = SetupCharacterCreationService(characterController);
-            var gameController = SetupGameController(displayer, characterCreationService, characterController);
+            var characterBuilder = SetupCharacterBuilderMock(displayer);
+            var characterCreationService = SetupCharacterCreationService(displayer, characterController, characterBuilder);
+            var gameController = SetupGameController(displayer, characterCreationService, characterBuilder, characterController);
 
-            var characterCreationState = new CharacterCreationState(displayer.Object, gameController.Object, characterCreationService.Object, characterController.Object);
-            
+            var characterCreationState = new CharacterCreationState(displayer.Object,
+            gameController.Object,
+            characterCreationService.Object,
+            characterBuilder.Object,
+            characterController.Object);
+
             //When
             characterCreationState.StartState();
 
@@ -58,21 +66,29 @@ namespace DungeonCrawlersTests
             return displayer;
         }
 
-        private Mock<IGameController> SetupGameController(Mock<IDisplayer> displayer, Mock<ICharacterCreationService> characterCreationService, Mock<ICharacterController> characterController)
+        private Mock<IGameController> SetupGameController(Mock<IDisplayer> displayer, Mock<ICharacterCreationService> characterCreationService, Mock<ICharacterBuilder> characterBuilder, Mock<ICharacterController> characterController)
         {
             var gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new CharacterCreationState(displayer.Object, gameController.Object, characterCreationService.Object, characterController.Object));
+            gameController.Setup(x => x.CurrentGameState).Returns(new CharacterCreationState(displayer.Object, gameController.Object, characterCreationService.Object, characterBuilder.Object, characterController.Object));
             gameController.Setup(x => x.CurrentGameState.StartState());
 
             return gameController;
         }
 
-        private Mock<ICharacterCreationService> SetupCharacterCreationService(Mock<ICharacterController> characterController)
+        private Mock<ICharacterCreationService> SetupCharacterCreationService(Mock<IDisplayer> displayer, Mock<ICharacterController> characterController, Mock<ICharacterBuilder> characterBuilder)
         {
             var characterCreationService = new Mock<ICharacterCreationService>();
-            characterCreationService.Setup(x => x.CreateCharacterParty(characterController.Object, 3));
+            characterCreationService.Setup(x => x.CreateCharacterParty(displayer.Object, characterController.Object, characterBuilder.Object, 3));
 
             return characterCreationService;
+        }
+
+        private Mock<ICharacterBuilder> SetupCharacterBuilderMock(Mock<IDisplayer> displayer)
+        {
+            var characterBuilder = new Mock<ICharacterBuilder>();
+            characterBuilder.Setup(x => x.BuildCharacter(displayer.Object));
+
+            return characterBuilder;
         }
 
         private Mock<ICharacterController> SetupCharacterController()

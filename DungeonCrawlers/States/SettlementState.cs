@@ -1,4 +1,6 @@
 using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Controllers;
+using DungeonCrawlers.Services;
 
 namespace DungeonCrawlers.States
 {
@@ -15,12 +17,20 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            throw new System.NotImplementedException();
+            _displayer.Write("Settlement entered");
+
+            StopState();
         }
 
         public override void StopState()
         {
-            throw new System.NotImplementedException();
+            _displayer.Write("Leaving settlement");
+
+            GoToState(new ExplorationState(_displayer, 
+            _gameController, 
+            new CharacterController(), 
+            new LocationService(), 
+            new LocationController()));
         }
     }
 }

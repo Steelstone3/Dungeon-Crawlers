@@ -1,4 +1,5 @@
 using System;
+using DungeonCrawlers.Builders;
 using DungeonCrawlers.Contracts;
 
 namespace DungeonCrawlers.States
@@ -24,7 +25,11 @@ namespace DungeonCrawlers.States
         public override void StopState()
         {
             _displayer.Write("New game started");
-            GoToState(new CharacterCreationState(_displayer, _gameController, new CharacterCreationService(), new CharacterController()));
+            GoToState(new CharacterCreationState(_displayer, 
+            _gameController, 
+            new CharacterCreationService(), 
+            new CharacterBuilder(), 
+            new CharacterController()));
         }
     }
 }

@@ -1,9 +1,10 @@
 using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Contracts.Builders;
 
 namespace DungeonCrawlers.States
 {
     public interface ICharacterCreationService
     {
-        void CreateCharacterParty(ICharacterController characterController, int numberOfPartyMembers);
+        void CreateCharacterParty(IDisplayer displayer, ICharacterController characterController, ICharacterBuilder characterBuilder, int numberOfPartyMembers);
     }
 }

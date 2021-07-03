@@ -1,4 +1,5 @@
 using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Contracts.Builders;
 using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Services;
 
@@ -9,20 +10,26 @@ namespace DungeonCrawlers.States
         private IDisplayer _displayer;
         private IGameController _gameController;
         private ICharacterCreationService _characterCreationService;
+        private ICharacterBuilder _characterBuilder;
         private ICharacterController _characterController;
 
-        public CharacterCreationState(IDisplayer displayer, IGameController gameController, ICharacterCreationService characterCreationService ,ICharacterController characterController) : base(displayer, gameController)
+        public CharacterCreationState(IDisplayer displayer, 
+        IGameController gameController, 
+        ICharacterCreationService characterCreationService, 
+        ICharacterBuilder characterBuilder, 
+        ICharacterController characterController) : base(displayer, gameController)
         {
             _displayer = displayer;
             _gameController = gameController;
             _characterCreationService = characterCreationService;
+            _characterBuilder = characterBuilder;
             _characterController = characterController;
         }
 
         public override void StartState()
         {
             _displayer.Write("Character creation");
-            _characterCreationService.CreateCharacterParty(_characterController, 3);
+            _characterCreationService.CreateCharacterParty(_displayer, _characterController, _characterBuilder, 3);
 
             StopState();
         }
