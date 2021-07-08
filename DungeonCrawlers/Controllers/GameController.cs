@@ -1,7 +1,7 @@
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.States;
 
-namespace DungeonCrawlersTests
+namespace DungeonCrawlers.Controllers
 {
     public class GameController : IGameController
     {

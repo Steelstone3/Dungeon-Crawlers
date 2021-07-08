@@ -1,6 +1,8 @@
+using DungeonCrawlers.Builders;
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Services;
+using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Services;
 
 namespace DungeonCrawlers.States
@@ -45,7 +47,8 @@ namespace DungeonCrawlers.States
             _gameController,
             _characterController,
             new LocationService(), 
-            _locationController));
+            _locationController, 
+            new LocationBuilder(new EncounterBuilder(), new EnemyController())));
         }
     }
 }

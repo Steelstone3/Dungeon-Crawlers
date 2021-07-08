@@ -34,10 +34,21 @@ namespace DungeonCrawlersTests.Builders
             Assert.NotNull(character.CombatRole);
         }
 
-        [Fact(Skip ="Next test")]
-        public void BuildCharacterParty()
+        [Theory]
+        [InlineData(0, 1)]
+        [InlineData(4, 4)]
+        [InlineData(5, 4)]
+        [InlineData(-1, 1)]
+        [InlineData(10, 4)]
+        public void BuildCharacterParty(int partySize, int expectedSize)
         {
-            
+            var characterBuilder = new CharacterBuilder();
+
+            var characterParty = characterBuilder.BuildCharacterParty(partySize);
+
+            Assert.NotEmpty(characterParty);
+            Assert.NotNull(characterParty);
+            Assert.Equal(expectedSize, characterParty.Count);
         }
 
         private Mock<IDisplayer> SetupDisplayerMock()

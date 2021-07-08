@@ -20,9 +20,18 @@ namespace DungeonCrawlers.Builders
             return new Character(name, race, combatRole);
         }
 
-        public IList<ICharacter> BuildCharacterParty()
+        public IList<ICharacter> BuildCharacterParty(int numberOfPartyMembers)
         {
-            throw new System.NotImplementedException();
+            var characters = new List<ICharacter>();
+
+            numberOfPartyMembers = ValidateNumberOfPartyMembers(numberOfPartyMembers);
+
+            for (int i = 0; i < numberOfPartyMembers; i++)
+            {
+                characters.Add(new Character("Jeff"));
+            }
+
+            return characters;
         }
 
         private string EnterCharacterName(IDisplayer displayer)
@@ -79,6 +88,22 @@ namespace DungeonCrawlers.Builders
                 new Rogue(),
                 new Wizard(),
             };
+        }
+
+        private int ValidateNumberOfPartyMembers(int numberOfPartyMembers)
+        {
+            if(numberOfPartyMembers > 4)
+            {
+                return numberOfPartyMembers = 4;
+            }
+            else if(numberOfPartyMembers < 1)
+            {
+                return numberOfPartyMembers = 1;
+            }
+            else
+            {
+                return numberOfPartyMembers;
+            }
         }
     }
 }

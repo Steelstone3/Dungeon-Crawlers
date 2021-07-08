@@ -1,4 +1,5 @@
 using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Contracts.Builders;
 using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Services;
 
@@ -11,20 +12,22 @@ namespace DungeonCrawlers.States
         private ICharacterController _characterController;
         private ILocationService _locationService;
         private ILocationController _locationController;
+        private ILocationBuilder _locationBuilder;
 
-        public ExplorationState(IDisplayer displayer, IGameController gameController, ICharacterController characterController, ILocationService locationService, ILocationController locationController) : base(displayer, gameController)
+        public ExplorationState(IDisplayer displayer, IGameController gameController, ICharacterController characterController, ILocationService locationService, ILocationController locationController, ILocationBuilder locationBuilder) : base(displayer, gameController)
         {
             _displayer = displayer;
             _gameController = gameController;
             _characterController = characterController;
             _locationService = locationService;
             _locationController = locationController;
+            _locationBuilder = locationBuilder;
         }
 
         public override void StartState()
         {
             _displayer.Write("Exploration started...");
-            _locationService.GenerateLocations(_locationController);
+            _locationService.GenerateLocations(_locationController, _locationBuilder);
             //TODO AH User selection on location Listing Dungeons and Settlements
             //TODO AH An encounter chance on travelling to location and a traveling state that reveals the distance, time taken etc
             StopState();
@@ -34,6 +37,7 @@ namespace DungeonCrawlers.States
         {
             //TODO AH Decision based on whether a settlement was picked or a dungeon
             _displayer.Write("Entering dungeon");
+            
             GoToState(new DungeonState(_displayer, 
             _gameController, 
             _characterController, 

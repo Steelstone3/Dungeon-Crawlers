@@ -1,3 +1,4 @@
+using DungeonCrawlers.Builders;
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Builders;
 using DungeonCrawlers.Controllers;
@@ -37,7 +38,13 @@ namespace DungeonCrawlers.States
         public override void StopState()
         {
             _displayer.Write("Starting game...");
-            GoToState(new ExplorationState(_displayer, _gameController, _characterController, new LocationService(), new LocationController()));
+
+            GoToState(new ExplorationState(_displayer, 
+            _gameController, 
+            _characterController, 
+            new LocationService(), 
+            new LocationController(), 
+            new LocationBuilder(new EncounterBuilder(), new EnemyController())));
         }
     }
 }

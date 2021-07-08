@@ -6,6 +6,8 @@ namespace DungeonCrawlers.States
 {
     public class CharacterController : ICharacterController
     {
+        public IList<ICharacter> PartyMembers { get; private set; } = new List<ICharacter>();
+
         public ICharacter CreateCharacter(IDisplayer displayer, ICharacterBuilder characterBuilder)
         {
             return characterBuilder.BuildCharacter(displayer);
@@ -13,12 +15,28 @@ namespace DungeonCrawlers.States
 
         public void DisplayCharacterParty(IDisplayer displayer)
         {
-            throw new System.NotImplementedException();
+            foreach (var character in PartyMembers)
+            {
+                displayer.Write($"{character.Name} the {character.Race.Name} {character.CombatRole.Name}");
+            }
         }
 
-        public IList<ICharacter> CreateCharacterParty(int numberOfPartyMembers)
+        public IList<ICharacter> CreateCharacterParty(ICharacterBuilder characterBuilder, int numberOfPartyMembers)
         {
-            throw new System.NotImplementedException();
+            return characterBuilder.BuildCharacterParty(numberOfPartyMembers);
+        }
+
+        public void AddPartyMember(ICharacter character)
+        {
+            PartyMembers.Add(character);
+        }
+
+        public void AddPartyMembers(IList<ICharacter> characters)
+        {
+            foreach (var character in characters)
+            {
+                PartyMembers.Add(character);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts;
 
-namespace DungeonCrawlersTests
+namespace DungeonCrawlers.Helpers
 {
     public class Displayer : IDisplayer
     {
