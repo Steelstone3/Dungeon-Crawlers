@@ -5,19 +5,18 @@ namespace DungeonCrawlers.Game.Encounters
 {
     public class CombatEncounter : Encounter
     {
-        private IEnemyController _enemyController;
 
         public CombatEncounter(IEnemyController enemyController)
         {
-            _enemyController = enemyController;
+            EnemyController = enemyController;
             GenerateEncounter();
         }
 
-        public EnemyController EnemyParty { get; private set; }
+        public IEnemyController EnemyController { get; private set; }
 
         public override void GenerateEncounter()
         {
-            _enemyController.GenerateEnemies();
+            EnemyController.GenerateEnemies();
         }
     }
 }

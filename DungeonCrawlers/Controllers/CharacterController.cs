@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Game.Characters;
 
 namespace DungeonCrawlers.States
 {

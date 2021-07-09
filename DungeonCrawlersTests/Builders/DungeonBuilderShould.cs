@@ -13,7 +13,7 @@ namespace DungeonCrawlersTests.Builders
             {
                 var encounterBuilder = new Mock<IEncounterBuilder>();
                 var enemyController = new Mock<IEnemyController>();
-                var locationBuilder = new LocationBuilder(encounterBuilder.Object, enemyController.Object);
+                var locationBuilder = new DungeonBuilder(encounterBuilder.Object, enemyController.Object);
 
                 var dungeons = locationBuilder.BuildDungeons();
 
@@ -21,12 +21,5 @@ namespace DungeonCrawlersTests.Builders
                 Assert.NotEmpty(dungeons);
                 Assert.InRange(dungeons.Count, 1, 10);
             }
-
-            [Fact(Skip="Not implemented yet")]
-            public void BuildASettlement()
-            {
-                
-            }
-
     }
 }

@@ -1,4 +1,4 @@
-using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Contracts.Game.Characters;
 using DungeonCrawlers.Contracts.Game.Characters.Race;
 using DungeonCrawlers.Contracts.Game.Combat;
 using DungeonCrawlers.Game.Characters.Races;

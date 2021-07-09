@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Game.Characters;
 
 namespace DungeonCrawlers.Contracts
 {

@@ -7,12 +7,12 @@ using DungeonCrawlersTests.Game.Locations;
 
 namespace DungeonCrawlers.Builders
 {
-    public class LocationBuilder : ILocationBuilder
+    public class DungeonBuilder : IDungeonBuilder
     {
         private IEncounterBuilder _encounterBuilder;
         private IEnemyController _enemyController;
 
-        public LocationBuilder(IEncounterBuilder encounterBuilder, IEnemyController enemyController)
+        public DungeonBuilder(IEncounterBuilder encounterBuilder, IEnemyController enemyController)
         {
             _encounterBuilder = encounterBuilder;
             _enemyController = enemyController;

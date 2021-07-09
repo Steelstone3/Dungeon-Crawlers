@@ -13,6 +13,6 @@ namespace DungeonCrawlersTests.Game.Characters.Races
             Assert.NotNull(elf);
             Assert.Equal("Elf", elf.Name);
             Assert.NotNull(elf.Description);
-        } 
+        }
     }
 }

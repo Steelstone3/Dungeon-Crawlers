@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Game.Characters;
 using DungeonCrawlers.Contracts.Game.Characters.Race;
 using DungeonCrawlers.Contracts.Game.Combat;
 using DungeonCrawlers.Game.Characters;

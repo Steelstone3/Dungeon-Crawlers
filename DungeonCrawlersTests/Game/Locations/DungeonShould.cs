@@ -9,7 +9,7 @@ namespace DungeonCrawlersTests.Game.Locations
     public class DungeonShould
     {
         [Fact]
-        public void ContainRooms()
+        public void ContainAHeaderAndRooms()
         {
             //Given
             var encounterBuilder = new Mock<IEncounterBuilder>();
@@ -17,6 +17,8 @@ namespace DungeonCrawlersTests.Game.Locations
             IDungeon dungeon = new Dungeon(encounterBuilder.Object, enemyController.Object);
 
             //Then
+            Assert.NotNull(dungeon.Name);
+            Assert.NotNull(dungeon.Description);
             Assert.NotNull(dungeon.Rooms);
             Assert.NotEmpty(dungeon.Rooms);
             Assert.InRange(dungeon.Rooms.Count, 1, 10);

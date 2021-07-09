@@ -3,7 +3,7 @@ using DungeonCrawlers.Contracts.Game.Locations;
 
 namespace DungeonCrawlers.Contracts.Builders
 {
-    public interface ILocationBuilder
+    public interface IDungeonBuilder
     {
         IList<IDungeon> BuildDungeons();
     }

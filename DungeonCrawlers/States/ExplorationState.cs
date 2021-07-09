@@ -1,7 +1,7 @@
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Builders;
-using DungeonCrawlers.Controllers;
-using DungeonCrawlers.Services;
+using DungeonCrawlers.Contracts.Controllers;
+using DungeonCrawlers.Contracts.Services;
 
 namespace DungeonCrawlers.States
 {
@@ -11,23 +11,32 @@ namespace DungeonCrawlers.States
         private IGameController _gameController;
         private ICharacterController _characterController;
         private ILocationService _locationService;
-        private ILocationController _locationController;
-        private ILocationBuilder _locationBuilder;
+        private IDungeonController _dungeonController;
+        private IDungeonBuilder _dungeonBuilder;
 
-        public ExplorationState(IDisplayer displayer, IGameController gameController, ICharacterController characterController, ILocationService locationService, ILocationController locationController, ILocationBuilder locationBuilder) : base(displayer, gameController)
+        public ExplorationState(IDisplayer displayer, 
+        IGameController gameController, 
+        ICharacterController characterController, 
+        ILocationService locationService, 
+        IDungeonController dungeonController, 
+        IDungeonBuilder dungeonBuilder) : base(displayer, gameController)
         {
             _displayer = displayer;
             _gameController = gameController;
             _characterController = characterController;
             _locationService = locationService;
-            _locationController = locationController;
-            _locationBuilder = locationBuilder;
+            _dungeonController = dungeonController;
+            _dungeonBuilder = dungeonBuilder;
         }
 
         public override void StartState()
         {
             _displayer.Write("Exploration started...");
-            _locationService.GenerateLocations(_locationController, _locationBuilder);
+
+            _dungeonController.Dungeons = _locationService.GenerateDungeons(_dungeonController, _dungeonBuilder);
+            _locationService.DisplayLocations(_displayer, _dungeonController);
+            _dungeonController.CurrentDungeon = _locationService.SelectLocation(_displayer, _dungeonController.Dungeons);
+
             //TODO AH User selection on location Listing Dungeons and Settlements
             //TODO AH An encounter chance on travelling to location and a traveling state that reveals the distance, time taken etc
             StopState();
@@ -41,9 +50,7 @@ namespace DungeonCrawlers.States
             GoToState(new DungeonState(_displayer, 
             _gameController, 
             _characterController, 
-            _locationController, 
-            new DungeonCreationService(), 
-            new DungeonController()));
+            _dungeonController));
 
             //Settlements are for party heal ups in taverns, buying equipment etc later on systems
             //_displayer.Write("Entering settlement");

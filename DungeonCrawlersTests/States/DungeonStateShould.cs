@@ -2,7 +2,6 @@ using DungeonCrawlers.States;
 using DungeonCrawlers.Contracts;
 using Moq;
 using Xunit;
-using DungeonCrawlers.Contracts.Services;
 using DungeonCrawlers.Contracts.Controllers;
 
 namespace DungeonCrawlersTests
@@ -16,16 +15,14 @@ namespace DungeonCrawlersTests
             var message = "Dungeon entered";
             var displayer = SetupDisplayerMock(message);
             var characterController = SetupCharacterControllerMock();
-            var locationController = SetupLocationControllerMock();
+
             var dungeonController = SetupDungeonControllerMock();
-            var dungeonCreationService = SetupDungeonCreationServiceMock(dungeonController);
-            var gameController = SetupGameControllerMock(displayer, characterController, locationController, dungeonCreationService, dungeonController);
+
+            var gameController = SetupGameControllerMock(displayer, characterController, dungeonController);
 
             var dungeonState = new DungeonState(displayer.Object,
-            gameController.Object, 
-            characterController.Object, 
-            locationController.Object, 
-            dungeonCreationService.Object, 
+            gameController.Object,
+            characterController.Object,
             dungeonController.Object);
 
             //When
@@ -33,7 +30,6 @@ namespace DungeonCrawlersTests
 
             //Then
             displayer.Verify(x => x.Write(message));
-            dungeonCreationService.Verify(x => x.GenerateDungeon(dungeonController.Object));
         }
 
         [Fact]
@@ -43,18 +39,14 @@ namespace DungeonCrawlersTests
             var message = "Leaving dungeon";
             var displayer = SetupDisplayerMock(message);
             var characterController = SetupCharacterControllerMock();
-            var locationController = SetupLocationControllerMock();
             var dungeonController = SetupDungeonControllerMock();
-            var dungeonCreationService = SetupDungeonCreationServiceMock(dungeonController);
-            var gameController = SetupGameControllerMock(displayer, characterController,locationController,dungeonCreationService,dungeonController);
+            var gameController = SetupGameControllerMock(displayer, characterController, dungeonController);
 
-            var characterCreationState = new DungeonState(displayer.Object, 
-            gameController.Object, 
-            characterController.Object, 
-            locationController.Object, 
-            dungeonCreationService.Object, 
+            var characterCreationState = new DungeonState(displayer.Object,
+            gameController.Object,
+            characterController.Object,
             dungeonController.Object);
-            
+
             //When
             characterCreationState.StartState();
 
@@ -71,10 +63,10 @@ namespace DungeonCrawlersTests
             return displayer;
         }
 
-        private Mock<IGameController> SetupGameControllerMock(Mock<IDisplayer> displayer, Mock<ICharacterController> characterController, Mock<ILocationController> locationController, Mock<IDungeonCreationService> dungeonCreationService, Mock<IDungeonController> dungeonController)
+        private Mock<IGameController> SetupGameControllerMock(Mock<IDisplayer> displayer, Mock<ICharacterController> characterController, Mock<IDungeonController> dungeonController)
         {
             var gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new DungeonState(displayer.Object, gameController.Object, characterController.Object, locationController.Object, dungeonCreationService.Object, dungeonController.Object));
+            gameController.Setup(x => x.CurrentGameState).Returns(new DungeonState(displayer.Object, gameController.Object, characterController.Object, dungeonController.Object));
             gameController.Setup(x => x.CurrentGameState.StartState());
 
             return gameController;
@@ -85,21 +77,6 @@ namespace DungeonCrawlersTests
             var characterController = new Mock<ICharacterController>();
 
             return characterController;
-        }
-
-        private Mock<ILocationController> SetupLocationControllerMock()
-        {
-            var locationController = new Mock<ILocationController>();
-
-            return locationController;
-        }
-
-        private Mock<IDungeonCreationService> SetupDungeonCreationServiceMock(Mock<IDungeonController> dungeonController)
-        {
-            var dungeonCreationService = new Mock<IDungeonCreationService>();
-            dungeonCreationService.Setup(x => x.GenerateDungeon(dungeonController.Object));
-
-            return dungeonCreationService;
         }
 
         private Mock<IDungeonController> SetupDungeonControllerMock()

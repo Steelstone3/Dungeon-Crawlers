@@ -1,6 +1,7 @@
+using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Services;
-using DungeonCrawlers.States;
 using Moq;
 using Xunit;
 
@@ -9,19 +10,36 @@ namespace DungeonCrawlersTests.Services
     public class LocationServiceShould
     {
         [Fact]
-        public void GenerateLocations()
+        public void GenerateDungeon()
         {
-            var locationBuilder = new Mock<ILocationBuilder>();
-            var locationController = new Mock<ILocationController>();
-            locationController.Setup(x => x.GenerateSettlements(locationBuilder.Object));
-            locationController.Setup(x => x.GenerateDungeons(locationBuilder.Object));
+            var dungeonBuilder = new Mock<IDungeonBuilder>();
+            var dungeonController = new Mock<IDungeonController>();
+            dungeonController.Setup(x => x.GenerateDungeons(dungeonBuilder.Object));
+            var dungeonCreationService = new LocationService();
 
+            dungeonCreationService.GenerateDungeons(dungeonController.Object, dungeonBuilder.Object);
+
+            dungeonController.Verify(x => x.GenerateDungeons(dungeonBuilder.Object));
+        }
+
+        [Fact]
+        public void DisplayLocations()
+        {
+            var displayer = new Mock<IDisplayer>();
+            var dungeonController = new Mock<IDungeonController>();
+            dungeonController.Setup(x => x.DisplayDungeons(displayer.Object));
+            
             var locationService = new LocationService();
 
-            locationService.GenerateLocations(locationController.Object, locationBuilder.Object);
+            locationService.DisplayLocations(displayer.Object, dungeonController.Object);
 
-            locationController.Verify(x => x.GenerateSettlements(locationBuilder.Object));
-            locationController.Verify(x => x.GenerateDungeons(locationBuilder.Object));
+            dungeonController.Verify(x => x.DisplayDungeons(displayer.Object));
+        }
+
+        [Fact(Skip ="Next test")]
+        public void SelectLocation()
+        {
+            
         }
     }
 }
