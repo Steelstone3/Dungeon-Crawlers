@@ -8,7 +8,6 @@ namespace DungeonCrawlers.Contracts.Controllers
     {
         IList<IDungeon> Dungeons { get; set;}
         IDungeon CurrentDungeon { get; set; }
-
         void GenerateDungeons(IDungeonBuilder dungeonBuilder);
         void DisplayDungeons(IDisplayer displayer);
     }

@@ -24,6 +24,11 @@ namespace DungeonCrawlers.Game.Locations
         public string Name { get; private set; }
         public string Description { get; private set; }
 
+        public void StartDungeon()
+        {
+            throw new NotImplementedException();
+        }
+
         private IList<IRoom> GenerateRooms()
         {
             var rooms = new List<IRoom>();

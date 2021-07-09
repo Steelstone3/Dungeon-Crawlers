@@ -5,7 +5,7 @@ namespace DungeonCrawlers.Contracts.Game.Locations
 {
     public interface IDungeon : IHeader
     {
-
         IList<IRoom> Rooms { get; }
+        void StartDungeon();
     }
 }

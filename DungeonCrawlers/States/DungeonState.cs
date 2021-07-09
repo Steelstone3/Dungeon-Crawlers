@@ -29,6 +29,7 @@ namespace DungeonCrawlers.States
         public override void StartState()
         {
             _displayer.Write("Dungeon entered");
+            _dungeonController.CurrentDungeon.StartDungeon();
 
             StopState();
         }

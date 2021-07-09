@@ -23,5 +23,11 @@ namespace DungeonCrawlersTests.Game.Locations
             Assert.NotEmpty(dungeon.Rooms);
             Assert.InRange(dungeon.Rooms.Count, 1, 10);
         }
+
+        [Fact(Skip ="Needs implementing")]
+        public void StartDungeon()
+        {
+
+        }
     }
 }

@@ -1,4 +1,3 @@
-using DungeonCrawlers.Controllers;
 using DungeonCrawlersTests.Game.Locations;
 
 namespace DungeonCrawlers.Game.Encounters
@@ -17,6 +16,11 @@ namespace DungeonCrawlers.Game.Encounters
         public override void GenerateEncounter()
         {
             EnemyController.GenerateEnemies();
+        }
+
+        public override void RunEncounter()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

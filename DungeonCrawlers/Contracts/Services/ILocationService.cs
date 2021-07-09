@@ -7,7 +7,7 @@ namespace DungeonCrawlers.Contracts.Services
     public interface ILocationService : IDungeonCreationService
     {
         void DisplayLocations(IDisplayer displayer, IDungeonController dungeonController);
-        IDungeon SelectLocation(IDisplayer displayer, IEnumerable<IDungeon> dungeons);
+        IDungeon SelectLocation(IDisplayer displayer, IList<IDungeon> dungeons);
 
     }
 }

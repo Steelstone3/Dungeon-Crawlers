@@ -20,9 +20,10 @@ namespace DungeonCrawlers.Services
             return dungeonController.Dungeons;
         }
 
-        public IDungeon SelectLocation(IDisplayer displayer, IEnumerable<IDungeon> dungeons)
+        public IDungeon SelectLocation(IDisplayer displayer, IList<IDungeon> dungeons)
         {
-            return null;
+            var selection = displayer.ReadNumeric("Select dungeon to enter:", 0, dungeons.Count - 1);
+            return dungeons[selection];
         }
     }
 }

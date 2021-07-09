@@ -37,24 +37,17 @@ namespace DungeonCrawlers.States
             _locationService.DisplayLocations(_displayer, _dungeonController);
             _dungeonController.CurrentDungeon = _locationService.SelectLocation(_displayer, _dungeonController.Dungeons);
 
-            //TODO AH User selection on location Listing Dungeons and Settlements
-            //TODO AH An encounter chance on travelling to location and a traveling state that reveals the distance, time taken etc
             StopState();
         }
 
         public override void StopState()
         {
-            //TODO AH Decision based on whether a settlement was picked or a dungeon
             _displayer.Write("Entering dungeon");
             
             GoToState(new DungeonState(_displayer, 
             _gameController, 
             _characterController, 
             _dungeonController));
-
-            //Settlements are for party heal ups in taverns, buying equipment etc later on systems
-            //_displayer.Write("Entering settlement");
-            //GoToState(new SettlementState(_displayer, _gameController));
         }
     }
 }

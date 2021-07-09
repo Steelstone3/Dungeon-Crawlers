@@ -3,33 +3,41 @@ using DungeonCrawlers.Contracts;
 using Moq;
 using Xunit;
 using DungeonCrawlers.Contracts.Controllers;
+using DungeonCrawlers.Game.Locations;
+using DungeonCrawlers.Contracts.Game.Locations;
 
 namespace DungeonCrawlersTests
 {
     public class DungeonStateShould
     {
+        private Mock<ICharacterController> _characterController = new Mock<ICharacterController>();
+        private Mock<IDungeonController> _dungeonController = new Mock<IDungeonController>();
+
         [Fact]
         public void ExecutesTheStartState()
         {
             //Given
             var message = "Dungeon entered";
             var displayer = SetupDisplayerMock(message);
-            var characterController = SetupCharacterControllerMock();
+            var dungeon = new Mock<IDungeon>();
+            _dungeonController.Setup(x => x.CurrentDungeon).Returns(dungeon.Object);
+            _dungeonController.Setup(x => x.CurrentDungeon.StartDungeon());
 
-            var dungeonController = SetupDungeonControllerMock();
-
-            var gameController = SetupGameControllerMock(displayer, characterController, dungeonController);
+            var gameController = SetupGameControllerMock(displayer, 
+            _characterController, 
+            _dungeonController);
 
             var dungeonState = new DungeonState(displayer.Object,
             gameController.Object,
-            characterController.Object,
-            dungeonController.Object);
+            _characterController.Object,
+            _dungeonController.Object);
 
             //When
             dungeonState.StartState();
 
             //Then
             displayer.Verify(x => x.Write(message));
+            _dungeonController.Verify(x => x.CurrentDungeon.StartDungeon());
         }
 
         [Fact]
@@ -38,14 +46,17 @@ namespace DungeonCrawlersTests
             //Given
             var message = "Leaving dungeon";
             var displayer = SetupDisplayerMock(message);
-            var characterController = SetupCharacterControllerMock();
-            var dungeonController = SetupDungeonControllerMock();
-            var gameController = SetupGameControllerMock(displayer, characterController, dungeonController);
+            var dungeon = new Mock<IDungeon>();
+            _dungeonController.Setup(x => x.CurrentDungeon).Returns(dungeon.Object);
+            
+            var gameController = SetupGameControllerMock(displayer,
+            _characterController, 
+            _dungeonController);
 
             var characterCreationState = new DungeonState(displayer.Object,
             gameController.Object,
-            characterController.Object,
-            dungeonController.Object);
+            _characterController.Object,
+            _dungeonController.Object);
 
             //When
             characterCreationState.StartState();
@@ -70,20 +81,6 @@ namespace DungeonCrawlersTests
             gameController.Setup(x => x.CurrentGameState.StartState());
 
             return gameController;
-        }
-
-        private Mock<ICharacterController> SetupCharacterControllerMock()
-        {
-            var characterController = new Mock<ICharacterController>();
-
-            return characterController;
-        }
-
-        private Mock<IDungeonController> SetupDungeonControllerMock()
-        {
-            var dungeonController = new Mock<IDungeonController>();
-
-            return dungeonController;
         }
     }
 }

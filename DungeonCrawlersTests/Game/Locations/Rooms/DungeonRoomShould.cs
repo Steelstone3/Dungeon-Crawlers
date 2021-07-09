@@ -18,5 +18,11 @@ namespace DungeonCrawlersTests.Game.Locations.Rooms
 
             encounterBuilder.Verify(x => x.BuildCombatEncounters(enemyController.Object));
         }
+
+        [Fact(Skip ="Needs implementing")]
+        public void RunEncounters()
+        {
+
+        }
     }
 }
