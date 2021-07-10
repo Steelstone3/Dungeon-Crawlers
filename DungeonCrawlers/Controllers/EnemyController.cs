@@ -9,11 +9,11 @@ namespace DungeonCrawlers.Controllers
 {
     public class EnemyController : IEnemyController
     {
-        public IList<IMonster> EnemyParty{get; private set;}
+        public IList<IMonster> PartyMembers{get; private set;}
 
         public void GenerateEnemies()
         {
-            EnemyParty = new List<IMonster>()
+            PartyMembers = new List<IMonster>()
             {
                 new Monster(new Goblin()),
                 new Monster(new Goblin()),
@@ -22,12 +22,22 @@ namespace DungeonCrawlers.Controllers
             };
         }
 
-        public void DisplayEnemyParty(IDisplayer displayer)
+        public void DisplayParty(IDisplayer displayer)
         {
-            foreach (var enemy in EnemyParty)
+            foreach (var enemy in PartyMembers)
             {
                 displayer.Write($"{enemy.Name} the {enemy.Race.Name}");
             }
+        }
+
+        public ICharacter SelectOpponent(IList<ICharacter> partyMembers)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AttackOpponent(ICharacter character)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

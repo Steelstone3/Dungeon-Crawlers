@@ -5,19 +5,31 @@ namespace DungeonCrawlers.Controllers
 {
     public class CombatController : ICombatController
     {
-        public void DisplayCombatants(IDisplayer displayer, ICharacterController characterController, IEnemyController enemyController)
+        public void DisplayCombatants(IDisplayer displayer, 
+        ICharacterController characterController, 
+        IEnemyController enemyController)
         {
-            throw new System.NotImplementedException();
+            displayer.Write("Allies");
+            characterController.DisplayParty(displayer);
+
+            displayer.Write("Foes");
+            enemyController.DisplayParty(displayer);
         }
 
-        public void OpponentTurn(IDisplayer displayer, ICharacterController characterController, IEnemyController enemyController)
+        public void PlayerTurn(IDisplayer displayer, 
+        ICharacterController characterController, 
+        IEnemyController enemyController)
         {
-            throw new System.NotImplementedException();
+            var opponent = characterController.SelectOpponent(enemyController.PartyMembers);
+            characterController.AttackOpponent(opponent);
         }
 
-        public void PlayerTurn(IDisplayer displayer, ICharacterController characterController, IEnemyController enemyController)
+        public void OpponentTurn(IDisplayer displayer, 
+        ICharacterController characterController, 
+        IEnemyController enemyController)
         {
-            throw new System.NotImplementedException();
+            var opponent = enemyController.SelectOpponent(characterController.PartyMembers);
+            enemyController.AttackOpponent(opponent);
         }
     }
 }

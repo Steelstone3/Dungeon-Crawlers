@@ -5,7 +5,10 @@ namespace DungeonCrawlers.Contracts.Controllers
 {
     public interface IEnemyController
     {
-        IList<IMonster> EnemyParty { get; }
+        IList<IMonster> PartyMembers { get; }
         void GenerateEnemies();
+        void DisplayParty(IDisplayer displayer);
+        ICharacter SelectOpponent(IList<ICharacter> partyMembers);
+        void AttackOpponent(ICharacter character);
     }
 }

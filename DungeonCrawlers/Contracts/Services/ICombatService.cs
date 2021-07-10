@@ -8,6 +8,6 @@ namespace DungeonCrawlers.Contracts.Services
         ICombatController combatController, 
         ICharacterController characterController, 
         IEnemyController enemyController);
-        void StopCombat();
+        void StopCombat(IDisplayer displayer);
     }
 }

@@ -42,7 +42,7 @@ namespace DungeonCrawlersTests.Services
             characterController.Verify(x => x.CreateCharacterParty(characterBuilder.Object, 3));
             characterController.Verify(x => x.AddPartyMember(character));
             characterController.Verify(x => x.AddPartyMembers(characters));
-            characterController.Verify(x => x.DisplayCharacterParty(displayer.Object));
+            characterController.Verify(x => x.DisplayParty(displayer.Object));
         }
     }
 }

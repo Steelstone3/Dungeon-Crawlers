@@ -14,8 +14,8 @@ namespace DungeonCrawlersTests.Controllers
 
             enemyController.GenerateEnemies();
 
-            Assert.NotNull(enemyController.EnemyParty);
-            Assert.NotEmpty(enemyController.EnemyParty);
+            Assert.NotNull(enemyController.PartyMembers);
+            Assert.NotEmpty(enemyController.PartyMembers);
         }
 
         [Fact]
@@ -29,10 +29,30 @@ namespace DungeonCrawlersTests.Controllers
             characterController.GenerateEnemies();
 
             //When
-            characterController.DisplayEnemyParty(displayer.Object);
+            characterController.DisplayParty(displayer.Object);
 
             //Then
             displayer.Verify(x => x.Write("Jeff the Goblin"));
+        }
+
+        [Fact(Skip = "Not implemented yet")]
+        public void SelectOpponent()
+        {
+            //Cycle through each party member
+            //Display that characters abilities
+            //Allow the player to select an opponent
+            //Allow the player to select the character ability
+            //The character ability
+        }
+
+        [Fact(Skip = "Not implemented yet")]
+        public void AttackOpponent()
+        {
+            //Cycle through each party member
+            //Display that characters abilities
+            //Allow the player to select an opponent
+            //Allow the player to select the character ability
+            //The character ability
         }
     }
 }

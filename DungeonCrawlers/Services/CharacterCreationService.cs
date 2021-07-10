@@ -13,7 +13,7 @@ namespace DungeonCrawlers.States
             var characters = characterController.CreateCharacterParty(characterBuilder, numberOfPartyMembers);
             characterController.AddPartyMember(character);
             characterController.AddPartyMembers(characters);
-            characterController.DisplayCharacterParty(displayer);
+            characterController.DisplayParty(displayer);
         }
     }
 }

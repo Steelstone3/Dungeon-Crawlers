@@ -19,16 +19,18 @@ namespace DungeonCrawlersTests.Services
         public void StartCombat()
         {
             //Given
+            _displayer.Setup(x => x.Write("Combat Started"));
+
             _combatController.Setup(x => x.DisplayCombatants(_displayer.Object,
-            _characterController.Object, 
+            _characterController.Object,
             _enemyController.Object));
 
             _combatController.Setup(x => x.PlayerTurn(_displayer.Object,
-            _characterController.Object, 
+            _characterController.Object,
             _enemyController.Object));
 
             _combatController.Setup(x => x.OpponentTurn(_displayer.Object,
-            _characterController.Object, 
+            _characterController.Object,
             _enemyController.Object));
 
             //When
@@ -40,23 +42,32 @@ namespace DungeonCrawlersTests.Services
             //Then
             _combatController.InSequence(new MockSequence());
 
+            _displayer.Verify(x => x.Write("Combat Started"));
+
             _combatController.Verify(x => x.DisplayCombatants(_displayer.Object,
-            _characterController.Object, 
+            _characterController.Object,
             _enemyController.Object));
 
             _combatController.Verify(x => x.PlayerTurn(_displayer.Object,
-            _characterController.Object, 
+            _characterController.Object,
             _enemyController.Object));
 
             _combatController.Verify(x => x.OpponentTurn(_displayer.Object,
-            _characterController.Object, 
+            _characterController.Object,
             _enemyController.Object));
         }
 
-        [Fact(Skip = "Skip")]
+        [Fact]
         public void StopCombat()
         {
+            //Given
+            _displayer.Setup(x => x.Write("Combat Ended"));
 
+            //When
+            _combatService.StopCombat(_displayer.Object);
+
+            //Then
+            _displayer.Verify(x => x.Write("Combat Ended"));
         }
     }
 }

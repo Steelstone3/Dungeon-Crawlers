@@ -11,14 +11,15 @@ namespace DungeonCrawlers.Services
         ICharacterController characterController,
         IEnemyController enemyController)
         {
+            displayer.Write("Combat Started");
             combatController.DisplayCombatants(displayer,characterController,enemyController);
             combatController.PlayerTurn(displayer,characterController,enemyController);
             combatController.OpponentTurn(displayer,characterController,enemyController);
         }
 
-        public void StopCombat()
+        public void StopCombat(IDisplayer displayer)
         {
-            throw new System.NotImplementedException();
+            displayer.Write("Combat Ended");
         }
     }
 }

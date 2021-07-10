@@ -59,7 +59,7 @@ namespace DungeonCrawlersTests.Controllers
             characterController.AddPartyMembers(characters);
 
             //When
-            characterController.DisplayCharacterParty(displayer.Object);
+            characterController.DisplayParty(displayer.Object);
 
             //Then
             displayer.Verify(x => x.Write("Jeff the Human Knight"));
@@ -105,21 +105,15 @@ namespace DungeonCrawlersTests.Controllers
         }
 
         [Fact(Skip = "Not implemented yet")]
-        public void DisplayPartyMembersAbilities()
+        public void SelectOpponent()
         {
 
         }
 
         [Fact(Skip = "Not implemented yet")]
-        public void DisplayBattleInformation()
+        public void AttackOpponent()
         {
 
-        }
-
-        [Fact(Skip = "May implemented yet")]
-        public void DisplayBattleStatistics()
-        {
-            
         }
     }
 }

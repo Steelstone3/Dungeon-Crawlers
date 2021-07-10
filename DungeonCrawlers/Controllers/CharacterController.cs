@@ -14,7 +14,7 @@ namespace DungeonCrawlers.States
             return characterBuilder.BuildCharacter(displayer);
         }
 
-        public void DisplayCharacterParty(IDisplayer displayer)
+        public void DisplayParty(IDisplayer displayer)
         {
             foreach (var character in PartyMembers)
             {
@@ -38,6 +38,16 @@ namespace DungeonCrawlers.States
             {
                 PartyMembers.Add(character);
             }
+        }
+
+        public IMonster SelectOpponent(IList<IMonster> enemyParty)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AttackOpponent(IMonster @object)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
