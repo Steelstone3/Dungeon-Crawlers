@@ -8,6 +8,5 @@ namespace DungeonCrawlers.Contracts.Controllers
         void DisplayCombatants(IDisplayer displayer, ICharacterController characterController, IEnemyController enemyController);
         void PlayerTurn(IDisplayer displayer, ICharacterController characterController, IEnemyController enemyController);
         void OpponentTurn(IDisplayer displayer, ICharacterController characterController, IEnemyController enemyController);
-        void StartDungeon(IList<IDungeonRoom> rooms);
     }
 }

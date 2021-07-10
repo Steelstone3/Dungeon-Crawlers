@@ -6,6 +6,6 @@ namespace DungeonCrawlers.Game.Locations.Rooms
 {
     public abstract class Room : IDungeonRoom
     {
-        public IEnumerable<IEncounter> Encounters { get; protected set; }
+        public IEnumerable<IHostileEncounter> Encounters { get; protected set; }
     }
 }

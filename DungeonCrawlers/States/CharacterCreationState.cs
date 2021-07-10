@@ -43,6 +43,7 @@ namespace DungeonCrawlers.States
             _gameController, 
             _characterController, 
             new LocationService(), 
+            new DungeonService(),
             new DungeonController(), 
             new DungeonBuilder(new EncounterBuilder(), new EnemyController())));
         }

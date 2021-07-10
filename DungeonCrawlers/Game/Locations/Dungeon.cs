@@ -25,11 +25,6 @@ namespace DungeonCrawlers.Game.Locations
         public string Name { get; private set; }
         public string Description { get; private set; }
 
-        public void StartDungeon(IList<IDungeonRoom> rooms, ICombatController combatController)
-        {
-            combatController.StartDungeon(rooms);
-        }
-
         private IList<IDungeonRoom> GenerateRooms()
         {
             var rooms = new List<IDungeonRoom>();

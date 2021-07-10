@@ -15,7 +15,7 @@ namespace DungeonCrawlersTests.Game.Locations.Rooms
         {
             var encounterBuilder = new Mock<IEncounterBuilder>();
             var enemyController = new Mock<IEnemyController>();
-            encounterBuilder.Setup(x => x.BuildCombatEncounters(enemyController.Object)).Returns(new List<IEncounter>());
+            encounterBuilder.Setup(x => x.BuildCombatEncounters(enemyController.Object)).Returns(new List<IHostileEncounter>());
             var dungeonRoom = new DungeonRoom(encounterBuilder.Object, enemyController.Object);
 
             encounterBuilder.Verify(x => x.BuildCombatEncounters(enemyController.Object));

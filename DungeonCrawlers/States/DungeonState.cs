@@ -2,6 +2,7 @@ using DungeonCrawlers.Builders;
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Game.Locations;
+using DungeonCrawlers.Contracts.Services;
 using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Services;
 
@@ -12,29 +13,32 @@ namespace DungeonCrawlers.States
         private IDisplayer _displayer;
         private IGameController _gameController;
         private ICharacterController _characterController;
+        private ICombatService _combatService;
         private ICombatController _combatController;
+        private IDungeonService _dungeonService;
         private IDungeonController _dungeonController;
-        private IDungeon _dungeon;
 
         public DungeonState(IDisplayer displayer,
         IGameController gameController, 
         ICharacterController characterController,
+        ICombatService combatService,
         ICombatController combatController,
-        IDungeonController dungeonController,
-        IDungeon dungeon) : base(displayer, gameController)
+        IDungeonService dungeonService,
+        IDungeonController dungeonController) : base(displayer, gameController)
         {
             _displayer = displayer;
             _gameController = gameController;
             _characterController = characterController;
+            _combatService = combatService;
             _combatController = combatController;
+            _dungeonService = dungeonService;
             _dungeonController = dungeonController;
-            _dungeon = dungeon;
         }
 
         public override void StartState()
         {
             _displayer.Write("Dungeon entered");
-            _dungeonController.CurrentDungeon.StartDungeon(_dungeon.Rooms, _combatController);
+            _dungeonService.StartDungeon(_displayer,_combatService, _combatController,  _characterController, _dungeonController.CurrentDungeon);
 
             StopState();
         }
@@ -47,6 +51,7 @@ namespace DungeonCrawlers.States
             _gameController, 
             _characterController, 
             new LocationService(), 
+            _dungeonService,
             _dungeonController,
             new DungeonBuilder(new EncounterBuilder(), new EnemyController())));
         }

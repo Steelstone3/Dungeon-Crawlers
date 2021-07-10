@@ -9,7 +9,7 @@ namespace DungeonCrawlers.Builders
 {
     public class EncounterBuilder : IEncounterBuilder
     {
-        public IEnumerable<IEncounter> BuildCombatEncounters(IEnemyController enemyController)
+        public IEnumerable<IHostileEncounter> BuildCombatEncounters(IEnemyController enemyController)
         {
             var random = new Random();
 

@@ -6,6 +6,6 @@ namespace DungeonCrawlers.Contracts.Game.Locations
 {
     public interface IDungeonRoom
     {
-        IEnumerable<IEncounter> Encounters { get; }
+        IEnumerable<IHostileEncounter> Encounters { get; }
     }
 }

@@ -24,23 +24,5 @@ namespace DungeonCrawlersTests.Game.Locations
             Assert.NotEmpty(dungeon.Rooms);
             Assert.InRange(dungeon.Rooms.Count, 1, 10);
         }
-
-        [Fact]
-        public void StartingDungeonRunsEncounters()
-        {
-            //Given
-            var encounterBuilder = new Mock<IEncounterBuilder>();
-            var enemyController = new Mock<IEnemyController>();
-            var dungeon = new Dungeon(encounterBuilder.Object, enemyController.Object);
-
-            var combatController = new Mock<ICombatController>();
-            combatController.Setup(x => x.StartDungeon(dungeon.Rooms));
-
-            //When
-            dungeon.StartDungeon(dungeon.Rooms, combatController.Object);
-
-            //Then
-            combatController.Verify(x => x.StartDungeon(dungeon.Rooms));
-        }
     }
 }

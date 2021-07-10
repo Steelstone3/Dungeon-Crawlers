@@ -6,6 +6,6 @@ namespace DungeonCrawlers.Contracts.Builders
 {
     public interface IEncounterBuilder
     {
-        IEnumerable<IEncounter> BuildCombatEncounters(IEnemyController enemyController);
+        IEnumerable<IHostileEncounter> BuildCombatEncounters(IEnemyController enemyController);
     }
 }

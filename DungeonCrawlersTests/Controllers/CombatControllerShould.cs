@@ -4,13 +4,13 @@ namespace DungeonCrawlersTests.Controllers
 {
     public class CombatControllerShould
     {
-        [Fact(Skip="Skip")]
+        [Fact(Skip="Next")]
         public void DisplayCombatants()
         {
             //TODO AH Will display the both friendly and enemy forces
         }
 
-        [Fact(Skip ="Skip")]
+        [Fact(Skip ="Next Next")]
         public void PlayerTurn()
         {
             //TODO AH Player will select each character in turn and select a combat ability to perform on a target
@@ -18,7 +18,7 @@ namespace DungeonCrawlersTests.Controllers
             //TODO AH If all player characters die the game ends
         }
 
-        [Fact(Skip ="Skip")]
+        [Fact(Skip ="Next Next Next")]
         public void OpponentTurn()
         {
             //TODO AH Opponent will select each character in turn and select a combat ability to perform on a target
