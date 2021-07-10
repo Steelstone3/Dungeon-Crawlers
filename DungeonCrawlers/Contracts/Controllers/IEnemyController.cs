@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Game.Characters;
 
-namespace DungeonCrawlersTests.Game.Locations
+namespace DungeonCrawlers.Contracts.Controllers
 {
     public interface IEnemyController
     {
-        IList<IMonster> EnemyParty{get;}
+        IList<IMonster> EnemyParty { get; }
         void GenerateEnemies();
     }
 }

@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Game.Characters;
 using DungeonCrawlers.Game.Characters.Enemies;
 using DungeonCrawlers.Game.Enemies;
-using DungeonCrawlersTests.Game.Locations;
 
 namespace DungeonCrawlers.Controllers
 {

@@ -1,9 +1,7 @@
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Builders;
 using DungeonCrawlers.Contracts.Controllers;
-using DungeonCrawlers.Contracts.Game.Locations;
 using DungeonCrawlers.Contracts.Services;
-using DungeonCrawlers.Game.Locations;
 using DungeonCrawlers.States;
 using Moq;
 using Xunit;
@@ -28,10 +26,7 @@ namespace Name
             _dungeonController.Object,
             _dungeonBuilder.Object);
 
-            var gameController = SetupGameControllerMock(displayer.Object,
-            _characterController.Object,
-            locationService.Object,
-            _dungeonController.Object,_dungeonBuilder.Object);
+            var gameController = SetupGameControllerMock(displayer.Object);
 
             var explorationState = new ExplorationState(displayer.Object,
             gameController.Object,
@@ -64,11 +59,7 @@ namespace Name
             _dungeonController.Object,
             _dungeonBuilder.Object);
 
-            var gameController = SetupGameControllerMock(displayer.Object,
-            _characterController.Object,
-            locationService.Object,
-            _dungeonController.Object,
-            _dungeonBuilder.Object);
+            var gameController = SetupGameControllerMock(displayer.Object);
 
             var explorationState = new ExplorationState(displayer.Object,
             gameController.Object,
@@ -105,20 +96,20 @@ namespace Name
             return locationService;
         }
 
-        private Mock<IGameController> SetupGameControllerMock(IDisplayer displayer,
-        ICharacterController characterController,
-        ILocationService locationService,
-        IDungeonController dungeonController,
-        IDungeonBuilder dungeonBuilder)
+        private Mock<IGameController> SetupGameControllerMock(IDisplayer displayer)
         {
+            var locationService = SetupLocationServiceMock(displayer, 
+            _dungeonController.Object, 
+            _dungeonBuilder.Object).Object;
+
             var gameController = new Mock<IGameController>();
 
             gameController.Setup(x => x.CurrentGameState).Returns(new ExplorationState(displayer,
             gameController.Object,
-            characterController,
+            _characterController.Object,
             locationService,
-            dungeonController,
-            dungeonBuilder));
+            _dungeonController.Object,
+            _dungeonBuilder.Object));
 
             gameController.Setup(x => x.CurrentGameState.StartState());
 

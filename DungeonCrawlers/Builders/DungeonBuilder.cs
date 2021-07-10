@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Game.Locations;
 using DungeonCrawlers.Game.Locations;
-using DungeonCrawlersTests.Game.Locations;
 
 namespace DungeonCrawlers.Builders
 {

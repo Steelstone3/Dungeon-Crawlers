@@ -1,4 +1,5 @@
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Game.Locations;
 using DungeonCrawlers.Game.Locations;
 using Moq;
@@ -24,10 +25,22 @@ namespace DungeonCrawlersTests.Game.Locations
             Assert.InRange(dungeon.Rooms.Count, 1, 10);
         }
 
-        [Fact(Skip ="Needs implementing")]
-        public void StartDungeon()
+        [Fact]
+        public void StartingDungeonRunsEncounters()
         {
+            //Given
+            var encounterBuilder = new Mock<IEncounterBuilder>();
+            var enemyController = new Mock<IEnemyController>();
+            var dungeon = new Dungeon(encounterBuilder.Object, enemyController.Object);
 
+            var combatController = new Mock<ICombatController>();
+            combatController.Setup(x => x.StartDungeon(dungeon.Rooms));
+
+            //When
+            dungeon.StartDungeon(dungeon.Rooms, combatController.Object);
+
+            //Then
+            combatController.Verify(x => x.StartDungeon(dungeon.Rooms));
         }
     }
 }

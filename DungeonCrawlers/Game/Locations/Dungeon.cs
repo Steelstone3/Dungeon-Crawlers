@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Game.Locations;
 using DungeonCrawlers.Game.Locations.Rooms;
-using DungeonCrawlersTests.Game.Locations;
 
 namespace DungeonCrawlers.Game.Locations
 {
@@ -18,20 +18,21 @@ namespace DungeonCrawlers.Game.Locations
             Description = string.Empty;
             _encounterBuilder = encounterBuilder;
             _enemyController = enemyController;
+            Rooms = GenerateRooms();
         }
 
-        public IList<IRoom> Rooms => GenerateRooms();
+        public IList<IDungeonRoom> Rooms { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
 
-        public void StartDungeon()
+        public void StartDungeon(IList<IDungeonRoom> rooms, ICombatController combatController)
         {
-            throw new NotImplementedException();
+            combatController.StartDungeon(rooms);
         }
 
-        private IList<IRoom> GenerateRooms()
+        private IList<IDungeonRoom> GenerateRooms()
         {
-            var rooms = new List<IRoom>();
+            var rooms = new List<IDungeonRoom>();
 
             var random = new Random();
 

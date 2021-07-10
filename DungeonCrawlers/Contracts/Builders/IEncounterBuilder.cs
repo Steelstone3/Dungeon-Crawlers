@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Game.Locations.Rooms;
-using DungeonCrawlersTests.Game.Locations;
+using DungeonCrawlers.Contracts.Controllers;
+using DungeonCrawlers.Contracts.Game.Encounters;
 
 namespace DungeonCrawlers.Contracts.Builders
 {

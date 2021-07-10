@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Controllers;
+using DungeonCrawlers.Contracts.Game.Encounters;
 using DungeonCrawlers.Game.Locations.Rooms;
 using Moq;
 using Xunit;
@@ -17,12 +19,6 @@ namespace DungeonCrawlersTests.Game.Locations.Rooms
             var dungeonRoom = new DungeonRoom(encounterBuilder.Object, enemyController.Object);
 
             encounterBuilder.Verify(x => x.BuildCombatEncounters(enemyController.Object));
-        }
-
-        [Fact(Skip ="Needs implementing")]
-        public void RunEncounters()
-        {
-
         }
     }
 }

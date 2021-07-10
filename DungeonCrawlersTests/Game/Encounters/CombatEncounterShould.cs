@@ -1,4 +1,4 @@
-using DungeonCrawlers.Controllers;
+using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Game.Encounters;
 using Moq;
 using Xunit;

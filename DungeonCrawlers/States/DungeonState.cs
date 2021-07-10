@@ -1,8 +1,7 @@
 using DungeonCrawlers.Builders;
 using DungeonCrawlers.Contracts;
-using DungeonCrawlers.Contracts.Builders;
 using DungeonCrawlers.Contracts.Controllers;
-using DungeonCrawlers.Contracts.Services;
+using DungeonCrawlers.Contracts.Game.Locations;
 using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Services;
 
@@ -13,23 +12,29 @@ namespace DungeonCrawlers.States
         private IDisplayer _displayer;
         private IGameController _gameController;
         private ICharacterController _characterController;
+        private ICombatController _combatController;
         private IDungeonController _dungeonController;
+        private IDungeon _dungeon;
 
-        public DungeonState(IDisplayer displayer, 
+        public DungeonState(IDisplayer displayer,
         IGameController gameController, 
         ICharacterController characterController,
-        IDungeonController dungeonController) : base(displayer, gameController)
+        ICombatController combatController,
+        IDungeonController dungeonController,
+        IDungeon dungeon) : base(displayer, gameController)
         {
             _displayer = displayer;
             _gameController = gameController;
             _characterController = characterController;
+            _combatController = combatController;
             _dungeonController = dungeonController;
+            _dungeon = dungeon;
         }
 
         public override void StartState()
         {
             _displayer.Write("Dungeon entered");
-            _dungeonController.CurrentDungeon.StartDungeon();
+            _dungeonController.CurrentDungeon.StartDungeon(_dungeon.Rooms, _combatController);
 
             StopState();
         }

@@ -1,10 +1,10 @@
-using DungeonCrawlersTests.Game.Locations;
+using DungeonCrawlers.Contracts.Controllers;
+using DungeonCrawlers.Contracts.Game.Encounters;
 
 namespace DungeonCrawlers.Game.Encounters
 {
-    public class CombatEncounter : Encounter
+    public class CombatEncounter : IHostileEncounter
     {
-
         public CombatEncounter(IEnemyController enemyController)
         {
             EnemyController = enemyController;
@@ -13,14 +13,9 @@ namespace DungeonCrawlers.Game.Encounters
 
         public IEnemyController EnemyController { get; private set; }
 
-        public override void GenerateEncounter()
+        public void GenerateEncounter()
         {
             EnemyController.GenerateEnemies();
-        }
-
-        public override void RunEncounter()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

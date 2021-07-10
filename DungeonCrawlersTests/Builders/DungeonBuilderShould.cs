@@ -1,5 +1,6 @@
 using DungeonCrawlers.Builders;
 using DungeonCrawlers.Contracts.Builders;
+using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlersTests.Game.Locations;
 using Moq;
 using Xunit;

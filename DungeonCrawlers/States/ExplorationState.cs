@@ -2,6 +2,7 @@ using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Builders;
 using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Services;
+using DungeonCrawlers.Controllers;
 
 namespace DungeonCrawlers.States
 {
@@ -46,8 +47,10 @@ namespace DungeonCrawlers.States
             
             GoToState(new DungeonState(_displayer, 
             _gameController, 
-            _characterController, 
-            _dungeonController));
+            _characterController,
+            new CombatController(),
+            _dungeonController,
+            _dungeonController.CurrentDungeon));
         }
     }
 }

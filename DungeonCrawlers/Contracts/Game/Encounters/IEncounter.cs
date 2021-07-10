@@ -1,8 +1,7 @@
-namespace DungeonCrawlers.Game.Locations.Rooms
+namespace DungeonCrawlers.Contracts.Game.Encounters
 {
     public interface IEncounter
     {
-        void RunEncounter();
         void GenerateEncounter();
     }
 }

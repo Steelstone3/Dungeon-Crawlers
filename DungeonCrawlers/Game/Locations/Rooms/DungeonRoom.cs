@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
 using DungeonCrawlers.Contracts.Builders;
-using DungeonCrawlersTests.Game.Locations;
+using DungeonCrawlers.Contracts.Controllers;
 
 namespace DungeonCrawlers.Game.Locations.Rooms
 {
@@ -9,12 +7,7 @@ namespace DungeonCrawlers.Game.Locations.Rooms
     {
         public DungeonRoom(IEncounterBuilder encounterBuilder, IEnemyController enemyController)
         {
-            Encounters = GenerateEncounters(encounterBuilder, enemyController);
-        }
-
-        private IEnumerable<IEncounter> GenerateEncounters(IEncounterBuilder encounterBuilder, IEnemyController enemyController)
-        {
-            return encounterBuilder.BuildCombatEncounters(enemyController);
+            Encounters = encounterBuilder.BuildCombatEncounters(enemyController);
         }
     }
 }
