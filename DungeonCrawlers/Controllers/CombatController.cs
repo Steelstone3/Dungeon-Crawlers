@@ -5,8 +5,8 @@ namespace DungeonCrawlers.Controllers
 {
     public class CombatController : ICombatController
     {
-        public void DisplayCombatants(IDisplayer displayer, 
-        ICharacterController characterController, 
+        public void DisplayCombatants(IDisplayer displayer,
+        ICharacterController characterController,
         IEnemyController enemyController)
         {
             displayer.Write("Allies");
@@ -16,19 +16,20 @@ namespace DungeonCrawlers.Controllers
             enemyController.DisplayParty(displayer);
         }
 
-        public void PlayerTurn(IDisplayer displayer, 
-        ICharacterController characterController, 
+        public void PlayerTurn(IDisplayer displayer,
+        ICharacterController characterController,
         IEnemyController enemyController)
         {
-            var opponent = characterController.SelectOpponent(enemyController.PartyMembers);
-            characterController.AttackOpponent(opponent);
+            var character = characterController.SelectPlayer(displayer);
+            var opponent = characterController.SelectOpponent(displayer, enemyController.PartyMembers);
+            characterController.AttackOpponent(displayer, character, opponent);
         }
 
-        public void OpponentTurn(IDisplayer displayer, 
-        ICharacterController characterController, 
+        public void OpponentTurn(IDisplayer displayer,
+        ICharacterController characterController,
         IEnemyController enemyController)
         {
-            var opponent = enemyController.SelectOpponent(characterController.PartyMembers);
+            var opponent = enemyController.SelectOpponent(displayer, characterController.PartyMembers);
             enemyController.AttackOpponent(opponent);
         }
     }

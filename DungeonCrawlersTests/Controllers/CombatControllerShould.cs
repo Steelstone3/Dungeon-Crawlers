@@ -43,7 +43,15 @@ namespace DungeonCrawlersTests.Controllers
         public void PlayerTurn()
         {
             //Given
+            var character = new Mock<ICharacter>();
             var monster = new Mock<IMonster>();
+
+            var characterParty = new List<ICharacter>()
+            {
+                new Character("Jeff"),
+                new Character("Jeff"),
+                new Character("Jeff"),
+            };
 
             var enemyParty = new List<IMonster>()
             {
@@ -53,8 +61,10 @@ namespace DungeonCrawlersTests.Controllers
             };
 
             _enemyController.Setup(x => x.PartyMembers).Returns(enemyParty);
-            _characterController.Setup(x => x.SelectOpponent(_enemyController.Object.PartyMembers)).Returns(monster.Object);
-            _characterController.Setup(x => x.AttackOpponent(monster.Object));
+            _characterController.Setup(x => x.PartyMembers).Returns(characterParty);
+            _characterController.Setup(x => x.SelectPlayer(_displayer.Object)).Returns(character.Object);
+            _characterController.Setup(x => x.SelectOpponent(_displayer.Object, _enemyController.Object.PartyMembers)).Returns(monster.Object);
+            _characterController.Setup(x => x.AttackOpponent(_displayer.Object, character.Object, monster.Object));
 
             //When
             _combatController.PlayerTurn(_displayer.Object,
@@ -63,8 +73,9 @@ namespace DungeonCrawlersTests.Controllers
 
             //Then
             _characterController.InSequence(new MockSequence());
-            _characterController.Verify(x => x.SelectOpponent(_enemyController.Object.PartyMembers));
-            _characterController.Verify(x => x.AttackOpponent(monster.Object));
+            _characterController.Verify(x => x.SelectPlayer(_displayer.Object));
+            _characterController.Verify(x => x.SelectOpponent(_displayer.Object, _enemyController.Object.PartyMembers));
+            _characterController.Verify(x => x.AttackOpponent(_displayer.Object, character.Object, monster.Object));
         }
 
         [Fact]
@@ -72,7 +83,7 @@ namespace DungeonCrawlersTests.Controllers
         {
             //Given
             var character = new Mock<ICharacter>();
-            
+
             var characterParty = new List<ICharacter>()
             {
                 new Character("Jeff"),
@@ -81,7 +92,7 @@ namespace DungeonCrawlersTests.Controllers
             };
 
             _characterController.Setup(x => x.PartyMembers).Returns(characterParty);
-            _enemyController.Setup(x => x.SelectOpponent(_characterController.Object.PartyMembers)).Returns(character.Object);
+            _enemyController.Setup(x => x.SelectOpponent(_displayer.Object, _characterController.Object.PartyMembers)).Returns(character.Object);
             _enemyController.Setup(x => x.AttackOpponent(character.Object));
 
             //When
@@ -91,8 +102,14 @@ namespace DungeonCrawlersTests.Controllers
 
             //Then
             _enemyController.InSequence(new MockSequence());
-            _enemyController.Verify(x => x.SelectOpponent(_characterController.Object.PartyMembers));
+            _enemyController.Verify(x => x.SelectOpponent(_displayer.Object, _characterController.Object.PartyMembers));
             _enemyController.Verify(x => x.AttackOpponent(character.Object));
+        }
+
+        [Fact(Skip = "Needs implementing")]
+        public void IsCombatResolved()
+        {
+
         }
     }
 }

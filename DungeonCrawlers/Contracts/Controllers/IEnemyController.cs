@@ -8,7 +8,7 @@ namespace DungeonCrawlers.Contracts.Controllers
         IList<IMonster> PartyMembers { get; }
         void GenerateEnemies();
         void DisplayParty(IDisplayer displayer);
-        ICharacter SelectOpponent(IList<ICharacter> partyMembers);
+        ICharacter SelectOpponent(IDisplayer displayer, IList<ICharacter> partyMembers);
         void AttackOpponent(ICharacter character);
     }
 }

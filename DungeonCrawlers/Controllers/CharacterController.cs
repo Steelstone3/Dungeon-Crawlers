@@ -22,6 +22,11 @@ namespace DungeonCrawlers.States
             }
         }
 
+         public void DisplayCharacterAbilities(IDisplayer displayer, ICharacter character)
+        {
+                displayer.Write($"{character.Name} the {character.Race.Name} {character.CombatRole.Name}");
+        }
+
         public IList<ICharacter> CreateCharacterParty(ICharacterBuilder characterBuilder, int numberOfPartyMembers)
         {
             return characterBuilder.BuildCharacterParty(numberOfPartyMembers);
@@ -40,14 +45,31 @@ namespace DungeonCrawlers.States
             }
         }
 
-        public IMonster SelectOpponent(IList<IMonster> enemyParty)
+        public ICharacter SelectPlayer(IDisplayer displayer)
         {
-            throw new System.NotImplementedException();
+            DisplayParty(displayer);
+
+            return PartyMembers[displayer.ReadNumeric("Select character:", 0, PartyMembers.Count - 1)];
         }
 
-        public void AttackOpponent(IMonster @object)
+        public IMonster SelectOpponent(IDisplayer displayer, IList<IMonster> enemyParty)
         {
-            throw new System.NotImplementedException();
+            foreach (var partyMember in enemyParty)
+            {
+                displayer.Write($"{partyMember.Name} the {partyMember.Race.Name}");
+            }
+
+            return enemyParty[displayer.ReadNumeric("Select opponent:", 0, enemyParty.Count - 1)];
+        }
+
+        public IMonster AttackOpponent(IDisplayer displayer, ICharacter character, IMonster monster)
+        {
+            //Select a combat ability then apply the damage to the enemy
+            //This will need to be assigned to the correct index
+            //Combat abilities need to be implemented
+            
+            //displayer.ReadNumeric("Select combat ability:", 0, character.CombatAbilities.Count - 1);
+            return null;
         }
     }
 }

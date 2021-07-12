@@ -9,10 +9,12 @@ namespace DungeonCrawlers.Contracts
         IList<ICharacter> PartyMembers { get; }
         ICharacter CreateCharacter(IDisplayer displayer, ICharacterBuilder characterBuilder);
         IList<ICharacter> CreateCharacterParty(ICharacterBuilder characterBuilder, int numberOfPartyMembers);
+        void DisplayCharacterAbilities(IDisplayer displayer, ICharacter character);
         void DisplayParty(IDisplayer displayer);
         void AddPartyMember(ICharacter character);
         void AddPartyMembers(IList<ICharacter> characters);
-        IMonster SelectOpponent(IList<IMonster> enemyParty);
-        void AttackOpponent(IMonster @object);
+        ICharacter SelectPlayer(IDisplayer displayer);
+        IMonster SelectOpponent(IDisplayer displayer, IList<IMonster> enemyParty);
+        IMonster AttackOpponent(IDisplayer displayer, ICharacter character, IMonster monster);
     }
 }

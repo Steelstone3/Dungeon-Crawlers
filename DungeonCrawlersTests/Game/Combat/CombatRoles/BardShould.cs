@@ -13,6 +13,7 @@ namespace DungeonCrawlersTests.Game.Combat.CombatRoles
             Assert.NotNull(bard);
             Assert.Equal("Bard", bard.Name);
             Assert.NotNull(bard.Description);
+            //Assert.NotNull(bard.CombatAbilities);
             //Assert.NotEmpty(bard.CombatAbilities);
         }
     }

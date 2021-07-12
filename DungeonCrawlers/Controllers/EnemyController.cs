@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DungeonCrawlers.Contracts;
 using DungeonCrawlers.Contracts.Controllers;
@@ -9,7 +10,7 @@ namespace DungeonCrawlers.Controllers
 {
     public class EnemyController : IEnemyController
     {
-        public IList<IMonster> PartyMembers{get; private set;}
+        public IList<IMonster> PartyMembers { get; private set; }
 
         public void GenerateEnemies()
         {
@@ -30,9 +31,16 @@ namespace DungeonCrawlers.Controllers
             }
         }
 
-        public ICharacter SelectOpponent(IList<ICharacter> partyMembers)
+        public ICharacter SelectOpponent(IDisplayer displayer, IList<ICharacter> partyMembers)
         {
-            throw new System.NotImplementedException();
+            var random = new Random();
+
+            foreach (var partyMember in partyMembers)
+            {
+                displayer.Write($"{partyMember.Name} the {partyMember.Race.Name} {partyMember.CombatRole.Name}");
+            }
+
+            return partyMembers[random.Next(0, partyMembers.Count - 1)];
         }
 
         public void AttackOpponent(ICharacter character)

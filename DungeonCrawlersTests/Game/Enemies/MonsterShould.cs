@@ -14,6 +14,7 @@ namespace DungeonCrawlersTests.Game.Enemies
             Assert.NotNull(monster);
             Assert.NotNull(monster.Name);
             Assert.NotNull(monster.Race);
+            Assert.InRange(monster.Health, 5, 100);
         }
     }
 }

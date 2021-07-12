@@ -1,5 +1,9 @@
+using System.Collections.Generic;
 using DungeonCrawlers.Contracts;
+using DungeonCrawlers.Contracts.Controllers;
+using DungeonCrawlers.Contracts.Game.Characters;
 using DungeonCrawlers.Controllers;
+using DungeonCrawlers.Game.Characters;
 using Moq;
 using Xunit;
 
@@ -7,52 +11,73 @@ namespace DungeonCrawlersTests.Controllers
 {
     public class EnemyControllerShould
     {
+        private Mock<IDisplayer> _displayer = new Mock<IDisplayer>();
+        private IEnemyController _enemyController = new EnemyController();
+
         [Fact]
         public void GenerateEnemies()
         {
-            var enemyController = new EnemyController();
+            _enemyController.GenerateEnemies();
 
-            enemyController.GenerateEnemies();
-
-            Assert.NotNull(enemyController.PartyMembers);
-            Assert.NotEmpty(enemyController.PartyMembers);
+            Assert.NotNull(_enemyController.PartyMembers);
+            Assert.NotEmpty(_enemyController.PartyMembers);
         }
 
         [Fact]
         public void DisplayEnemyPartyMembers()
         {
             //Given
-            var displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("Jeff the Goblin"));
-
-            var characterController = new EnemyController();
-            characterController.GenerateEnemies();
+            _displayer.Setup(x => x.Write("Jeff the Goblin"));
+            _enemyController.GenerateEnemies();
 
             //When
-            characterController.DisplayParty(displayer.Object);
+            _enemyController.DisplayParty(_displayer.Object);
 
             //Then
-            displayer.Verify(x => x.Write("Jeff the Goblin"));
+            _displayer.Verify(x => x.Write("Jeff the Goblin"));
+        }
+
+        [Fact(Skip = "Skip")]
+        public void AutomaticallySelectPlayer()
+        {
+            //Given
+            //When
+            //Then
+        }
+
+        [Fact]
+        public void AutomaticallySelectOpponent()
+        {
+            //Given
+            _displayer.Setup(x => x.Write("Jeff the Human Knight"));
+
+            var characters = new List<ICharacter>()
+            {
+                new Character("Jeff"),
+                new Character("Jeff"),
+                new Character("Jeff"),
+            };
+
+            //When
+            var character = _enemyController.SelectOpponent(_displayer.Object, characters);
+
+            //Then
+            _displayer.Verify(x => x.Write("Jeff the Human Knight"));
+            Assert.NotNull(character);
         }
 
         [Fact(Skip = "Not implemented yet")]
-        public void SelectOpponent()
+        public void AutomaticallyAttackOpponent()
         {
-            //Cycle through each party member
-            //Display that characters abilities
-            //Allow the player to select an opponent
-            //Allow the player to select the character ability
-            //The character ability
+            //Given
+            //When
+            //Then
         }
 
-        [Fact(Skip = "Not implemented yet")]
-        public void AttackOpponent()
-        {
-            //Cycle through each party member
-            //Display that characters abilities
-            //Allow the player to select an opponent
-            //Allow the player to select the character ability
-            //The character ability
-        }
+        //Cycle through each party member
+        //Display that characters abilities
+        //Allow the player to select an opponent
+        //Allow the player to select the character ability
+        //The character ability
     }
 }
