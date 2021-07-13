@@ -10,7 +10,7 @@ namespace DungeonCrawlersTests.Game
         [Theory]
         [InlineData("Bob")]
         [InlineData("Steve")]
-        public void GenerateACharacterFromAName(string name)
+        public void PopulateClassFromAName(string name)
         {
             var character = new Character(name);
 
@@ -21,7 +21,7 @@ namespace DungeonCrawlersTests.Game
         }
 
         [Fact]
-        public void GenerateAFullyDefinedCharacter()
+        public void PopulateClassFromSetupParameters()
         {
             var name = "Steven";
             var character = new Character(name, new Elf(), new Wizard());

@@ -13,6 +13,9 @@ namespace DungeonCrawlers.Services
         {
             displayer.Write("Combat Started");
             combatController.DisplayCombatants(displayer,characterController,enemyController);
+            
+            //var isCombatResolved = false;
+
             combatController.PlayerTurn(displayer,characterController,enemyController);
             combatController.OpponentTurn(displayer,characterController,enemyController);
         }

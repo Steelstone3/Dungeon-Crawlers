@@ -43,27 +43,27 @@ namespace DungeonCrawlersTests.Controllers
             _characterBuilder.Verify(x => x.BuildCharacterParty(3));
         }
 
-        [Fact(Skip = "Need to implement combat abilities")]
+        [Fact]
         public void DisplayCharacterAbilities()
         {
             _displayer.Setup(x => x.Write("Jeff the Human Knight"));
-            _displayer.Setup(x => x.Write("Some Ability"));
-            _displayer.Setup(x => x.Write("Some Other Ability"));
+            _displayer.Setup(x => x.Write("MaceBash"));
+            //_displayer.Setup(x => x.Write("Some Other Ability"));
 
             _characterController.DisplayCharacterAbilities(_displayer.Object, new Character("Jeff"));
 
             _displayer.Verify(x => x.Write("Jeff the Human Knight"));
-            _displayer.Verify(x => x.Write("Some Ability"));
-            _displayer.Verify(x => x.Write("Some Other Ability"));
+            _displayer.Verify(x => x.Write("MaceBash"));
+            //_displayer.Verify(x => x.Write("Some Other Ability"));
         }
 
         [Fact]
         public void DisplayPartyMembers()
         {
             //Given
-            _displayer.Setup(x => x.Write("Jeff the Human Knight"));
-            _displayer.Setup(x => x.Write("Bob the Human Knight"));
-            _displayer.Setup(x => x.Write("Steve the Human Knight"));
+            _displayer.Setup(x => x.Write("Health: 30, Jeff the Human Knight"));
+            _displayer.Setup(x => x.Write("Health: 30, Bob the Human Knight"));
+            _displayer.Setup(x => x.Write("Health: 30, Steve the Human Knight"));
 
             var characters = new List<ICharacter>()
             {
@@ -78,9 +78,9 @@ namespace DungeonCrawlersTests.Controllers
             _characterController.DisplayParty(_displayer.Object);
 
             //Then
-            _displayer.Verify(x => x.Write("Jeff the Human Knight"));
-            _displayer.Verify(x => x.Write("Bob the Human Knight"));
-            _displayer.Verify(x => x.Write("Steve the Human Knight"));
+            _displayer.Verify(x => x.Write("Health: 30, Jeff the Human Knight"));
+            _displayer.Verify(x => x.Write("Health: 30, Bob the Human Knight"));
+            _displayer.Verify(x => x.Write("Health: 30, Steve the Human Knight"));
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace DungeonCrawlersTests.Controllers
         public void SelectPlayer(int selection)
         {
             //Given
-            _displayer.Setup(x => x.Write("Jeff the Human Knight"));
+            _displayer.Setup(x => x.Write("Health: 30, Jeff the Human Knight"));
             _displayer.Setup(x => x.ReadNumeric("Select character:", 0, 2)).Returns(selection);
 
             var characters = new List<ICharacter>()
@@ -138,7 +138,7 @@ namespace DungeonCrawlersTests.Controllers
             var character = _characterController.SelectPlayer(_displayer.Object);
 
             //Then
-            _displayer.Verify(x => x.Write("Jeff the Human Knight"));
+            _displayer.Verify(x => x.Write("Health: 30, Jeff the Human Knight"));
             _displayer.Verify(x => x.ReadNumeric("Select character:", 0, 2));
             Assert.NotNull(character);
         }
@@ -171,7 +171,7 @@ namespace DungeonCrawlersTests.Controllers
             Assert.NotNull(monster);
         }
 
-        [Theory(Skip ="Next")]
+        [Theory]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(2)]
@@ -179,19 +179,20 @@ namespace DungeonCrawlersTests.Controllers
         public void AttackOpponent(int selection)
         {
             //Given
-            var character = new Mock<ICharacter>();
-            var monster = new Mock<IMonster>();
-            monster.Setup(x => x.Health).Returns(50);
+            var character = new Character("Jeff");
+            var monster = new Monster(new Goblin());
 
+            _displayer.Setup(x => x.Write("MaceBash"));
             _displayer.Setup(x => x.ReadNumeric("Select combat ability:", 0, 3)).Returns(selection);
 
             //When
-            var damagedMonster = _characterController.AttackOpponent(_displayer.Object, character.Object, monster.Object);
+            _characterController.AttackOpponent(_displayer.Object, character, monster);
 
             //Then
+            _displayer.Verify(x => x.Write("MaceBash"));
             _displayer.Verify(x => x.ReadNumeric("Select combat ability:", 0, 3));
-            Assert.NotNull(damagedMonster);
-            Assert.NotEqual(monster.Object.Health, damagedMonster.Health);
+            Assert.NotNull(monster);
+            Assert.InRange(monster.Race.Health, 2, 6);
         }
     }
 }

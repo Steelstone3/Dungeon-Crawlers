@@ -4,6 +4,6 @@ namespace DungeonCrawlersTests.Game.Locations
 {
     public class LootEncounterShould
     {
-        
+        //Find these adventuring (travelling) and dungeons
     }
 }

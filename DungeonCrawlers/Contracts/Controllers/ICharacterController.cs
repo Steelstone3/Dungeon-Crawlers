@@ -15,6 +15,6 @@ namespace DungeonCrawlers.Contracts
         void AddPartyMembers(IList<ICharacter> characters);
         ICharacter SelectPlayer(IDisplayer displayer);
         IMonster SelectOpponent(IDisplayer displayer, IList<IMonster> enemyParty);
-        IMonster AttackOpponent(IDisplayer displayer, ICharacter character, IMonster monster);
+        void AttackOpponent(IDisplayer displayer, ICharacter character, IMonster monster);
     }
 }

@@ -27,25 +27,25 @@ namespace DungeonCrawlers.Controllers
         {
             foreach (var enemy in PartyMembers)
             {
-                displayer.Write($"{enemy.Name} the {enemy.Race.Name}");
+                displayer.Write($"Health: {enemy.Race.Health}, {enemy.Name} the {enemy.Race.Name}");
             }
         }
 
         public ICharacter SelectOpponent(IDisplayer displayer, IList<ICharacter> partyMembers)
         {
             var random = new Random();
-
-            foreach (var partyMember in partyMembers)
-            {
-                displayer.Write($"{partyMember.Name} the {partyMember.Race.Name} {partyMember.CombatRole.Name}");
-            }
-
             return partyMembers[random.Next(0, partyMembers.Count - 1)];
         }
 
         public void AttackOpponent(ICharacter character)
         {
-            throw new System.NotImplementedException();
+            character.CombatRole.Health -= SelectPlayer().Race.Damage;
+        }
+
+        private IMonster SelectPlayer()
+        {
+            var random = new Random();
+            return PartyMembers[random.Next(0, PartyMembers.Count - 1)];
         }
     }
 }

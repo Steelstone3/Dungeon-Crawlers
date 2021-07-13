@@ -106,8 +106,20 @@ namespace DungeonCrawlersTests.Controllers
             _enemyController.Verify(x => x.AttackOpponent(character.Object));
         }
 
+        [Fact(Skip = "Is character dead")]
+        public void DetermineIfCharacterIsDead()
+        {
+
+        }
+
+        [Fact(Skip = "Is monster dead")]
+        public void DetermineIfMonsterIsDead()
+        {
+
+        }
+
         [Fact(Skip = "Needs implementing")]
-        public void IsCombatResolved()
+        public void DetermineIfCombatIsResolved()
         {
 
         }

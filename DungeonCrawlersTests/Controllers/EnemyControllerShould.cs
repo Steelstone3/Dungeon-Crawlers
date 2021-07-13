@@ -4,6 +4,8 @@ using DungeonCrawlers.Contracts.Controllers;
 using DungeonCrawlers.Contracts.Game.Characters;
 using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Game.Characters;
+using DungeonCrawlers.Game.Characters.Enemies;
+using DungeonCrawlers.Game.Enemies;
 using Moq;
 using Xunit;
 
@@ -27,30 +29,20 @@ namespace DungeonCrawlersTests.Controllers
         public void DisplayEnemyPartyMembers()
         {
             //Given
-            _displayer.Setup(x => x.Write("Jeff the Goblin"));
+            _displayer.Setup(x => x.Write("Health: 10, Jeff the Goblin"));
             _enemyController.GenerateEnemies();
 
             //When
             _enemyController.DisplayParty(_displayer.Object);
 
             //Then
-            _displayer.Verify(x => x.Write("Jeff the Goblin"));
-        }
-
-        [Fact(Skip = "Skip")]
-        public void AutomaticallySelectPlayer()
-        {
-            //Given
-            //When
-            //Then
+            _displayer.Verify(x => x.Write("Health: 10, Jeff the Goblin"));
         }
 
         [Fact]
         public void AutomaticallySelectOpponent()
         {
             //Given
-            _displayer.Setup(x => x.Write("Jeff the Human Knight"));
-
             var characters = new List<ICharacter>()
             {
                 new Character("Jeff"),
@@ -62,16 +54,24 @@ namespace DungeonCrawlersTests.Controllers
             var character = _enemyController.SelectOpponent(_displayer.Object, characters);
 
             //Then
-            _displayer.Verify(x => x.Write("Jeff the Human Knight"));
             Assert.NotNull(character);
         }
 
-        [Fact(Skip = "Not implemented yet")]
+        [Fact]
         public void AutomaticallyAttackOpponent()
         {
             //Given
+            var character = new Character("Jeff");
+            var monster = new Monster(new Goblin());
+            
+            _enemyController.GenerateEnemies();
+
             //When
+            _enemyController.AttackOpponent(character);
+
             //Then
+            Assert.NotNull(character);
+            Assert.InRange(character.CombatRole.Health, 25, 29);
         }
 
         //Cycle through each party member

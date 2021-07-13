@@ -1,3 +1,4 @@
+using System;
 using DungeonCrawlers.Contracts.Game.Characters;
 using DungeonCrawlers.Contracts.Game.Characters.Race;
 
@@ -15,6 +16,5 @@ namespace DungeonCrawlers.Game.Enemies
         public IMonsterRace Race { get; protected set; }
         public string Name { get; protected set; }
         public string Description { get; protected set; }
-        public int Health { get; set; } = 10;
     }
 }

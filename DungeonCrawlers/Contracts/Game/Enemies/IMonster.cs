@@ -5,7 +5,6 @@ namespace DungeonCrawlers.Contracts.Game.Characters
 {
     public interface IMonster : IHeader
     {
-        int Health{get; set;}
         IMonsterRace Race{get;}
     }
 }

@@ -18,5 +18,23 @@ namespace DungeonCrawlersTests.Builders
             Assert.NotNull(encounters);
             Assert.NotEmpty(encounters);
         }
+
+        [Fact(Skip = "Implement later")]
+        public void BuildLootEncounter()
+        {
+
+        }
+
+        [Fact(Skip = "Implement later")]
+        public void BuildTradeEncounter()
+        {
+
+        }
+
+        [Fact(Skip = "Implement later")]
+        public void BuildTrapEncounter()
+        {
+
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using DungeonCrawlers.Game.Characters.Races.MonsterRaces;
 
 namespace DungeonCrawlers.Game.Characters.Enemies
@@ -8,6 +9,8 @@ namespace DungeonCrawlers.Game.Characters.Enemies
         {
             Name = nameof(Goblin);
             Description = string.Empty;
+            Health = 10;
+            Damage = new Random().Next(1, 5);
         }
     }
 }
