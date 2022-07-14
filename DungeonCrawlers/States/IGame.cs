@@ -1,6 +1,6 @@
-namespace IGame
+namespace DungeonCrawlers.States
 {
-    public interface IGameState
+    public interface IGame
     {
         void StartState();
         void StopState();
