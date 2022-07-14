@@ -1,24 +1,23 @@
 using DungeonCrawlers.Display;
 using DungeonCrawlers.States;
+using DungeonCrawlers.States.GameControl;
 using Moq;
 using Xunit;
 
 namespace DungeonCrawlersTests.States
 {
-    public class NewGameShould
+    public class NewGameStateShould
     {
         private readonly Mock<IDisplayer> displayer;
         private readonly Mock<IGameController> gameController;
 
-        public NewGameShould()
+        public NewGameStateShould()
         {
-            string newGameMessage = "New game selected...";
-            
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write(newGameMessage));
+            displayer.Setup(x => x.Write("New game selected..."));
 
             gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new NewGame(displayer.Object, gameController.Object));
+            gameController.Setup(x => x.CurrentGameState).Returns(new NewGameState(displayer.Object, gameController.Object));
             gameController.Setup(x => x.CurrentGameState.StartState());
         }
 
@@ -26,13 +25,14 @@ namespace DungeonCrawlersTests.States
         public void ExecutesTheStartState()
         {
             //Given
-            var newGameState = new NewGame(displayer.Object, gameController.Object);
+            var newGameState = new NewGameState(displayer.Object, gameController.Object);
 
             //When
             newGameState.StartState();
 
             //Then
             displayer.VerifyAll();
+            gameController.VerifyAll();
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace DungeonCrawlers.States
 {
-    public interface IGame
+    public interface IGameState
     {
         void StartState();
     }

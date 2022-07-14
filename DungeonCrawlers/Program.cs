@@ -1,5 +1,6 @@
 using DungeonCrawlers.Display;
 using DungeonCrawlers.States;
+using DungeonCrawlers.States.GameControl;
 
 namespace DungeonCrawlers
 {
@@ -10,7 +11,7 @@ namespace DungeonCrawlers
             var displayer = new Displayer();
             var gameController = new GameController();
 
-            new NewGame(displayer, gameController).StartState();
+            new NewGameState(displayer, gameController).StartState();
         }
     }
 }
