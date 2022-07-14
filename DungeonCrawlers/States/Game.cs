@@ -1,18 +1,20 @@
 namespace DungeonCrawlers.States
 {
-    public class Game
+    public abstract class Game : IGame
     {
-        private IGame currentGameState;
+        private readonly IGameController gameController;
 
-        public Game(IGame currentGameState)
+        public Game(IGameController gameController)
         {
-            this.currentGameState = currentGameState;
+            this.gameController = gameController;
         }
+
+        public abstract void StartState();
 
         public void GoToState(IGame nextGameState)
         {
-            currentGameState = nextGameState;
-            currentGameState.StartState();
+            gameController.CurrentGameState = nextGameState;
+            gameController.CurrentGameState.StartState();
         }
     }
 }
