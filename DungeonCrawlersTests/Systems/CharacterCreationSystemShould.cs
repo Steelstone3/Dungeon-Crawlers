@@ -14,9 +14,13 @@ namespace DungeonCrawlersTests.Systems
         private const string SURNAME = "Burgen";
         private const string SUFFIX = "The Brave";
         private const string FULL_NAME = $"{PREFIX} {FIRST_NAME} {SURNAME} {SUFFIX}";
-        Mock<IDisplayer> displayer;
+        private readonly Mock<IDisplayer> displayer;
+        private readonly ICharacterCreationSystem characterCreationSystem;
 
-        public CharacterCreationSystemShould(){
+        public CharacterCreationSystemShould()
+        {
+            characterCreationSystem = new CharacterCreationSystem();
+
             displayer = new Mock<IDisplayer>();
             displayer.Setup(x => x.Write("Character creation: "));
             displayer.Setup(x => x.ReadString("Enter prefix: ")).Returns(PREFIX);
@@ -26,9 +30,10 @@ namespace DungeonCrawlersTests.Systems
         }
 
         [Fact]
-        public void CreateCharacter() {
+        public void CreateCharacter()
+        {
             //Act
-            var character = new CharacterCreationSystem().Create(displayer.Object);
+            var character = characterCreationSystem.Create(displayer.Object);
 
             //Assert
             displayer.VerifyAll();

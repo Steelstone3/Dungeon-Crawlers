@@ -1,6 +1,7 @@
 using DungeonCrawlers.Display;
 using DungeonCrawlers.States.GameControl;
 using DungeonCrawlers.Systems;
+using DungeonCrawlersTests.Systems;
 
 namespace DungeonCrawlers.States
 {
@@ -20,8 +21,8 @@ namespace DungeonCrawlers.States
         public override void StartState()
         {
             displayer.Write("Character creation started...");
-            characterCreationSystem.Create(displayer);
-            // GoToState(new Exploration());
+            var player = characterCreationSystem.Create(displayer);
+            GoToState(new WorldCreationState(displayer, gameController, player, new WorldCreationSystem()));
         }
     }
 }

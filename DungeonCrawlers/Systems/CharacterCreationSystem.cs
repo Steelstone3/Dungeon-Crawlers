@@ -7,7 +7,7 @@ namespace DungeonCrawlers.Systems
 {
     public class CharacterCreationSystem : ICharacterCreationSystem
     {
-        public Character Create(IDisplayer displayer)
+        public ICharacter Create(IDisplayer displayer)
         {
             displayer.Write("Character creation: ");
             var prefix = displayer.ReadString("Enter prefix: ");

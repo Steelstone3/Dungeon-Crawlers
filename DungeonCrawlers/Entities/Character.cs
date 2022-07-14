@@ -2,9 +2,9 @@ using DungeonCrawlers.Components.Character;
 
 namespace DungeonCrawlers.Entities
 {
-    public class Character
+    public class Character : ICharacter
     {
-        private CharacterMetaData characterMetaData;
+        private readonly CharacterMetaData characterMetaData;
 
         public Character(CharacterMetaData characterMetaData)
         {
