@@ -11,7 +11,10 @@ namespace DungeonCrawlersTests.Systems
         {
             displayer.Write("Creating world...");
 
-            return new World();
+            var world = new World();
+            world.worldGrid = new char[,]{{'#', '#'}, {'#', '#'}};
+
+            return world;
         }
     }
 }

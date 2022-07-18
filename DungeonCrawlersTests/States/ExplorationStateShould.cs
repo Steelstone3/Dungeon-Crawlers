@@ -20,23 +20,23 @@ namespace DungeonCrawlersTests.States
             displayer = new Mock<IDisplayer>();
             displayer.Setup(x => x.Write("Exploration started..."));
 
-            gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new NewGameState(displayer.Object, gameController.Object));
-            gameController.Setup(x => x.CurrentGameState.StartState());
-            
             player = new Mock<ICharacter>();
-
+            
             world = new Mock<IWorld>();
+
+            gameController = new Mock<IGameController>();
+            gameController.Setup(x => x.CurrentGameState).Returns(new ExplorationState(displayer.Object, gameController.Object, player.Object, world.Object));
+            gameController.Setup(x => x.CurrentGameState.StartState());
         }
 
         [Fact (Skip = "Needs implementing")]
         public void ExecutesTheStartState()
         {
             //Given
-            var newGameState = new ExplorationState(displayer.Object, gameController.Object, player.Object, world.Object);
+            var explorationState = new ExplorationState(displayer.Object, gameController.Object, player.Object, world.Object);
 
             //When
-            newGameState.StartState();
+            explorationState.StartState();
 
             //Then
             displayer.VerifyAll();

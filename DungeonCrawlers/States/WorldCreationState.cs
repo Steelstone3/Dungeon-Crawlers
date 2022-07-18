@@ -1,7 +1,6 @@
 using DungeonCrawlers.Display;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.States.GameControl;
-using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlers.States
 {

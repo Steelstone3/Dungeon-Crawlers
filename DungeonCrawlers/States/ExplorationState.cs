@@ -21,7 +21,8 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            
+            displayer.Write("Exploration started...");
+            // GoToState();
         }
     }
 }

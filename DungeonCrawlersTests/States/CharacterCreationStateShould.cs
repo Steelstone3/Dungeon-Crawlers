@@ -22,7 +22,7 @@ namespace DungeonCrawlersTests.States
             characterCreation.Setup(x => x.Create(displayer.Object));
 
             gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new NewGameState(displayer.Object, gameController.Object));
+            gameController.Setup(x => x.CurrentGameState).Returns(new CharacterCreationState(displayer.Object, gameController.Object, characterCreation.Object));
             gameController.Setup(x => x.CurrentGameState.StartState());
         }
 
@@ -30,10 +30,10 @@ namespace DungeonCrawlersTests.States
         public void ExecutesTheStartState()
         {
             //Given
-            var newGameState = new CharacterCreationState(displayer.Object, gameController.Object, characterCreation.Object);
+            var characterCreationState = new CharacterCreationState(displayer.Object, gameController.Object, characterCreation.Object);
 
             //When
-            newGameState.StartState();
+            characterCreationState.StartState();
 
             //Then
             displayer.VerifyAll();

@@ -5,26 +5,30 @@ using Xunit;
 
 namespace DungeonCrawlersTests.Systems
 {
-public class WorldCreationSystemShould{
+    public class WorldCreationSystemShould
+    {
 
         private readonly Mock<IDisplayer> displayer;
         private readonly IWorldCreationSystem worldCreationSystem;
 
-        public WorldCreationSystemShould(){
+        public WorldCreationSystemShould()
+        {
             worldCreationSystem = new WorldCreationSystem();
 
             displayer = new Mock<IDisplayer>();
             displayer.Setup(x => x.Write("Creating world..."));
         }
-        
+
         [Fact]
-        public void CreateWorld() {
+        public void CreateWorld()
+        {
             //Act
             var world = worldCreationSystem.Create(displayer.Object);
 
             //Assert
             displayer.VerifyAll();
             Assert.NotNull(world);
+            Assert.NotNull(world.worldGrid);
         }
-}
+    }
 }

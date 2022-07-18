@@ -13,34 +13,39 @@ namespace DungeonCrawlersTests.States
         private readonly Mock<IGameController> gameController;
         private readonly Mock<ICharacter> player;
         private readonly Mock<IWorld> world;
+        private readonly Mock<IWorldCreationSystem> worldCreationSystem;
 
         public WorldCreationStateShould()
         {
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("Exploration started..."));
-
-            gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new NewGameState(displayer.Object, gameController.Object));
-            gameController.Setup(x => x.CurrentGameState.StartState());
-            
-            player = new Mock<ICharacter>();
+            displayer.Setup(x => x.Write("World creation started..."));
 
             world = new Mock<IWorld>();
+            
+            worldCreationSystem = new Mock<IWorldCreationSystem>();
+            worldCreationSystem.Setup(x => x.Create(displayer.Object)).Returns(world.Object);
+
+            player = new Mock<ICharacter>();
+
+            gameController = new Mock<IGameController>();
+            gameController.Setup(x => x.CurrentGameState).Returns(new WorldCreationState(displayer.Object, gameController.Object, player.Object, worldCreationSystem.Object));
+            gameController.Setup(x => x.CurrentGameState.StartState());
         }
 
-        [Fact (Skip = "Needs implementing")]
+        [Fact]
         public void ExecutesTheStartState()
         {
             //Given
-            var newGameState = new ExplorationState(displayer.Object, gameController.Object, player.Object, world.Object);
+            var worldCreationState = new WorldCreationState(displayer.Object, gameController.Object, player.Object, worldCreationSystem.Object);
 
             //When
-            newGameState.StartState();
+            worldCreationState.StartState();
 
             //Then
             displayer.VerifyAll();
             gameController.VerifyAll();
             player.VerifyAll();
+            worldCreationSystem.VerifyAll();
         }
     }
 }

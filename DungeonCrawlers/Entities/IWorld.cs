@@ -1,7 +1,7 @@
-namespace DungeonCrawlers.States
+namespace DungeonCrawlers.Entities
 {
     public interface IWorld
     {
-        char[,] worldGrid {get;}
+        char[,] worldGrid { get; set; }
     }
 }
