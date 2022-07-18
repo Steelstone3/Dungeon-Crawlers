@@ -2,7 +2,6 @@ using DungeonCrawlers.Display;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.States;
 using DungeonCrawlers.States.GameControl;
-using DungeonCrawlers.Systems;
 using Moq;
 using Xunit;
 
@@ -29,7 +28,7 @@ namespace DungeonCrawlersTests.States
             gameController.Setup(x => x.CurrentGameState.StartState());
         }
 
-        [Fact (Skip = "Needs implementing")]
+        [Fact]
         public void ExecutesTheStartState()
         {
             //Given
