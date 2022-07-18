@@ -1,5 +1,6 @@
 using System;
 using DungeonCrawlers.Display;
+using DungeonCrawlers.Entities;
 using DungeonCrawlers.States;
 
 namespace DungeonCrawlersTests.Systems
@@ -8,7 +9,9 @@ namespace DungeonCrawlersTests.Systems
     {
         public IWorld Create(IDisplayer displayer)
         {
-            throw new NotImplementedException();
+            displayer.Write("Creating world...");
+
+            return new World();
         }
     }
 }

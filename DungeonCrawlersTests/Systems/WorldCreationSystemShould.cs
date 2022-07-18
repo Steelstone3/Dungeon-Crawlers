@@ -17,7 +17,7 @@ public class WorldCreationSystemShould{
             displayer.Setup(x => x.Write("Creating world..."));
         }
         
-        [Fact (Skip = "Not implemented")]
+        [Fact]
         public void CreateWorld() {
             //Act
             var world = worldCreationSystem.Create(displayer.Object);
