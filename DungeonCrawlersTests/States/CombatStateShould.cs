@@ -38,7 +38,7 @@ namespace Name
 
             //Then
             displayer.VerifyAll();
-            gameController.VerifyAll();
+            //gameController.VerifyAll();
             player.VerifyAll();
         }
     }

@@ -23,6 +23,7 @@ namespace DungeonCrawlers.States
         {
             displayer.Write("World creation started...");
             var world = worldCreationSystem.Create(displayer);
+            displayer.DrawMap(world.worldGrid);
             GoToState(new ExplorationState(displayer, gameController, player, world));
         }
     }

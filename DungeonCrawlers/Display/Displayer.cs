@@ -49,5 +49,19 @@ namespace DungeonCrawlers.Display
                 Console.WriteLine(item);
             }
         }
+
+        public void DrawMap(char[,] worldGrid)
+        {
+            for (int x = 0; x < worldGrid.GetLength(0)-1; x++)
+            {
+                for (int y = 0; y < worldGrid.GetLength(1)-1; y++)
+                {
+                    Console.Write(worldGrid[x,y]);
+                }
+
+                Write("");
+            }
+
+        }
     }
 }

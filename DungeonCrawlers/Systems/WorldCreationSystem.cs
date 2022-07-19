@@ -14,6 +14,8 @@ namespace DungeonCrawlersTests.Systems
             var world = new World();
             world.worldGrid = new char[,]{{'#', '#'}, {'#', '#'}};
 
+            displayer.DrawMap(world.worldGrid);
+
             return world;
         }
     }

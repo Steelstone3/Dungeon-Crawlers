@@ -9,5 +9,6 @@ namespace DungeonCrawlers.Display
         void WriteMenu(IList<string> menuItems);
         int ReadNumeric(string message, int lowerBound, int upperBound);
         double ReadNumeric(string message, double lowerBound, double upperBound);
+        void DrawMap(char[,] worldGrid);
     }
 }

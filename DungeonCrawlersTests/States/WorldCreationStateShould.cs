@@ -17,11 +17,13 @@ namespace DungeonCrawlersTests.States
 
         public WorldCreationStateShould()
         {
+            world = new Mock<IWorld>();
+            world.Setup(x => x.worldGrid).Returns(new char[,] {{},{}});
+
             displayer = new Mock<IDisplayer>();
             displayer.Setup(x => x.Write("World creation started..."));
+            displayer.Setup(x => x.DrawMap(world.Object.worldGrid));
 
-            world = new Mock<IWorld>();
-            
             worldCreationSystem = new Mock<IWorldCreationSystem>();
             worldCreationSystem.Setup(x => x.Create(displayer.Object)).Returns(world.Object);
 
