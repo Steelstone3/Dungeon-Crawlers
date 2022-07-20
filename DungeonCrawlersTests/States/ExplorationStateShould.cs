@@ -17,7 +17,7 @@ namespace DungeonCrawlersTests.States
         public ExplorationStateShould()
         {
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("Exploration started..."));
+            displayer.Setup(x => x.WriteLine("Exploration started..."));
 
             player = new Mock<ICharacter>();
             

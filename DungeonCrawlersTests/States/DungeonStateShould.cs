@@ -16,7 +16,7 @@ namespace Name
         public DungeonStateShould()
         {
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("Dungeon entered..."));
+            displayer.Setup(x => x.WriteLine("Dungeon entered..."));
 
             player = new Mock<ICharacter>();
             

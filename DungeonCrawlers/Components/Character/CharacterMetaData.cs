@@ -5,13 +5,13 @@ namespace DungeonCrawlers.Components.Character
 {
     public class CharacterMetaData
     {
-        private CharacterName name;
-        private IRace race;
+        private readonly CharacterName name;
+        private readonly IRace race;
 
-        public CharacterMetaData(CharacterName characterName, IRace characterRace)
+        public CharacterMetaData(CharacterName name, IRace race)
         {
-            this.name = characterName;
-            this.race = characterRace;
+            this.name = name;
+            this.race = race;
         }
 
         public CharacterName Name => name;

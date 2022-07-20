@@ -22,7 +22,7 @@ namespace DungeonCrawlersTests.Systems
             characterCreationSystem = new CharacterCreationSystem();
 
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("Character creation: "));
+            displayer.Setup(x => x.WriteLine("Character creation: "));
             displayer.Setup(x => x.ReadString("Enter prefix: ")).Returns(PREFIX);
             displayer.Setup(x => x.ReadString("Enter first name: ")).Returns(FIRST_NAME);
             displayer.Setup(x => x.ReadString("Enter surname: ")).Returns(value: SURNAME);

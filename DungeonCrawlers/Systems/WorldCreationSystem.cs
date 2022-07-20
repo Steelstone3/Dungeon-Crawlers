@@ -7,14 +7,12 @@ namespace DungeonCrawlersTests.Systems
 {
     public class WorldCreationSystem : IWorldCreationSystem
     {
-        public IWorld Create(IDisplayer displayer)
+        public IWorld Create()
         {
-            displayer.Write("Creating world...");
-
-            var world = new World();
-            world.worldGrid = new char[,]{{'#', '#'}, {'#', '#'}};
-
-            displayer.DrawMap(world.worldGrid);
+            var world = new World
+            {
+                worldGrid = new char[5, 5] { { '#', '#', '#', '#', '#' }, { '#', '.', '.', '.', '#' }, { '#', '.', '.', '.', '#' }, { '#', '.', '.', '.', '#' }, { '#', '#', '#', '#', '#' } }
+            };
 
             return world;
         }

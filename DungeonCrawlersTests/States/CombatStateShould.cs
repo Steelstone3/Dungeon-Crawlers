@@ -16,7 +16,7 @@ namespace Name
         public CombatStateShould()
         {
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("Combat started..."));
+            displayer.Setup(x => x.WriteLine("Combat started..."));
 
             player = new Mock<ICharacter>();
             

@@ -20,7 +20,7 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            displayer.Write("Character creation started...");
+            displayer.WriteLine("Character creation started...");
             var player = characterCreationSystem.Create(displayer);
             GoToState(new WorldCreationState(displayer, gameController, player, new WorldCreationSystem()));
         }

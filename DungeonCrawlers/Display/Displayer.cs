@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DungeonCrawlers.Entities;
 
 namespace DungeonCrawlers.Display
 {
@@ -37,9 +38,14 @@ namespace DungeonCrawlers.Display
             return Console.ReadLine();
         }
 
-        public void Write(string message)
+        public void WriteLine(string message)
         {
             Console.WriteLine(message);
+        }
+
+        public void Write(string message)
+        {
+            Console.Write(message);
         }
 
         public void WriteMenu(IList<string> menuItems)
@@ -50,18 +56,19 @@ namespace DungeonCrawlers.Display
             }
         }
 
-        public void DrawMap(char[,] worldGrid)
+        public void DrawMap(char[,] worldGrid, ICharacter player)
         {
-            for (int x = 0; x < worldGrid.GetLength(0)-1; x++)
+            worldGrid[player.Location.X, player.Location.Y] = player.GetDisplaySymbol();
+
+            for (int x = 0; x < worldGrid.GetLength(0); x++)
             {
-                for (int y = 0; y < worldGrid.GetLength(1)-1; y++)
+                for (int y = 0; y < worldGrid.GetLength(1); y++)
                 {
-                    Console.Write(worldGrid[x,y]);
+                    Write(worldGrid[x, y].ToString());
                 }
 
-                Write("");
+                WriteLine("");
             }
-
         }
     }
 }

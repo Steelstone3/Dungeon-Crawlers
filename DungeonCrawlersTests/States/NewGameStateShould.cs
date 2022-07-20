@@ -14,7 +14,7 @@ namespace DungeonCrawlersTests.States
         public NewGameStateShould()
         {
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("New game selected..."));
+            displayer.Setup(x => x.WriteLine("New game selected..."));
 
             gameController = new Mock<IGameController>();
             gameController.Setup(x => x.CurrentGameState).Returns(new NewGameState(displayer.Object, gameController.Object));

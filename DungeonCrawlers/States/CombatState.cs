@@ -21,7 +21,7 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            displayer.Write("Combat started...");
+            displayer.WriteLine("Combat started...");
             //GoToState(new DungeonState(displayer, gameController, player, world));
         }
     }

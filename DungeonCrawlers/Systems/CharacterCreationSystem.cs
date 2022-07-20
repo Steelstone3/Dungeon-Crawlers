@@ -9,7 +9,7 @@ namespace DungeonCrawlers.Systems
     {
         public ICharacter Create(IDisplayer displayer)
         {
-            displayer.Write("Character creation: ");
+            displayer.WriteLine("Character creation: ");
             var prefix = displayer.ReadString("Enter prefix: ");
             var firstName = displayer.ReadString("Enter first name: ");
             var surname = displayer.ReadString("Enter surname: ");

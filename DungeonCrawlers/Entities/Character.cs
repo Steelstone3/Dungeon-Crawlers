@@ -1,3 +1,4 @@
+using DungeonCrawlers.Components;
 using DungeonCrawlers.Components.Character;
 
 namespace DungeonCrawlers.Entities
@@ -12,5 +13,9 @@ namespace DungeonCrawlers.Entities
         }
 
         public CharacterMetaData MetaData => characterMetaData;
+
+        public ILocation Location => new Location(1, 1);
+
+        public char GetDisplaySymbol() => 'P';
     }
 }

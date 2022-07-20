@@ -16,7 +16,7 @@ namespace DungeonCrawlersTests.States
         public CharacterCreationStateShould()
         {
             displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("Character creation started..."));
+            displayer.Setup(x => x.WriteLine("Character creation started..."));
 
             characterCreation = new Mock<ICharacterCreationSystem>();
             characterCreation.Setup(x => x.Create(displayer.Object));

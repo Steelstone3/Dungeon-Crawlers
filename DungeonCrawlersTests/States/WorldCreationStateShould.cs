@@ -18,16 +18,16 @@ namespace DungeonCrawlersTests.States
         public WorldCreationStateShould()
         {
             world = new Mock<IWorld>();
-            world.Setup(x => x.worldGrid).Returns(new char[,] {{},{}});
-
-            displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.Write("World creation started..."));
-            displayer.Setup(x => x.DrawMap(world.Object.worldGrid));
-
-            worldCreationSystem = new Mock<IWorldCreationSystem>();
-            worldCreationSystem.Setup(x => x.Create(displayer.Object)).Returns(world.Object);
+            world.Setup(x => x.worldGrid).Returns(new char[5,5] {{ '#', '#', '#', '#', '#' }, { '#', '.', '.', '.', '#' }, { '#', '.', '.', '.', '#' }, { '#', '.', '.', '.', '#' }, { '#', '#', '#', '#', '#' }});
 
             player = new Mock<ICharacter>();
+         
+            displayer = new Mock<IDisplayer>();
+            displayer.Setup(x => x.WriteLine("World creation started..."));
+            displayer.Setup(x => x.DrawMap(world.Object.worldGrid, player.Object));
+
+            worldCreationSystem = new Mock<IWorldCreationSystem>();
+            worldCreationSystem.Setup(x => x.Create()).Returns(world.Object);
 
             gameController = new Mock<IGameController>();
             gameController.Setup(x => x.CurrentGameState).Returns(new WorldCreationState(displayer.Object, gameController.Object, player.Object, worldCreationSystem.Object));

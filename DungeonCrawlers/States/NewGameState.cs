@@ -17,7 +17,7 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            displayer.Write("New game selected...");
+            displayer.WriteLine("New game selected...");
             GoToState(new CharacterCreationState(displayer, gameController, new CharacterCreationSystem()));
         }
     }

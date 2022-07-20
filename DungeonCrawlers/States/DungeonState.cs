@@ -21,7 +21,7 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            displayer.Write("Dungeon entered...");
+            displayer.WriteLine("Dungeon entered...");
             GoToState(new CombatState(displayer, gameController, player, world));
         }
     }

@@ -21,9 +21,9 @@ namespace DungeonCrawlers.States
 
         public override void StartState()
         {
-            displayer.Write("World creation started...");
-            var world = worldCreationSystem.Create(displayer);
-            displayer.DrawMap(world.worldGrid);
+            displayer.WriteLine("World creation started...");
+            var world = worldCreationSystem.Create();
+            displayer.DrawMap(world.worldGrid, player);
             GoToState(new ExplorationState(displayer, gameController, player, world));
         }
     }
