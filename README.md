@@ -16,7 +16,7 @@ Or set DungeonCrawlers.csproj as the launch project in your IDE.
 
 This application has been tested to run on debain derived Linux, Windows 10 and Mac OS 10 beyond this scope your expierences may vary.
 
-Tests
+## Testing Dungeon Crawlers
 > cd ~/DungeonCrawlers/DungeonCrawlersTests
 >
 > dotnet restore
