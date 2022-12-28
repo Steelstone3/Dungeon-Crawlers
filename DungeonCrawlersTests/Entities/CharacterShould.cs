@@ -32,14 +32,14 @@ namespace DungeonCrawlersTests.Entities
             Assert.NotNull(character.Race);
         }
 
-         [Fact]
+        [Fact]
         public void ContainsCharacterHealth()
         {
             // Then
             Assert.NotNull(character.Health);
         }
 
-         [Fact]
+        [Fact]
         public void ContainsCharacter()
         {
             // Then
