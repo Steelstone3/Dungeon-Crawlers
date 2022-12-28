@@ -1,3 +1,4 @@
+using DungeonCrawlers.Components;
 using Xunit;
 
 namespace DungeonCrawlersTests.Components

@@ -1,34 +1,33 @@
+using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
+using Moq;
 using Xunit;
 
 namespace DungeonCrawlersTests.Entities
 {
     public class CharacterShould
     {
+        private Mock<IName> name = new();
+        private Mock<IRace> race = new();
         private readonly ICharacter character;
 
         public CharacterShould()
         {
-            character = new Character();
+            character = new Character(name.Object, race.Object);
         }
 
-        [Fact(Skip = "Not implemented")]
+        [Fact]
         public void ContainCharacterName()
         {
-            // Given
-
-
             // Then
+            Assert.NotNull(character.Name);
         }
 
-        [Fact(Skip = "Not implemented")]
+        [Fact]
         public void ContainCharacterRace()
         {
-            // Given
-
-            // When
-
             // Then
+            Assert.NotNull(character.Race);
         }
     }
 }

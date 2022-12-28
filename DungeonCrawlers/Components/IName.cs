@@ -1,4 +1,4 @@
-namespace DungeonCrawlersTests.Components
+namespace DungeonCrawlers.Components
 {
     public interface IName
     {

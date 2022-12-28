@@ -1,3 +1,5 @@
+using DungeonCrawlers.Components;
+
 namespace DungeonCrawlersTests.Components
 {
     public class Name : IName
