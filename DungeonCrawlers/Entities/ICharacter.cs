@@ -6,5 +6,7 @@ namespace DungeonCrawlers.Entities
     {
         IName Name { get; }
         IRace Race { get; }
+        IHealth Health { get; }
+        IArmour Armour { get; }
     }
 }

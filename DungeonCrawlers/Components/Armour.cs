@@ -1,5 +1,3 @@
-using DungeonCrawlersTests.Components;
-
 namespace DungeonCrawlers.Components
 {
     public class Armour : IArmour

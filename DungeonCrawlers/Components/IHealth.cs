@@ -1,6 +1,6 @@
-namespace DungeonCrawlersTests.Components
+namespace DungeonCrawlers.Components
 {
-    internal interface IHealth
+    public interface IHealth
     {
         byte CurrentHealth { get; }
         byte MaximumHealth { get; }

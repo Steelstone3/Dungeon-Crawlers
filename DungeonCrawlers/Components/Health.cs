@@ -1,6 +1,6 @@
-namespace DungeonCrawlersTests.Components
+namespace DungeonCrawlers.Components
 {
-    internal class Health : IHealth
+    public class Health : IHealth
     {
         public Health(byte currentHealth, byte maximumHealth, byte regenerationRate)
         {
