@@ -5,11 +5,11 @@ namespace DungeonCrawlersTests.Entities
 {
     public class CharacterShould
     {
-        private readonly Character character;
+        private readonly ICharacter character;
 
         public CharacterShould()
         {
-            character = new();
+            character = new Character();
         }
 
         [Fact(Skip = "Not implemented")]

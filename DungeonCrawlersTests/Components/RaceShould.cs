@@ -1,17 +1,22 @@
+using DungeonCrawlers.Components;
 using Xunit;
 
 namespace DungeonCrawlersTests.Components
 {
     public class RaceShould
     {
-        [Fact]
-        public void Contains()
+        private readonly IRace race;
+
+        public RaceShould()
         {
-            // Given
-        
-            // When
-        
+            race = new Race("Elf");
+        }
+
+        [Fact]
+        public void ContainsName()
+        {
             // Then
+            Assert.Equal("Elf", race.Name);
         }
     }
 }

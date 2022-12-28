@@ -1,6 +1,6 @@
 namespace DungeonCrawlers.Entities
 {
-    public class Character : ICharacter
+    public interface ICharacter
     {
     }
 }
