@@ -6,21 +6,6 @@ namespace DungeonCrawlers.Presenters
 {
     public class GamePresenter : IGamePresenter
     {
-        private readonly string[] races = new string[]
-        {
-            "Human",
-            "Elf",
-            "Dwarf",
-            "Halfling",
-            "Giant",
-            "Half-Orc",
-            "Half-Elf",
-            "Gnome",
-            "Bunny-Folk",
-            "Tortile",
-            "Mer-Folk",
-            "Linux-User"
-        };
         private IPresenter presenter;
 
         public GamePresenter(IPresenter presenter)
@@ -30,10 +15,25 @@ namespace DungeonCrawlers.Presenters
 
         public ICharacter CreateCharacter()
         {
+            var races = new string[]
+            {
+                "Human",
+                "Elf",
+                "Dwarf",
+                "Halfling",
+                "Giant",
+                "Half-Orc",
+                "Half-Elf",
+                "Gnome",
+                "Bunny-Folk",
+                "Tortile",
+                "Mer-Folk",
+                "Linux-User"
+            };
+            var orderedRaces = races.OrderBy(r => r).ToArray();
+
             presenter.Print("Character creation");
 
-            var orderedRaces = races.OrderBy(r => r).ToArray();
-            
             return new Character(
                 new Name(
                     presenter.GetString("Enter prefix:"),
