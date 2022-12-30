@@ -1,3 +1,5 @@
+using System;
+using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Presenters;
 using DungeonCrawlersTests.Systems;
 
@@ -7,10 +9,14 @@ namespace DungeonCrawlers
     {
         static void Main()
         {
-            var gamePresenter = new GamePresenter(new Presenter());
-            var characterCreationSystem = new CharacterCreationSystem(gamePresenter);
+            var random = new Random();
+            var seeds = new int[] {random.Next(), random.Next(), random.Next()};
+            var presenter = new Presenter();
+            var gamePresenter = new GamePresenter(presenter);
+            var characterCreation = new CharacterCreationSystem(gamePresenter);
 
-            characterCreationSystem.Create();
+            var gameController = new GameController(presenter, characterCreation);
+            gameController.StartGame(seeds);
         }
     }
 }
