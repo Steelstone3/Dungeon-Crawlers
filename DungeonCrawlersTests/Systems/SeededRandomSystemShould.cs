@@ -1,3 +1,4 @@
+using System.Linq;
 using DungeonCrawlers.Systems;
 using Xunit;
 
@@ -18,6 +19,21 @@ namespace DungeonCrawlersTests.Systems
 
             // Then
             Assert.Equal(result, actualResult);
+        }
+
+        [Theory]
+        [InlineData(3)]
+        [InlineData(7)]
+        [InlineData(25)]
+        public void CreateSeeds(int quantity)
+        {
+            // When
+            var seeds = SeededRandomSystem.CreateSeeds(quantity);
+
+            // Then
+            Assert.NotNull(seeds);
+            Assert.NotEmpty(seeds);
+            Assert.Equal(quantity, seeds.Length);
         }
     }
 }

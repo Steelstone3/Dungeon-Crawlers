@@ -1,6 +1,6 @@
-using System.Linq;
 using DungeonCrawlers.Presenters;
 using DungeonCrawlers.States;
+using DungeonCrawlers.Systems;
 using DungeonCrawlersTests.Systems;
 
 namespace DungeonCrawlers.Controllers
@@ -10,22 +10,29 @@ namespace DungeonCrawlers.Controllers
         private readonly IPresenter presenter;
         private readonly IGameState state;
         private readonly ICharacterCreationSystem characterCreation;
+        private readonly IMonsterCreationSystem monsterCreation;
 
-        public GameController(IPresenter presenter, IGameState state, ICharacterCreationSystem characterCreation)
+        public GameController(IPresenter presenter, IGameState state, ICharacterCreationSystem characterCreation, Systems.IMonsterCreationSystem monsterCreation)
         {
             this.presenter = presenter;
             this.state = state;
             this.characterCreation = characterCreation;
+            this.monsterCreation = monsterCreation;
         }
 
         public void StartGame(int[] seeds)
         {
-            var characterParty = characterCreation.CreateMultiple(3, seeds).ToList();
-            characterParty.Add(characterCreation.Create());
+            state.CharacterParty.AddRange(characterCreation.CreateMultiple(3, seeds));
+            state.CharacterParty.Add(characterCreation.Create());
 
-            state.CharacterParty.AddRange(characterParty);
+            presenter.PrintParty(state.CharacterParty);
+        }
 
-            presenter.PrintParty(characterParty);
+        public void SpawnMonsters(int quantity, int[] seeds)
+        {
+            state.MonsterParty.AddRange(monsterCreation.CreateMultiple(quantity, seeds));
+
+            presenter.PrintParty(state.MonsterParty);
         }
     }
 }
