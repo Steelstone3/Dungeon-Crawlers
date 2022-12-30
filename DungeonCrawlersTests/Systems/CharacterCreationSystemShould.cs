@@ -45,7 +45,7 @@ namespace DungeonCrawlersTests.Systems
             gamePresenter.VerifyAll();
             Assert.NotNull(results);
             Assert.NotEmpty(results);
-           
+
             Assert.Equal("Master", results[0].Name.Prefix);
             Assert.Equal("Bob", results[0].Name.FirstName);
             Assert.Equal("Harken", results[0].Name.Surname);

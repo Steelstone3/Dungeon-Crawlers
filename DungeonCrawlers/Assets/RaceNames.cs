@@ -6,7 +6,7 @@ namespace DungeonCrawlers.Assets
     public static class RaceNames
     {
         public static string[] Races => races.OrderBy(r => r).ToArray();
-        
+
         private readonly static string[] races = new string[]
         {
             "Human",
