@@ -5,7 +5,7 @@ namespace DungeonCrawlers.Systems
 {
     public class SeededRandomSystem : ISeededRandomSystem
     {
-        public static int[] CreateSeeds(int quantity)
+        public int[] CreateSeeds(int quantity)
         {
             Random random = new();
 

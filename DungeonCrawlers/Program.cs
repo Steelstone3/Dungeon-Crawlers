@@ -13,7 +13,6 @@ namespace DungeonCrawlers
         {
             var random = new Random();
             var seededRandom = new SeededRandomSystem();
-            var seeds = new int[] { random.Next(), random.Next(), random.Next() };
             var presenter = new Presenter();
             var gamePresenter = new GamePresenter(presenter);
             var state = new GameState();
@@ -22,11 +21,11 @@ namespace DungeonCrawlers
 
             var gameController = new GameController(presenter, state, characterCreation, monsterCreation);
 
-            gameController.StartGame(seeds);
+            gameController.StartGame(seededRandom.CreateSeeds(3));
 
-            int quantity = (int)seededRandom.GetSeededRandom(random.Next(), 1, 25);
+            var quantity = (int)seededRandom.GetSeededRandom(random.Next(), 1, 25);
 
-            gameController.SpawnMonsters(quantity, SeededRandomSystem.CreateSeeds(quantity));
+            gameController.SpawnMonsters(quantity, seededRandom.CreateSeeds(quantity));
         }
     }
 }

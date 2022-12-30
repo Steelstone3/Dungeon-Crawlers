@@ -28,7 +28,7 @@ namespace DungeonCrawlersTests.Systems
         public void CreateSeeds(int quantity)
         {
             // When
-            var seeds = SeededRandomSystem.CreateSeeds(quantity);
+            var seeds = random.CreateSeeds(quantity);
 
             // Then
             Assert.NotNull(seeds);
