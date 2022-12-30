@@ -21,11 +21,11 @@ namespace DungeonCrawlers
             var monsterCreation = new MonsterCreationSystem();
 
             var gameController = new GameController(presenter, state, characterCreation, monsterCreation);
-            
+
             gameController.StartGame(seeds);
-            
+
             int quantity = (int)seededRandom.GetSeededRandom(random.Next(), 1, 25);
-            
+
             gameController.SpawnMonsters(quantity, SeededRandomSystem.CreateSeeds(quantity));
         }
     }

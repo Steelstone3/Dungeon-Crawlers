@@ -63,7 +63,7 @@ namespace DungeonCrawlers.Presenters
                 var health = new Markup($"[red]♥ {character.Health.CurrentHealth}/{character.Health.MaximumHealth} ♥[/]");
                 var armour = new Markup($"[yellow]{character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}[/]");
                 var expierence = new Markup($"↑ 0xp");
-                var row = new Markup[] { name, race, health, armour, expierence};
+                var row = new Markup[] { name, race, health, armour, expierence };
 
                 table.AddRow(row);
             }
