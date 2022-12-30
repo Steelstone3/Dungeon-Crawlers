@@ -26,8 +26,23 @@ namespace DungeonCrawlersTests.Systems
             var result = characterCreationSystem.Create();
 
             // Then
-            gamePresenter.Verify();
+            gamePresenter.VerifyAll();
             Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void CreateMultiple()
+        {
+            // Given
+            gamePresenter.Setup(gp => gp.CreateCharacter()).Returns(character.Object);
+
+            // When
+            var results = characterCreationSystem.CreateMultiple(4);
+
+            // Then
+            gamePresenter.VerifyAll();
+            Assert.NotNull(results);
+            Assert.NotEmpty(results);
         }
     }
 }
