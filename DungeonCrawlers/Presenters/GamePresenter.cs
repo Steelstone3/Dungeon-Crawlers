@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
@@ -33,16 +31,6 @@ namespace DungeonCrawlers.Presenters
                 new Race(selectedRace),
                 new Health(100, 100, 25), new Armour(100, 100, 5)
             );
-        }
-
-        public void PrintParty(IEnumerable<ICharacter> characters)
-        {
-
-        }
-
-        public void PrintParty(IEnumerable<IMonster> monsters)
-        {
-
         }
 
         private string SelectRace()

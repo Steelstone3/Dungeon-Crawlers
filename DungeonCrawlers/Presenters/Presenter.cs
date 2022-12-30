@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Reflection.Metadata;
+using DungeonCrawlers.Entities;
 using Spectre.Console;
 
 namespace DungeonCrawlers.Presenters
@@ -42,8 +45,37 @@ namespace DungeonCrawlers.Presenters
         public string SelectString(string message, string[] options)
         {
             return AnsiConsole.Prompt(new SelectionPrompt<string>()
-              .Title(message)
-              .AddChoices(options));
+                .Title(message)
+                .AddChoices(options));
+        }
+
+        public void PrintParty(IEnumerable<ICharacter> characters)
+        {
+            var table = CreateTable();
+
+            foreach (var character in characters)
+            {
+                var name = $"{character.Name.FirstName} {character.Name.Surname}";
+                var race = character.Race.Name;
+                var statistics = $"{character.Health.CurrentHealth}/{character.Health.MaximumHealth} | {character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}";
+                var row = new string[] {name, race, statistics};
+                
+                table.AddRow(row);
+            }
+        }
+
+        public void PrintParty(IEnumerable<IMonster> monsters)
+        {
+
+        }
+
+        private Table CreateTable() {
+            var table = new Table();
+            table.AddColumn("Name");
+            table.AddColumn("Race");
+            table.AddColumn("Statistics");
+
+            return table;
         }
     }
 }
