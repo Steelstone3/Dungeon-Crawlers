@@ -50,16 +50,19 @@ namespace DungeonCrawlersTests.Systems
             Assert.Equal("Bob", results[0].Name.FirstName);
             Assert.Equal("Harken", results[0].Name.Surname);
             Assert.Equal("Jr", results[0].Name.Suffix);
+            Assert.Equal("Half-Elf", results[0].Race.Name);
 
             Assert.Equal("Count", results[1].Name.Prefix);
             Assert.Equal("April", results[1].Name.FirstName);
             Assert.Equal("Billiston", results[1].Name.Surname);
             Assert.Equal("", results[1].Name.Suffix);
+            Assert.Equal("Bunny-Folk", results[1].Race.Name);
 
             Assert.Equal("Lady", results[2].Name.Prefix);
             Assert.Equal("Bill", results[2].Name.FirstName);
             Assert.Equal("Bobbinton", results[2].Name.Surname);
             Assert.Equal("III", results[2].Name.Suffix);
+            Assert.Equal("Giant", results[2].Race.Name);
         }
     }
 }
