@@ -53,13 +53,17 @@ namespace DungeonCrawlers.Presenters
         public void PrintParty(IEnumerable<ICharacter> characters)
         {
             var table = CreateTable();
+            table.AddColumn("Armour");
+            table.AddColumn("Expierence");
 
             foreach (var character in characters)
             {
                 var name = new Markup($"{character.Name.FirstName} {character.Name.Surname}");
                 var race = new Markup(character.Race.Name);
-                var statistics = new Markup($"[red]♥ {character.Health.CurrentHealth}/{character.Health.MaximumHealth} ♥[/] | [yellow]{character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}[/] | ↑ 0xp");
-                var row = new Markup[] { name, race, statistics };
+                var health = new Markup($"[red]♥ {character.Health.CurrentHealth}/{character.Health.MaximumHealth} ♥[/]");
+                var armour = new Markup($"[yellow]{character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}[/]");
+                var expierence = new Markup($"↑ 0xp");
+                var row = new Markup[] { name, race, health, armour, expierence};
 
                 table.AddRow(row);
             }
@@ -75,8 +79,8 @@ namespace DungeonCrawlers.Presenters
             {
                 var name = new Markup($"{monster.Name.FirstName}");
                 var race = new Markup(monster.Race.Name);
-                var statistics = new Markup($"[red]♥ {monster.Health.CurrentHealth}/{monster.Health.MaximumHealth} ♥[/]");
-                var row = new Markup[] { name, race, statistics };
+                var health = new Markup($"[red]♥ {monster.Health.CurrentHealth}/{monster.Health.MaximumHealth} ♥[/]");
+                var row = new Markup[] { name, race, health };
 
                 table.AddRow(row);
             }
@@ -89,7 +93,7 @@ namespace DungeonCrawlers.Presenters
             var table = new Table();
             table.AddColumn("Name");
             table.AddColumn("Race");
-            table.AddColumn("Statistics");
+            table.AddColumn("Health");
 
             return table;
         }
