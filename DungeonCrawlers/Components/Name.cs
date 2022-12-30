@@ -1,6 +1,4 @@
-using DungeonCrawlers.Components;
-
-namespace DungeonCrawlersTests.Components
+namespace DungeonCrawlers.Components
 {
     public class Name : IName
     {

@@ -38,5 +38,12 @@ namespace DungeonCrawlers.Presenters
         {
             return AnsiConsole.Confirm(message);
         }
+
+        public string SelectString(string message, string[] options)
+        {
+            return AnsiConsole.Prompt(new SelectionPrompt<string>()
+              .Title(message)
+              .AddChoices(options));
+        }
     }
 }
