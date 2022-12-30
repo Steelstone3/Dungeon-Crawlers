@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 using DungeonCrawlers.Entities;
 using Spectre.Console;
-using Spectre.Console.Rendering;
 
 namespace DungeonCrawlers.Presenters
 {
@@ -48,6 +46,24 @@ namespace DungeonCrawlers.Presenters
             return AnsiConsole.Prompt(new SelectionPrompt<string>()
                 .Title(message)
                 .AddChoices(options));
+        }
+
+        public ICharacter SelectCharacter(IEnumerable<ICharacter> characters)
+        {
+            var selectionPrompt = new SelectionPrompt<ICharacter> { Converter = c => $"{c.Name.FirstName} {c.Name.Surname}" };
+
+            return AnsiConsole.Prompt(selectionPrompt
+            .Title("Select character:")
+            .AddChoices(characters));
+        }
+
+        public IMonster SelectMonster(IEnumerable<IMonster> monsters)
+        {
+            var selectionPrompt = new SelectionPrompt<IMonster> { Converter = m => $"{m.Name.FirstName} {m.Name.Surname}" };
+
+            return AnsiConsole.Prompt(selectionPrompt
+            .Title("Select monster:")
+            .AddChoices(monsters));
         }
 
         public void PrintParty(IEnumerable<ICharacter> characters)
