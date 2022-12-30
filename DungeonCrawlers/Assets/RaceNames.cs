@@ -1,4 +1,5 @@
 using System.Linq;
+using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlers.Assets
 {
@@ -21,5 +22,12 @@ namespace DungeonCrawlers.Assets
             "Mer-Folk",
             "Linux-User"
         };
+
+        public static string GetRandomRace(int seed)
+        {
+            var randomIndex = new SeededRandomSystem().GetSeededRandom(seed, 0, (ulong)Races.Length);
+
+            return Races[randomIndex];
+        }
     }
 }
