@@ -84,7 +84,7 @@ namespace DungeonCrawlers.Presenters
             AnsiConsole.Write(table);
         }
 
-        private Table CreateTable()
+        private static Table CreateTable()
         {
             var table = new Table();
             table.AddColumn("Name");
