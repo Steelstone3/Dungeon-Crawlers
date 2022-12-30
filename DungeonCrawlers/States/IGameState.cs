@@ -7,5 +7,6 @@ namespace DungeonCrawlers.States
     public interface IGameState
     {
         List<ICharacter> CharacterParty { get; }
+        List<IMonster> MonsterParty { get; }
     }
 }
