@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using DungeonCrawlers.Assets;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlersTests.Systems
 {
@@ -30,7 +34,7 @@ namespace DungeonCrawlersTests.Systems
                 // with the selection being removed from the list each time
 
                 // Could also be done with a list of random names and races similarly
-                characterParty.Add(gamePresenter.CreateCharacter());
+                characterParty.Add(CreateRandomCharacter());
             }
 
             return characterParty;

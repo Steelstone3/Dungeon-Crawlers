@@ -33,9 +33,6 @@ namespace DungeonCrawlersTests.Systems
         [Fact]
         public void CreateMultiple()
         {
-            // Given
-            gamePresenter.Setup(gp => gp.CreateCharacter()).Returns(character.Object);
-
             // When
             var results = characterCreationSystem.CreateMultiple(4);
 
