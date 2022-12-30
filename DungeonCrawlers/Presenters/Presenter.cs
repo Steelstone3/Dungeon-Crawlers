@@ -56,11 +56,11 @@ namespace DungeonCrawlers.Presenters
 
             foreach (var character in characters)
             {
-                var name = $"{character.Name.FirstName} {character.Name.Surname}";
-                var race = character.Race.Name;
-                var statistics = $"{character.Health.CurrentHealth}/{character.Health.MaximumHealth} | {character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}";
-                var row = new string[] {name, race, statistics};
-                
+                var name = new Markup($"{character.Name.FirstName} {character.Name.Surname}");
+                var race = new Markup(character.Race.Name);
+                var statistics = new Markup($"[red]♥ {character.Health.CurrentHealth}/{character.Health.MaximumHealth} ♥[/] | [yellow]{character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}[/] | ↑ 0xp");
+                var row = new Markup[] { name, race, statistics };
+
                 table.AddRow(row);
             }
 
@@ -69,10 +69,23 @@ namespace DungeonCrawlers.Presenters
 
         public void PrintParty(IEnumerable<IMonster> monsters)
         {
+            var table = CreateTable();
 
+            foreach (var monster in monsters)
+            {
+                var name = new Markup($"{monster.Name.FirstName}");
+                var race = new Markup(monster.Race.Name);
+                var statistics = new Markup($"[red]♥ {monster.Health.CurrentHealth}/{monster.Health.MaximumHealth} ♥[/]");
+                var row = new Markup[] { name, race, statistics };
+
+                table.AddRow(row);
+            }
+
+            AnsiConsole.Write(table);
         }
 
-        private Table CreateTable() {
+        private Table CreateTable()
+        {
             var table = new Table();
             table.AddColumn("Name");
             table.AddColumn("Race");
