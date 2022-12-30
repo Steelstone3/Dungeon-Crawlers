@@ -6,7 +6,7 @@ namespace DungeonCrawlers.Presenters
 {
     public class GamePresenter : IGamePresenter
     {
-        private IPresenter presenter;
+        private readonly IPresenter presenter;
 
         public GamePresenter(IPresenter presenter)
         {

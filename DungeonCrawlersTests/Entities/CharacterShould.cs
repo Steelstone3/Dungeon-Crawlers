@@ -7,10 +7,10 @@ namespace DungeonCrawlersTests.Entities
 {
     public class CharacterShould
     {
-        private Mock<IName> name = new();
-        private Mock<IRace> race = new();
-        private Mock<IHealth> health = new();
-        private Mock<IArmour> armour = new();
+        private readonly Mock<IName> name = new();
+        private readonly Mock<IRace> race = new();
+        private readonly Mock<IHealth> health = new();
+        private readonly Mock<IArmour> armour = new();
         private readonly ICharacter character;
 
         public CharacterShould()

@@ -8,8 +8,8 @@ namespace DungeonCrawlersTests.Presenters
 {
     public class GamePresenterShould
     {
-        Mock<IPresenter> presenter = new();
-        IGamePresenter gamePresenter;
+        private readonly Mock<IPresenter> presenter = new();
+        private readonly IGamePresenter gamePresenter;
 
         public GamePresenterShould()
         {

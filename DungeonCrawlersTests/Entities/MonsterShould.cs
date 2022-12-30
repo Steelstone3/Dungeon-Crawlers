@@ -7,9 +7,9 @@ namespace DungeonCrawlersTests.Entities
 {
     public class MonsterShould
     {
-        Mock<IName> name = new();
-        Mock<IRace> race = new();
-        Mock<IHealth> health = new();
+        private readonly Mock<IName> name = new();
+        private readonly Mock<IRace> race = new();
+        private readonly Mock<IHealth> health = new();
         private readonly IMonster monster;
 
         public MonsterShould()
