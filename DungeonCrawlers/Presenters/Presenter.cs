@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using DungeonCrawlers.Entities;
 using Spectre.Console;
+using Spectre.Console.Rendering;
 
 namespace DungeonCrawlers.Presenters
 {
@@ -62,6 +63,8 @@ namespace DungeonCrawlers.Presenters
                 
                 table.AddRow(row);
             }
+
+            AnsiConsole.Write(table);
         }
 
         public void PrintParty(IEnumerable<IMonster> monsters)
