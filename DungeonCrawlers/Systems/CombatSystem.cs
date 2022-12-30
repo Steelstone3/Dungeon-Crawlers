@@ -11,7 +11,7 @@ namespace DungeonCrawlers.Systems
 
         public void PlayerTurn(ICharacter character, IMonster monster)
         {
-            
+            monster.Health.CurrentHealth -= (byte)character.Weapon.MaximumDamage;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DungeonCrawlersTests.Systems
     {
         private readonly ICombatSystem combatSystem = new CombatSystem();
 
-        [Fact(Skip="To implement")]
+        [Fact]
         public void ExecutePlayerTurn()
         {
             // Given
@@ -20,7 +20,7 @@ namespace DungeonCrawlersTests.Systems
             combatSystem.PlayerTurn(character, monster);
 
             // Then
-            Assert.Equal(50, monster.Health.CurrentHealth);
+            Assert.Equal(75, monster.Health.CurrentHealth);
             Assert.Equal(100, monster.Health.MaximumHealth);
             Assert.Equal(0, monster.Health.RegenerationRate);
         }

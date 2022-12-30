@@ -9,7 +9,7 @@ namespace DungeonCrawlers.Components
             RegenerationRate = regenerationRate;
         }
 
-        public byte CurrentHealth { get; }
+        public byte CurrentHealth { get; set; }
         public byte MaximumHealth { get; }
         public byte RegenerationRate { get; }
     }
