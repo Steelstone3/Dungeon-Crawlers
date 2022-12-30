@@ -27,7 +27,7 @@ namespace DungeonCrawlersTests.Systems
 
             for (int i = 0; i < quantity; i++)
             {
-                characterParty.Add(CreateRandomCharacter(seeds.ToArray()[i]));
+                characterParty.Add(CreateRandomCharacter(seeds[i]));
             }
 
             return characterParty;
