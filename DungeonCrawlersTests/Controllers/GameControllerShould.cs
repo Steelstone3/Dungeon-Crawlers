@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using DungeonCrawlers.Controllers;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.Presenters;
+using DungeonCrawlers.States;
 using DungeonCrawlersTests.Systems;
 using Moq;
 using Xunit;
@@ -10,14 +12,16 @@ namespace DungeonCrawlersTests.Controllers
 {
     public class GameControllerShould
     {
-        private readonly Mock<IPresenter> presenter = new();
         private readonly Mock<ICharacter> character = new();
+        private readonly Mock<IPresenter> presenter = new();
+        private readonly Mock<IGameState> gameState = new();
         private readonly Mock<ICharacterCreationSystem> characterCreation = new();
         private readonly IGameController gameController;
 
         public GameControllerShould()
         {
-            gameController = new GameController(presenter.Object, characterCreation.Object);
+            gameState.Setup(gs => gs.CharacterParty).Returns(new List<ICharacter>());
+            gameController = new GameController(presenter.Object, gameState.Object, characterCreation.Object);
         }
 
         [Fact]

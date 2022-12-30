@@ -6,6 +6,6 @@ namespace DungeonCrawlers.States
 {
     public interface IGameState
     {
-        IEnumerable<ICharacter> CharacterParty { get; set; }
+        List<ICharacter> CharacterParty { get; }
     }
 }
