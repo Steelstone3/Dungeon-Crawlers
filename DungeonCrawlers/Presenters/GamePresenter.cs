@@ -29,7 +29,8 @@ namespace DungeonCrawlers.Presenters
                     presenter.GetString("Enter suffix:")
                 ),
                 new Race(selectedRace),
-                new Health(100, 100, 25), new Armour(100, 100, 5)
+                new Health(100, 100, 25), new Armour(100, 100, 5),
+                new Weapon(presenter.GetString("Enter a weapon name:"), presenter.GetString("Describe the weapon's attack:"), 5, 1)
             );
         }
     }

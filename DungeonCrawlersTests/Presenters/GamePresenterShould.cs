@@ -43,6 +43,8 @@ namespace DungeonCrawlersTests.Presenters
             presenter.Setup(p => p.GetString("Enter surname:"));
             presenter.Setup(p => p.GetString("Enter suffix:"));
             presenter.Setup(p => p.SelectString("Enter race:", orderedRaces)).Returns(HUMAN);
+            presenter.Setup(p => p.GetString("Enter a weapon name:"));
+            presenter.Setup(p => p.GetString("Describe the weapon's attack:"));
             presenter.Setup(p => p.Print($"Selected race: {HUMAN}"));
 
             // When

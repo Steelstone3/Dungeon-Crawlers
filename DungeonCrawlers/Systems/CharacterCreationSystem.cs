@@ -49,7 +49,8 @@ namespace DungeonCrawlersTests.Systems
                     RaceNames.GetRandomRace(seed)
                 ),
                 new Health(100, 100, 25),
-                new Armour(100, 100, 5)
+                new Armour(100, 100, 5),
+                new Weapon("Halbeard", "Swing", 20, 10)
             );
         }
     }

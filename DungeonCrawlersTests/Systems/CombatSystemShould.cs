@@ -13,7 +13,7 @@ namespace DungeonCrawlersTests.Systems
         public void ExecutePlayerTurn()
         {
             // Given
-            ICharacter character = new Character(null, null, new Health(100, 100, 25), new Armour(100, 100, 5));
+            ICharacter character = new Character(null, null, new Health(100, 100, 25), new Armour(100, 100, 5), new Weapon(null, null, 25, 5));
             IMonster monster = new Monster(null, null, new Health(100, 100, 0));
             
             // When

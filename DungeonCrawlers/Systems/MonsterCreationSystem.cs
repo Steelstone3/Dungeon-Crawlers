@@ -34,7 +34,7 @@ namespace DungeonCrawlers.Systems
                 (
                     MonsterNames.GetRandomRace(raceSeed)
                 ),
-                new Health(100, 100, 25)
+                new Health(5, 5, 0)
             );
         }
 
