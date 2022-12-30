@@ -15,6 +15,26 @@ namespace DungeonCrawlers.Presenters
 
         public ICharacter CreateCharacter()
         {
+            presenter.Print("Character creation");
+
+            var selectedRace = SelectRace();
+
+            presenter.Print($"Selected race: {selectedRace}");
+
+            return new Character(
+                new Name(
+                    presenter.GetString("Enter prefix:"),
+                    presenter.GetString("Enter first name:"),
+                    presenter.GetString("Enter surname:"),
+                    presenter.GetString("Enter suffix:")
+                ),
+                new Race(selectedRace),
+                new Health(100, 100, 25), new Armour(100, 100, 5)
+            );
+        }
+
+        private string SelectRace()
+        {
             var races = new string[]
             {
                 "Human",
@@ -32,18 +52,7 @@ namespace DungeonCrawlers.Presenters
             };
             var orderedRaces = races.OrderBy(r => r).ToArray();
 
-            presenter.Print("Character creation");
-
-            return new Character(
-                new Name(
-                    presenter.GetString("Enter prefix:"),
-                    presenter.GetString("Enter first name:"),
-                    presenter.GetString("Enter surname:"),
-                    presenter.GetString("Enter suffix:")
-                ),
-                new Race(presenter.SelectString("Enter race:", orderedRaces)),
-                new Health(100, 100, 25), new Armour(100, 100, 5)
-            );
+            return presenter.SelectString("Enter race:", orderedRaces);
         }
     }
 }

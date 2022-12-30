@@ -8,6 +8,7 @@ namespace DungeonCrawlersTests.Presenters
 {
     public class GamePresenterShould
     {
+        private const string HUMAN = "Human";
         private readonly Mock<IPresenter> presenter = new();
         private readonly IGamePresenter gamePresenter;
 
@@ -22,7 +23,7 @@ namespace DungeonCrawlersTests.Presenters
             // Given
             var races = new string[]
             {
-                "Human",
+                HUMAN,
                 "Elf",
                 "Dwarf",
                 "Halfling",
@@ -41,7 +42,8 @@ namespace DungeonCrawlersTests.Presenters
             presenter.Setup(p => p.GetString("Enter first name:"));
             presenter.Setup(p => p.GetString("Enter surname:"));
             presenter.Setup(p => p.GetString("Enter suffix:"));
-            presenter.Setup(p => p.SelectString("Enter race:", orderedRaces));
+            presenter.Setup(p => p.SelectString("Enter race:", orderedRaces)).Returns(HUMAN);
+            presenter.Setup(p => p.Print($"Selected race: {HUMAN}"));
 
             // When
             ICharacter character = gamePresenter.CreateCharacter();
