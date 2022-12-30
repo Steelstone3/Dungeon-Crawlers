@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.Linq;
 using DungeonCrawlers.Assets;
+using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.Presenters;
-using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlersTests.Systems
 {
@@ -22,27 +21,36 @@ namespace DungeonCrawlersTests.Systems
             return gamePresenter.CreateCharacter();
         }
 
-        public IEnumerable<ICharacter> CreateMultiple(byte quantity)
+        public IEnumerable<ICharacter> CreateMultiple(byte quantity, int[] seeds)
         {
             var characterParty = new List<ICharacter>();
 
             for (int i = 0; i < quantity; i++)
             {
-                // TODO AH Command to spawn a random character.
-
-                // Could be done from a predefined list of characters which is shuffled 
-                // with the selection being removed from the list each time
-
-                // Could also be done with a list of random names and races similarly
-                characterParty.Add(CreateRandomCharacter());
+                characterParty.Add(CreateRandomCharacter(seeds.ToArray()[i]));
             }
 
             return characterParty;
         }
 
-        private ICharacter CreateRandomCharacter()
+        private static ICharacter CreateRandomCharacter(int seed)
         {
-            return null;
+            return new Character
+            (
+                new Name
+                (
+                    CharacterNames.GetRandomPrefix(seed),
+                    CharacterNames.GetRandomFirstName(seed),
+                    CharacterNames.GetRandomSurname(seed),
+                    CharacterNames.GetRandomSuffix(seed)
+                ),
+                new Race
+                (
+                    RaceNames.GetRandomRace(seed)
+                ),
+                new Health(100, 100, 25),
+                new Armour(100, 100, 5)
+            );
         }
     }
 }
