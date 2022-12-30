@@ -1,4 +1,4 @@
-using System.Linq;
+using DungeonCrawlers.Assets;
 using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
 
@@ -17,7 +17,7 @@ namespace DungeonCrawlers.Presenters
         {
             presenter.Print("Character creation");
 
-            var selectedRace = SelectRace();
+            var selectedRace = presenter.SelectString("Enter race:", RaceNames.Races);
 
             presenter.Print($"Selected race: {selectedRace}");
 
@@ -31,28 +31,6 @@ namespace DungeonCrawlers.Presenters
                 new Race(selectedRace),
                 new Health(100, 100, 25), new Armour(100, 100, 5)
             );
-        }
-
-        private string SelectRace()
-        {
-            var races = new string[]
-            {
-                "Human",
-                "Elf",
-                "Dwarf",
-                "Halfling",
-                "Giant",
-                "Half-Orc",
-                "Half-Elf",
-                "Gnome",
-                "Bunny-Folk",
-                "Tortile",
-                "Mer-Folk",
-                "Linux-User"
-            };
-            var orderedRaces = races.OrderBy(r => r).ToArray();
-
-            return presenter.SelectString("Enter race:", orderedRaces);
         }
     }
 }

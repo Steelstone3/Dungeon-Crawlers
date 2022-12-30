@@ -35,5 +35,10 @@ namespace DungeonCrawlersTests.Systems
 
             return characterParty;
         }
+
+        private ICharacter CreateRandomCharacter()
+        {
+            return null;
+        }
     }
 }
