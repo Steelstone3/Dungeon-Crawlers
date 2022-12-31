@@ -18,7 +18,7 @@ namespace DungeonCrawlers
             var state = new GameState();
             var characterCreation = new CharacterCreationSystem(gamePresenter);
             var monsterCreation = new MonsterCreationSystem();
-            var combat = new CombatSystem(presenter);
+            var combat = new CombatSystem(presenter, seededRandom);
 
             var gameController = new GameController(presenter, state, characterCreation, monsterCreation, combat);
 

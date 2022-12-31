@@ -9,12 +9,13 @@ namespace DungeonCrawlersTests.Systems
 {
     public class CombatSystemShould
     {
+        Mock<ISeededRandomSystem> random = new();
         private readonly Mock<IPresenter> presenter = new();
         private readonly ICombatSystem combatSystem;
 
         public CombatSystemShould()
         {
-            combatSystem = new CombatSystem(presenter.Object);
+            combatSystem = new CombatSystem(presenter.Object, random.Object);
         }
 
         [Theory]

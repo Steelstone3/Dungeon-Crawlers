@@ -9,10 +9,12 @@ namespace DungeonCrawlers.Systems
     public class CombatSystem : ICombatSystem
     {
         private readonly IPresenter presenter;
+        private readonly ISeededRandomSystem random;
 
-        public CombatSystem(IPresenter presenter)
+        public CombatSystem(IPresenter presenter, ISeededRandomSystem random)
         {
             this.presenter = presenter;
+            this.random = random;
         }
 
         public void MonsterTurn()
