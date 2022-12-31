@@ -39,9 +39,8 @@ namespace DungeonCrawlers.Controllers
 
         public void StartCombat()
         {
-            presenter.PrintParty(state.CharacterParty);
+            presenter.Print("Combat started");
             combat.PlayerTurn(state.CharacterParty, state.MonsterParty);
-            presenter.PrintParty(state.MonsterParty);
         }
     }
 }

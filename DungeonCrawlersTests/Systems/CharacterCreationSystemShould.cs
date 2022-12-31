@@ -51,7 +51,7 @@ namespace DungeonCrawlersTests.Systems
             Assert.Equal("Jr", results[0].Name.Suffix);
             Assert.Equal("Half-Elf", results[0].Race.Name);
             Assert.Equal("Halbeard", results[0].Weapon.Name);
-            Assert.Equal("Hack", results[0].Weapon.AttackDescription);
+            Assert.Equal("Hacked", results[0].Weapon.AttackDescription);
 
             Assert.Equal("Count", results[1].Name.Prefix);
             Assert.Equal("April", results[1].Name.FirstName);
@@ -59,7 +59,7 @@ namespace DungeonCrawlersTests.Systems
             Assert.Equal("", results[1].Name.Suffix);
             Assert.Equal("Bunny-Folk", results[1].Race.Name);
             Assert.Equal("Axe", results[1].Weapon.Name);
-            Assert.Equal("Bash", results[1].Weapon.AttackDescription);
+            Assert.Equal("Bashed", results[1].Weapon.AttackDescription);
 
             Assert.Equal("Lady", results[2].Name.Prefix);
             Assert.Equal("Bill", results[2].Name.FirstName);
@@ -67,7 +67,7 @@ namespace DungeonCrawlersTests.Systems
             Assert.Equal("III", results[2].Name.Suffix);
             Assert.Equal("Giant", results[2].Race.Name);
             Assert.Equal("Dagger", results[2].Weapon.Name);
-            Assert.Equal("Boop", results[2].Weapon.AttackDescription);
+            Assert.Equal("Booped", results[2].Weapon.AttackDescription);
         }
     }
 }

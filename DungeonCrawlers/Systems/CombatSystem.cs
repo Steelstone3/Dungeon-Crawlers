@@ -22,13 +22,17 @@ namespace DungeonCrawlers.Systems
 
         public void PlayerTurn(IEnumerable<ICharacter> characters, IEnumerable<IMonster> monsters)
         {
+            presenter.PrintParty(characters);
+
             var character = presenter.SelectCharacter(characters);
             var monster = presenter.SelectMonster(monsters);
 
             var damage = CalculateDamage(character.Weapon);
             AssignDamage(monster.Health, damage);
 
-            presenter.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription}ed at {monster.Name.FirstName} {monster.Name.Surname} for {damage} damage");
+            presenter.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription} {monster.Name.FirstName} {monster.Name.Surname} for {damage} damage");
+            
+            presenter.PrintParty(monsters);
         }
 
         private static byte CalculateDamage(IWeapon weapon) => (byte)new Random().Next(weapon.MinimumDamage, weapon.MaximumDamage);

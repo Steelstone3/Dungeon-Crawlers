@@ -33,9 +33,9 @@ namespace DungeonCrawlersTests.Assets
         }
 
         [Theory]
-        [InlineData(1111, "Hack")]
-        [InlineData(-122, "Bash")]
-        [InlineData(5656, "Boop")]
+        [InlineData(1111, "Hacked")]
+        [InlineData(-122, "Bashed")]
+        [InlineData(5656, "Booped")]
         public void GetRandomWeaponDescription(int seed, string randomName)
         {
             // When

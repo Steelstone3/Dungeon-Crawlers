@@ -23,12 +23,12 @@ namespace DungeonCrawlers.Assets
 
         private readonly static string[] descriptions = new string[]
         {
-            "Hack",
-            "Slash",
-            "Smash",
-            "Bash",
-            "Whack",
-            "Boop"
+            "Hacked",
+            "Slashed",
+            "Smashed",
+            "Bashed",
+            "Whacked",
+            "Booped"
         };
 
         public static string GetRandomName(int seed)

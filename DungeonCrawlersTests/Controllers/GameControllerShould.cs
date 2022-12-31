@@ -69,8 +69,7 @@ namespace DungeonCrawlersTests.Controllers
             // Given
             gameState.Object.CharacterParty.Add(character.Object);
             gameState.Object.MonsterParty.Add(monster.Object);
-            presenter.Setup(p => p.PrintParty(gameState.Object.CharacterParty));
-            presenter.Setup(p => p.PrintParty(gameState.Object.MonsterParty));
+            presenter.Setup(p => p.Print("Combat started"));
             combat.Setup(cs => cs.PlayerTurn(gameState.Object.CharacterParty, gameState.Object.MonsterParty));
             // combat.Setup(cs => cs.MonsterTurn());
 
