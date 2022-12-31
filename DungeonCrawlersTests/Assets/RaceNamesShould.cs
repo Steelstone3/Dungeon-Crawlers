@@ -16,7 +16,7 @@ namespace DungeonCrawlersTests.Assets
         [InlineData(1111, "Half-Elf")]
         [InlineData(-122, "Bunny-Folk")]
         [InlineData(5656, "Giant")]
-        public void GetRandomSuffix(int seed, string randomName)
+        public void GetRandomRace(int seed, string randomName)
         {
             // When
             string race = RaceNames.GetRandomRace(seed);
