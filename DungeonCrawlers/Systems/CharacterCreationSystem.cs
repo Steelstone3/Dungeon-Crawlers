@@ -50,7 +50,7 @@ namespace DungeonCrawlersTests.Systems
                 ),
                 new Health(100, 100, 25),
                 new Armour(100, 100, 5),
-                new Weapon("Halbeard", "Swing", 20, 10)
+                new Weapon(WeaponNames.GetRandomName(seed), WeaponNames.GetRandomDescription(seed), 5, 1)
             );
         }
     }
