@@ -26,12 +26,13 @@ namespace DungeonCrawlersTests.Systems
         public void ExecutePlayerTurn(byte maximumDamage, byte currentHealth, byte remainingHealth)
         {
             // Given
-            IMonster monster = new Monster(null, null, new Health(currentHealth, 100, 0));
-            ICharacter character = new Character(null, null, new Health(100, 100, 25), new Armour(100, 100, 5), new Weapon(null, null, maximumDamage, maximumDamage));
+            IMonster monster = new Monster(new Name(null, "Bob", "Harris", null), null, new Health(currentHealth, 100, 0));
+            ICharacter character = new Character(new Name(null, "Lily", "Jones", null), null, new Health(100, 100, 25), new Armour(100, 100, 5), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
             ICharacter[] characters = new ICharacter[] { character };
             IMonster[] monsters = new IMonster[] { monster };
             presenter.Setup(p => p.SelectCharacter(characters)).Returns(character);
             presenter.Setup(p => p.SelectMonster(monsters)).Returns(monster);
+            presenter.Setup(p => p.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription}ed at {monster.Name.FirstName} {monster.Name.Surname} for {maximumDamage} damage"));
 
             // When
             combatSystem.PlayerTurn(characters, monsters);
