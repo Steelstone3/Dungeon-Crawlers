@@ -18,13 +18,14 @@ namespace DungeonCrawlersTests.Controllers
         private readonly Mock<IGameState> gameState = new();
         private readonly Mock<ICharacterCreationSystem> characterCreation = new();
         private readonly Mock<IMonsterCreationSystem> monsterCreation = new();
+        private readonly Mock<ICombatSystem> combat = new();
         private readonly IGameController gameController;
 
         public GameControllerShould()
         {
             gameState.Setup(gs => gs.CharacterParty).Returns(new List<ICharacter>());
             gameState.Setup(gs => gs.MonsterParty).Returns(new List<IMonster>());
-            gameController = new GameController(presenter.Object, gameState.Object, characterCreation.Object, monsterCreation.Object);
+            gameController = new GameController(presenter.Object, gameState.Object, characterCreation.Object, monsterCreation.Object, combat.Object);
         }
 
         [Fact]
@@ -60,6 +61,22 @@ namespace DungeonCrawlersTests.Controllers
             // Then
             monsterCreation.VerifyAll();
             presenter.VerifyAll();
+        }
+
+        [Fact]
+        public void StartCombat()
+        {
+            // Given
+            gameState.Object.CharacterParty.Add(character.Object);
+            gameState.Object.MonsterParty.Add(monster.Object);
+            combat.Setup(cs => cs.PlayerTurn(gameState.Object.CharacterParty, gameState.Object.MonsterParty));
+            // combat.Setup(cs => cs.MonsterTurn());
+
+            // When
+            gameController.StartCombat();
+
+            // Then
+            combat.VerifyAll();
         }
     }
 }

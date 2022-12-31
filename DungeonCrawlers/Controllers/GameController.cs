@@ -11,13 +11,15 @@ namespace DungeonCrawlers.Controllers
         private readonly IGameState state;
         private readonly ICharacterCreationSystem characterCreation;
         private readonly IMonsterCreationSystem monsterCreation;
+        private readonly ICombatSystem combat;
 
-        public GameController(IPresenter presenter, IGameState state, ICharacterCreationSystem characterCreation, Systems.IMonsterCreationSystem monsterCreation)
+        public GameController(IPresenter presenter, IGameState state, ICharacterCreationSystem characterCreation, Systems.IMonsterCreationSystem monsterCreation, ICombatSystem combat)
         {
             this.presenter = presenter;
             this.state = state;
             this.characterCreation = characterCreation;
             this.monsterCreation = monsterCreation;
+            this.combat = combat;
         }
 
         public void StartGame(int[] seeds)
@@ -33,6 +35,11 @@ namespace DungeonCrawlers.Controllers
             state.MonsterParty.AddRange(monsterCreation.CreateMultiple(quantity, seeds));
 
             presenter.PrintParty(state.MonsterParty);
+        }
+
+        public void StartCombat()
+        {
+            combat.PlayerTurn(state.CharacterParty, state.MonsterParty);
         }
     }
 }

@@ -18,8 +18,9 @@ namespace DungeonCrawlers
             var state = new GameState();
             var characterCreation = new CharacterCreationSystem(gamePresenter);
             var monsterCreation = new MonsterCreationSystem();
+            var combat = new CombatSystem(presenter);
 
-            var gameController = new GameController(presenter, state, characterCreation, monsterCreation);
+            var gameController = new GameController(presenter, state, characterCreation, monsterCreation, combat);
 
             gameController.StartGame(seededRandom.CreateSeeds(3));
 

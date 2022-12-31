@@ -4,5 +4,6 @@ namespace DungeonCrawlers.Controllers
     {
         void StartGame(int[] seeds);
         void SpawnMonsters(int quantity, int[] seeds);
+        void StartCombat();
     }
 }
