@@ -27,6 +27,8 @@ namespace DungeonCrawlers
             var quantity = (int)seededRandom.GetSeededRandom(random.Next(), 1, 25);
 
             gameController.SpawnMonsters(quantity, seededRandom.CreateSeeds(quantity));
+
+            gameController.StartCombat();
         }
     }
 }
