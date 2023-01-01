@@ -23,12 +23,10 @@ namespace DungeonCrawlers.Systems
 
             var character = presenter.SelectCharacter(characters);
             var monster = presenter.SelectMonster(monsters);
-
             var damage = CalculateDamage(character.Weapon);
             character.Health.CurrentHealth = AssignDamage(monster.Health, damage);
 
             presenter.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription} {monster.Name.FirstName} {monster.Name.Surname} for {damage} damage");
-            
             presenter.PrintParty(monsters);
         }
 
@@ -38,12 +36,10 @@ namespace DungeonCrawlers.Systems
 
             var monster = random.SelectRandom(monsters);
             var character = random.SelectRandom(characters);
-
             var damage = CalculateDamage(monster.Weapon);
             character.Health.CurrentHealth = AssignDamage(character.Health, damage);
 
-            presenter.Print($"{monster.Name.FirstName} {monster.Name.Surname} used {monster.Weapon.Name} and {monster.Weapon.AttackDescription} {character.Name.FirstName} {character.Name.Surname} for {damage} damage");
-            
+            presenter.Print($"{monster.Name.FirstName} {monster.Name.Surname} used {monster.Weapon.Name} and {monster.Weapon.AttackDescription} {character.Name.FirstName} {character.Name.Surname} for {damage} damage"); 
             presenter.PrintParty(characters);
         }
 
