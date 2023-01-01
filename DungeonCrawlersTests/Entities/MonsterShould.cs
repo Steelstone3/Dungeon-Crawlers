@@ -10,11 +10,12 @@ namespace DungeonCrawlersTests.Entities
         private readonly Mock<IName> name = new();
         private readonly Mock<IRace> race = new();
         private readonly Mock<IHealth> health = new();
+        private readonly Mock<IWeapon> weapon = new();
         private readonly IMonster monster;
 
         public MonsterShould()
         {
-            monster = new Monster(name.Object, race.Object, health.Object);
+            monster = new Monster(name.Object, race.Object, health.Object, weapon.Object);
         }
 
         [Fact]
@@ -36,6 +37,13 @@ namespace DungeonCrawlersTests.Entities
         {
             // Then
             Assert.NotNull(monster.Health);
+        }
+
+        [Fact]
+        public void ContainsMonsterWeapon()
+        {
+            // Then
+            Assert.NotNull(monster.Weapon);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DungeonCrawlersTests.Systems
 {
     public class CombatSystemShould
     {
-        Mock<ISeededRandomSystem> random = new();
+        private readonly Mock<ISeededRandomSystem> random = new();
         private readonly Mock<IPresenter> presenter = new();
         private readonly ICombatSystem combatSystem;
 
@@ -27,7 +27,7 @@ namespace DungeonCrawlersTests.Systems
         public void ExecutePlayerTurn(byte maximumDamage, byte currentHealth, byte remainingHealth)
         {
             // Given
-            IMonster monster = new Monster(new Name(null, "Bob", "Harris", null), null, new Health(currentHealth, 100, 0));
+            IMonster monster = new Monster(new Name(null, "Bob", "Harris", null), null, new Health(currentHealth, 100, 0), null);
             ICharacter character = new Character(new Name(null, "Lily", "Jones", null), null, new Health(100, 100, 25), new Armour(100, 100, 5), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
             ICharacter[] characters = new ICharacter[] { character };
             IMonster[] monsters = new IMonster[] { monster };

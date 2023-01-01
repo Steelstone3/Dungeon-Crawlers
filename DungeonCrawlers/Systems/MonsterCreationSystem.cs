@@ -34,7 +34,8 @@ namespace DungeonCrawlers.Systems
                 (
                     MonsterNames.GetRandomRace(raceSeed)
                 ),
-                new Health(5, 5, 0)
+                new Health(5, 5, 0),
+                new Weapon("Claw", "Sratch", 5, 1)
             );
         }
 
