@@ -40,8 +40,15 @@ namespace DungeonCrawlers.Controllers
         public void StartCombat()
         {
             presenter.Print("Combat started");
-            combat.PlayerTurn(state.CharacterParty, state.MonsterParty);
-            combat.MonsterTurn(state.MonsterParty, state.CharacterParty);
+
+            var isPlayerInCombat = true;
+            var isMonsterInCombat = true;
+
+            while (isPlayerInCombat || isMonsterInCombat)
+            {
+                isPlayerInCombat = combat.PlayerTurn(state.CharacterParty, state.MonsterParty);
+                isMonsterInCombat = combat.MonsterTurn(state.MonsterParty, state.CharacterParty);
+            }
         }
     }
 }
