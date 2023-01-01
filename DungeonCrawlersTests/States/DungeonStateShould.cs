@@ -49,15 +49,24 @@ namespace DungeonCrawlersTests.States
             presenter.VerifyAll();
         }
 
-        [Fact(Skip="Later")]
+        [Fact]
         public void StartCombat()
         {
             // Given
+            var character = new Character(null, null, null, null, null);
+            var monster = new Monster(null, null, null, null);
+            gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>() { character });
+            gameRepository.Setup(gr => gr.MonsterParty).Returns(new List<IMonster>() { monster });
+            presenter.Setup(p => p.Print("Combat started"));
+            combatSystem.Setup(cs => cs.PlayerTurn(gameRepository.Object.CharacterParty, gameRepository.Object.MonsterParty)).Returns(false);
+            combatSystem.Setup(cs => cs.MonsterTurn(gameRepository.Object.MonsterParty, gameRepository.Object.CharacterParty)).Returns(false);
 
             // When
             gameState.StartState();
 
             // Then
+            presenter.VerifyAll();
+            combatSystem.VerifyAll();
         }
     }
 }
