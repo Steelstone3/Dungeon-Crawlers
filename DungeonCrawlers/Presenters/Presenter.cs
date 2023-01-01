@@ -68,9 +68,10 @@ namespace DungeonCrawlers.Presenters
 
         public void PrintParty(IEnumerable<ICharacter> characters)
         {
-            var table = CreateTable();
-            table.AddColumn("Armour");
-            table.AddColumn("Expierence");
+            var characterPartytable = CreateTable();
+            characterPartytable.Title("Character Party");
+            characterPartytable.AddColumn("Armour");
+            characterPartytable.AddColumn("Expierence");
 
             foreach (var character in characters)
             {
@@ -81,15 +82,16 @@ namespace DungeonCrawlers.Presenters
                 var expierence = new Markup($"↑ 0xp");
                 var row = new Markup[] { name, race, health, armour, expierence };
 
-                table.AddRow(row);
+                characterPartytable.AddRow(row);
             }
 
-            AnsiConsole.Write(table);
+            AnsiConsole.Write(characterPartytable);
         }
 
         public void PrintParty(IEnumerable<IMonster> monsters)
         {
-            var table = CreateTable();
+            var monsterPartyTable = CreateTable();
+            monsterPartyTable.Title("Monster Party");
 
             foreach (var monster in monsters)
             {
@@ -98,10 +100,10 @@ namespace DungeonCrawlers.Presenters
                 var health = new Markup($"[red]♥ {monster.Health.CurrentHealth}/{monster.Health.MaximumHealth} ♥[/]");
                 var row = new Markup[] { name, race, health };
 
-                table.AddRow(row);
+                monsterPartyTable.AddRow(row);
             }
 
-            AnsiConsole.Write(table);
+            AnsiConsole.Write(monsterPartyTable);
         }
 
         private static Table CreateTable()
