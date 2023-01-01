@@ -19,12 +19,12 @@ namespace DungeonCrawlersTests.Systems
         }
 
         [Theory]
-        [InlineData(25, 100, 75)]
-        [InlineData(50, 100, 50)]
-        [InlineData(75, 100, 25)]
-        [InlineData(100, 100, 0)]
-        [InlineData(101, 100, 0)]
-        public void ExecutePlayerTurn(byte maximumDamage, byte currentHealth, byte remainingHealth)
+        [InlineData(25, 100, 75, true)]
+        [InlineData(50, 100, 50, true)]
+        [InlineData(75, 100, 25, true)]
+        [InlineData(100, 100, 0, false)]
+        [InlineData(101, 100, 0, false)]
+        public void ExecutePlayerTurn(byte maximumDamage, byte currentHealth, byte remainingHealth, bool combatResult)
         {
             // Given
             IMonster monster = new Monster(new Name(null, "Bob", "Harris", null), null, new Health(currentHealth, 100, 0), null);
@@ -38,22 +38,23 @@ namespace DungeonCrawlersTests.Systems
             presenter.Setup(p => p.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription} {monster.Name.FirstName} {monster.Name.Surname} for {maximumDamage} damage"));
 
             // When
-            combatSystem.PlayerTurn(characters, monsters);
+            var isInCombat = combatSystem.PlayerTurn(characters, monsters);
 
             // Then
             presenter.VerifyAll();
             Assert.Equal(remainingHealth, monsters[0].Health.CurrentHealth);
             Assert.Equal(100, monsters[0].Health.MaximumHealth);
             Assert.Equal(0, monsters[0].Health.RegenerationRate);
+            Assert.Equal(combatResult, isInCombat);
         }
 
         [Theory]
-        [InlineData(25, 100, 75)]
-        [InlineData(50, 100, 50)]
-        [InlineData(75, 100, 25)]
-        [InlineData(100, 100, 0)]
-        [InlineData(101, 100, 0)]
-        public void ExecuteMonsterTurn(byte maximumDamage, byte currentHealth, byte remainingHealth)
+        [InlineData(25, 100, 75, true)]
+        [InlineData(50, 100, 50, true)]
+        [InlineData(75, 100, 25, true)]
+        [InlineData(100, 100, 0, false)]
+        [InlineData(101, 100, 0, false)]
+        public void ExecuteMonsterTurn(byte maximumDamage, byte currentHealth, byte remainingHealth, bool combatResult)
         {
             // Given
             IMonster monster = new Monster(new Name(null, "Lily", "Jones", null), null, new Health(100, 100, 0), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
@@ -67,7 +68,7 @@ namespace DungeonCrawlersTests.Systems
             presenter.Setup(p => p.Print($"{monster.Name.FirstName} {monster.Name.Surname} used {monster.Weapon.Name} and {monster.Weapon.AttackDescription} {character.Name.FirstName} {character.Name.Surname} for {maximumDamage} damage"));
 
             // When
-            combatSystem.MonsterTurn(monsters, characters);
+            var isInCombat = combatSystem.MonsterTurn(monsters, characters);
 
             // Then
             random.VerifyAll();
@@ -75,6 +76,7 @@ namespace DungeonCrawlersTests.Systems
             Assert.Equal(remainingHealth, characters[0].Health.CurrentHealth);
             Assert.Equal(100, characters[0].Health.MaximumHealth);
             Assert.Equal(25, characters[0].Health.RegenerationRate);
+            Assert.Equal(combatResult, isInCombat);
         }
     }
 }
