@@ -27,7 +27,7 @@ namespace DungeonCrawlersTests.States
         }
 
         [Fact]
-        public void StartGame()
+        public void CreateCharacters()
         {
             // Given
             var characters = new List<ICharacter>() { character.Object, character.Object, character.Object };
