@@ -25,7 +25,7 @@ namespace DungeonCrawlers.Systems
             var monster = presenter.SelectMonster(monsters);
 
             var damage = CalculateDamage(character.Weapon);
-            AssignDamage(monster.Health, damage);
+            character.Health.CurrentHealth = AssignDamage(monster.Health, damage);
 
             presenter.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription} {monster.Name.FirstName} {monster.Name.Surname} for {damage} damage");
             
@@ -40,7 +40,7 @@ namespace DungeonCrawlers.Systems
             var character = random.SelectRandom(characters);
 
             var damage = CalculateDamage(monster.Weapon);
-            AssignDamage(character.Health, damage);
+            character.Health.CurrentHealth = AssignDamage(character.Health, damage);
 
             presenter.Print($"{monster.Name.FirstName} {monster.Name.Surname} used {monster.Weapon.Name} and {monster.Weapon.AttackDescription} {character.Name.FirstName} {character.Name.Surname} for {damage} damage");
             
@@ -48,17 +48,6 @@ namespace DungeonCrawlers.Systems
         }
 
         private static byte CalculateDamage(IWeapon weapon) => (byte)new Random().Next(weapon.MinimumDamage, weapon.MaximumDamage);
-
-        private static void AssignDamage(IHealth health, byte damage)
-        {
-            if (health.CurrentHealth > damage)
-            {
-                health.CurrentHealth -= damage;
-            }
-            else
-            {
-                health.CurrentHealth = 0;
-            }
-        }
+        private static byte AssignDamage(IHealth health, byte damage) => health.CurrentHealth > damage ? (health.CurrentHealth -= damage) : (health.CurrentHealth = 0);
     }
 }
