@@ -20,6 +20,8 @@ namespace DungeonCrawlersTests.States
         public void StartGame()
         {
             // Given
+            gameStateRepository.Setup(gsr => gsr.GameState).Returns(new NewGameState(gameStateRepository.Object, presenter.Object));
+            gameStateRepository.Setup(gsr => gsr.GameState.StartState());
             presenter.Setup(p => p.Print("New game started"));
 
             // When
@@ -27,6 +29,7 @@ namespace DungeonCrawlersTests.States
 
             // Then
             presenter.VerifyAll();
+            gameStateRepository.VerifyAll();
         }
     }
 }

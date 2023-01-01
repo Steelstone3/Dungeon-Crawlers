@@ -25,13 +25,14 @@ namespace DungeonCrawlers
 
             IGameStateRepository gameStateRepository = new GameStateRepository();
 
-            new CharacterCreationState(gameStateRepository, presenter, gameRepository, characterCreation, seededRandom.CreateSeeds(3)).StartState();
+            new NewGameState(gameStateRepository, presenter).StartState();
 
             var quantity = (int)seededRandom.GetSeededRandom(random.Next(), 1, 25);
 
             gameController.SpawnMonsters(quantity, seededRandom.CreateSeeds(quantity));
 
             gameController.StartCombat();
+
         }
     }
 }
