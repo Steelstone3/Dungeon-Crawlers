@@ -5,7 +5,7 @@ namespace DungeonCrawlersTests.States
 {
     public class GameStateShould
     {
-        private readonly IGameState gameState = new GameState();
+        private readonly IGameRepository gameState = new GameRepository();
 
         [Fact]
         public void ContainsCharacterParty()

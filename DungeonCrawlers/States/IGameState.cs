@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using DungeonCrawlers.Entities;
+using System.Runtime.Serialization;
 
 namespace DungeonCrawlers.States
 {
     public interface IGameState
     {
-        List<ICharacter> CharacterParty { get; }
-        List<IMonster> MonsterParty { get; }
+        void StartState();
     }
 }

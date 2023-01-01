@@ -8,12 +8,12 @@ namespace DungeonCrawlers.Controllers
     public class GameController : IGameController
     {
         private readonly IPresenter presenter;
-        private readonly IGameState state;
+        private readonly IGameRepository state;
         private readonly ICharacterCreationSystem characterCreation;
         private readonly IMonsterCreationSystem monsterCreation;
         private readonly ICombatSystem combat;
 
-        public GameController(IPresenter presenter, IGameState state, ICharacterCreationSystem characterCreation, Systems.IMonsterCreationSystem monsterCreation, ICombatSystem combat)
+        public GameController(IPresenter presenter, IGameRepository state, ICharacterCreationSystem characterCreation, Systems.IMonsterCreationSystem monsterCreation, ICombatSystem combat)
         {
             this.presenter = presenter;
             this.state = state;

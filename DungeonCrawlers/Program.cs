@@ -15,7 +15,7 @@ namespace DungeonCrawlers
             var seededRandom = new SeededRandomSystem();
             var presenter = new Presenter();
             var gamePresenter = new GamePresenter(presenter);
-            var state = new GameState();
+            var state = new GameRepository();
             var characterCreation = new CharacterCreationSystem(gamePresenter);
             var monsterCreation = new MonsterCreationSystem();
             var combat = new CombatSystem(presenter, seededRandom);

@@ -15,7 +15,7 @@ namespace DungeonCrawlersTests.Controllers
         private readonly Mock<ICharacter> character = new();
         private readonly Mock<IMonster> monster = new();
         private readonly Mock<IPresenter> presenter = new();
-        private readonly Mock<IGameState> gameState = new();
+        private readonly Mock<IGameRepository> gameState = new();
         private readonly Mock<ICharacterCreationSystem> characterCreation = new();
         private readonly Mock<IMonsterCreationSystem> monsterCreation = new();
         private readonly Mock<ICombatSystem> combat = new();
