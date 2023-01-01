@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
 using DungeonCrawlers.Assets;
 using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.Presenters;
+using DungeonCrawlersTests.Systems;
 
-namespace DungeonCrawlersTests.Systems
+namespace DungeonCrawlers.Systems
 {
     public class CharacterCreationSystem : ICharacterCreationSystem
     {

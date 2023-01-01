@@ -9,20 +9,23 @@ namespace DungeonCrawlers
 {
     class Program
     {
+
         static void Main()
         {
             var random = new Random();
             var seededRandom = new SeededRandomSystem();
             var presenter = new Presenter();
             var gamePresenter = new GamePresenter(presenter);
-            var state = new GameRepository();
+            var gameRepository = new GameRepository();
             var characterCreation = new CharacterCreationSystem(gamePresenter);
             var monsterCreation = new MonsterCreationSystem();
             var combat = new CombatSystem(presenter, seededRandom);
 
-            var gameController = new GameController(presenter, state, characterCreation, monsterCreation, combat);
+            var gameController = new GameController(presenter, gameRepository, monsterCreation, combat);
 
-            gameController.StartGame(seededRandom.CreateSeeds(3));
+            IGameStateRepository gameStateRepository = new GameStateRepository();
+
+            new CharacterCreationState(gameStateRepository, presenter, gameRepository, characterCreation, seededRandom.CreateSeeds(3)).StartState();
 
             var quantity = (int)seededRandom.GetSeededRandom(random.Next(), 1, 25);
 
