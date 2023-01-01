@@ -21,6 +21,11 @@ namespace DungeonCrawlers.Systems
             return seeds.ToArray();
         }
 
+        public ulong GetRandom(ulong lowerBound, ulong upperBound)
+        {
+            return (ulong)new Random().NextInt64((long)lowerBound, (long)upperBound);
+        }
+
         public ulong GetSeededRandom(int seed, ulong lowerBound, ulong upperBound)
         {
             Random random = new(seed);

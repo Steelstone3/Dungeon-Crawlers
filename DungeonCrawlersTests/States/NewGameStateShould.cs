@@ -13,6 +13,8 @@ namespace DungeonCrawlersTests.States
 
         public NewGameStateShould()
         {
+            gameStateRepository.Setup(gsr => gsr.GameState).Returns(gameState);
+            gameStateRepository.Setup(gsr => gsr.GameState.StartState());
             gameState = new NewGameState(gameStateRepository.Object, presenter.Object);
         }
 
@@ -20,8 +22,6 @@ namespace DungeonCrawlersTests.States
         public void StartGame()
         {
             // Given
-            gameStateRepository.Setup(gsr => gsr.GameState).Returns(new NewGameState(gameStateRepository.Object, presenter.Object));
-            gameStateRepository.Setup(gsr => gsr.GameState.StartState());
             presenter.Setup(p => p.Print("New game started"));
 
             // When

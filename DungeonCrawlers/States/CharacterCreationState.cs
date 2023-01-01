@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Systems;
 using DungeonCrawlersTests.Systems;
 
 namespace DungeonCrawlers.States
 {
     public class CharacterCreationState : GameState
     {
+        private readonly IGameStateRepository gameStateRepository;
         private readonly IPresenter presenter;
         private readonly IGameRepository gameRepository;
         private readonly ICharacterCreationSystem characterCreation;
@@ -14,6 +16,7 @@ namespace DungeonCrawlers.States
 
         public CharacterCreationState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, ICharacterCreationSystem characterCreation, IEnumerable<int> seeds) : base(gameStateRepository)
         {
+            this.gameStateRepository = gameStateRepository;
             this.presenter = presenter;
             this.gameRepository = gameRepository;
             this.characterCreation = characterCreation;
@@ -26,6 +29,8 @@ namespace DungeonCrawlers.States
             gameRepository.CharacterParty.Add(characterCreation.Create());
 
             presenter.PrintParty(gameRepository.CharacterParty);
+
+            GoToState(new DungeonState(gameStateRepository, presenter, gameRepository, new MonsterCreationSystem(), new CombatSystem(presenter, new SeededRandomSystem()), new SeededRandomSystem()));
         }
     }
 }
