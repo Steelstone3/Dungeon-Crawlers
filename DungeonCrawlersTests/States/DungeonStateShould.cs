@@ -10,13 +10,13 @@ namespace DungeonCrawlersTests.States
 {
     public class DungeonStateShould
     {
-        Mock<IGameStateRepository> gameStateRepository = new();
-        Mock<IPresenter> presenter = new();
-        Mock<IGameRepository> gameRepository = new();
-        Mock<IMonsterCreationSystem> monsterCreationSystem = new();
-        Mock<ICombatSystem> combatSystem = new();
-        Mock<ISeededRandomSystem> seededRandomSystem = new();
-        IGameState gameState;
+        private readonly Mock<IGameStateRepository> gameStateRepository = new();
+        private readonly Mock<IPresenter> presenter = new();
+        private readonly Mock<IGameRepository> gameRepository = new();
+        private readonly Mock<IMonsterCreationSystem> monsterCreationSystem = new();
+        private readonly Mock<ICombatSystem> combatSystem = new();
+        private readonly Mock<ISeededRandomSystem> seededRandomSystem = new();
+        private readonly IGameState gameState;
 
         public DungeonStateShould()
         {
@@ -68,5 +68,15 @@ namespace DungeonCrawlersTests.States
             presenter.VerifyAll();
             combatSystem.VerifyAll();
         }
+
+        // [Fact]
+        // public void GoToNextState()
+        // {
+        //     // Given
+        
+        //     // When
+        
+        //     // Then
+        // }
     }
 }
