@@ -5,7 +5,6 @@ namespace DungeonCrawlers
 {
     class Program
     {
-
         static void Main()
         {
             IPresenter presenter = new Presenter();
