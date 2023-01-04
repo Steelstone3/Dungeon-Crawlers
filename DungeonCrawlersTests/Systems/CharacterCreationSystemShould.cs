@@ -1,6 +1,6 @@
-using DungeonCrawlers.Components.Character;
-using DungeonCrawlers.Components.Character.Race;
-using DungeonCrawlers.Display;
+using System.Linq;
+using DungeonCrawlers.Entities;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.Systems;
 using Moq;
 using Xunit;
@@ -9,36 +9,66 @@ namespace DungeonCrawlersTests.Systems
 {
     public class CharacterCreationSystemShould
     {
-        private const string PREFIX = "Sir";
-        private const string FIRST_NAME = "Alex";
-        private const string SURNAME = "Burgen";
-        private const string SUFFIX = "The Brave";
-        private const string FULL_NAME = $"{PREFIX} {FIRST_NAME} {SURNAME} {SUFFIX}";
-        private readonly Mock<IDisplayer> displayer;
+        private readonly Mock<IGamePresenter> gamePresenter = new();
+        private readonly Mock<ICharacter> character = new();
         private readonly ICharacterCreationSystem characterCreationSystem;
 
         public CharacterCreationSystemShould()
         {
-            characterCreationSystem = new CharacterCreationSystem();
-
-            displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.WriteLine("Character creation: "));
-            displayer.Setup(x => x.ReadString("Enter prefix: ")).Returns(PREFIX);
-            displayer.Setup(x => x.ReadString("Enter first name: ")).Returns(FIRST_NAME);
-            displayer.Setup(x => x.ReadString("Enter surname: ")).Returns(value: SURNAME);
-            displayer.Setup(x => x.ReadString("Enter suffix: ")).Returns(SUFFIX);
+            characterCreationSystem = new CharacterCreationSystem(gamePresenter.Object);
         }
 
         [Fact]
-        public void CreateCharacter()
+        public void Create()
         {
-            //Act
-            var character = characterCreationSystem.Create(displayer.Object);
+            // Given
+            gamePresenter.Setup(gp => gp.CreateCharacter()).Returns(character.Object);
 
-            //Assert
-            displayer.VerifyAll();
-            Assert.Equal(FULL_NAME, character.MetaData.Name.GetCharacterName());
-            Assert.Equal("Elf", character.MetaData.Race.getCharacterRace());
+            // When
+            var result = characterCreationSystem.Create();
+
+            // Then
+            gamePresenter.VerifyAll();
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void CreateMultiple()
+        {
+            // Given
+            var seeds = new int[] { 1111, -122, 5656 };
+
+            // When
+            var results = characterCreationSystem.CreateMultiple(3, seeds).ToArray();
+
+            // Then
+            gamePresenter.VerifyAll();
+            Assert.NotNull(results);
+            Assert.NotEmpty(results);
+
+            Assert.Equal("Master", results[0].Name.Prefix);
+            Assert.Equal("Bob", results[0].Name.FirstName);
+            Assert.Equal("Harken", results[0].Name.Surname);
+            Assert.Equal("Jr", results[0].Name.Suffix);
+            Assert.Equal("Half-Elf", results[0].Race.Name);
+            Assert.Equal("Halbeard", results[0].Weapon.Name);
+            Assert.Equal("Hacked", results[0].Weapon.AttackDescription);
+
+            Assert.Equal("Count", results[1].Name.Prefix);
+            Assert.Equal("April", results[1].Name.FirstName);
+            Assert.Equal("Billiston", results[1].Name.Surname);
+            Assert.Equal("", results[1].Name.Suffix);
+            Assert.Equal("Bunny-Folk", results[1].Race.Name);
+            Assert.Equal("Axe", results[1].Weapon.Name);
+            Assert.Equal("Bashed", results[1].Weapon.AttackDescription);
+
+            Assert.Equal("Lady", results[2].Name.Prefix);
+            Assert.Equal("Bill", results[2].Name.FirstName);
+            Assert.Equal("Bobbinton", results[2].Name.Surname);
+            Assert.Equal("III", results[2].Name.Suffix);
+            Assert.Equal("Giant", results[2].Race.Name);
+            Assert.Equal("Dagger", results[2].Weapon.Name);
+            Assert.Equal("Booped", results[2].Weapon.AttackDescription);
         }
     }
 }

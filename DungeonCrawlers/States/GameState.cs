@@ -1,23 +1,20 @@
-using DungeonCrawlers.States.GameControl;
-
 namespace DungeonCrawlers.States
 {
     public abstract class GameState : IGameState
     {
-        private readonly IGameController gameController;
+        private readonly IGameStateRepository gameStateRepository;
 
-        public GameState(IGameController gameController)
+        public GameState(IGameStateRepository gameStateRepository)
         {
-            this.gameController = gameController;
+            this.gameStateRepository = gameStateRepository;
         }
 
         public abstract void StartState();
 
-        public void GoToState(IGameState nextGameState)
+        public void GoToState(IGameState gameState)
         {
-            gameController.CurrentGameState = nextGameState;
-            gameController.CurrentGameState.StartState();
+            gameStateRepository.GameState = gameState;
+            gameStateRepository.GameState.StartState();
         }
-
     }
 }

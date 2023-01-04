@@ -1,25 +1,57 @@
-using DungeonCrawlers.Components.Character;
-using DungeonCrawlers.Components.Character.Race;
-using DungeonCrawlers.Display;
+using System.Collections.Generic;
+using DungeonCrawlers.Assets;
+using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
+using DungeonCrawlers.Presenters;
+using DungeonCrawlersTests.Systems;
 
 namespace DungeonCrawlers.Systems
 {
     public class CharacterCreationSystem : ICharacterCreationSystem
     {
-        public ICharacter Create(IDisplayer displayer)
+        private readonly IGamePresenter gamePresenter;
+
+        public CharacterCreationSystem(IGamePresenter gamePresenter)
         {
-            displayer.WriteLine("Character creation: ");
-            var prefix = displayer.ReadString("Enter prefix: ");
-            var firstName = displayer.ReadString("Enter first name: ");
-            var surname = displayer.ReadString("Enter surname: ");
-            var suffix = displayer.ReadString("Enter suffix: ");
+            this.gamePresenter = gamePresenter;
+        }
 
-            CharacterName characterName = new(prefix, firstName, surname, suffix);
-            Elf race = new();
-            CharacterMetaData characterMetaData = new(characterName, race);
+        public ICharacter Create()
+        {
+            return gamePresenter.CreateCharacter();
+        }
 
-            return new Character(characterMetaData);
+        public IEnumerable<ICharacter> CreateMultiple(byte quantity, int[] seeds)
+        {
+            var characterParty = new List<ICharacter>();
+
+            for (int i = 0; i < quantity; i++)
+            {
+                characterParty.Add(CreateRandomCharacter(seeds[i]));
+            }
+
+            return characterParty;
+        }
+
+        private static ICharacter CreateRandomCharacter(int seed)
+        {
+            return new Character
+            (
+                new Name
+                (
+                    CharacterNames.GetRandomPrefix(seed),
+                    CharacterNames.GetRandomFirstName(seed),
+                    CharacterNames.GetRandomSurname(seed),
+                    CharacterNames.GetRandomSuffix(seed)
+                ),
+                new Race
+                (
+                    RaceNames.GetRandomRace(seed)
+                ),
+                new Health(100, 100, 25),
+                new Armour(100, 100, 5),
+                new Weapon(WeaponNames.GetRandomName(seed), WeaponNames.GetRandomDescription(seed), 5, 1)
+            );
         }
     }
 }

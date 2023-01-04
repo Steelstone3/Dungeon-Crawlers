@@ -1,45 +1,82 @@
-using DungeonCrawlers.Display;
+using System.Collections.Generic;
 using DungeonCrawlers.Entities;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.States;
-using DungeonCrawlers.States.GameControl;
+using DungeonCrawlers.Systems;
 using Moq;
 using Xunit;
 
-namespace Name
+namespace DungeonCrawlersTests.States
 {
-    public class DungeonStateShould {
-        private readonly Mock<IDisplayer> displayer;
-        private readonly Mock<IGameController> gameController;
-        private readonly Mock<ICharacter> player;
-        private readonly Mock<IWorld> world;
+    public class DungeonStateShould
+    {
+        private readonly Mock<IGameStateRepository> gameStateRepository = new();
+        private readonly Mock<IPresenter> presenter = new();
+        private readonly Mock<IGameRepository> gameRepository = new();
+        private readonly Mock<IMonsterCreationSystem> monsterCreationSystem = new();
+        private readonly Mock<ICombatSystem> combatSystem = new();
+        private readonly Mock<ISeededRandomSystem> seededRandomSystem = new();
+        private readonly IGameState gameState;
 
         public DungeonStateShould()
         {
-            displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.WriteLine("Dungeon entered..."));
-
-            player = new Mock<ICharacter>();
-            
-            world = new Mock<IWorld>();
-
-            gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new DungeonState(displayer.Object, gameController.Object, player.Object, world.Object));
-            gameController.Setup(x => x.CurrentGameState.StartState());
+            gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>());
+            gameRepository.Setup(gr => gr.MonsterParty).Returns(new List<IMonster>());
+            gameStateRepository.Setup(gsr => gsr.GameState).Returns(gameState);
+            gameStateRepository.Setup(gsr => gsr.GameState.StartState());
+            gameState = new DungeonState(gameStateRepository.Object, presenter.Object, gameRepository.Object, monsterCreationSystem.Object, combatSystem.Object, seededRandomSystem.Object);
         }
 
         [Fact]
-        public void ExecutesTheStartState()
+        public void SpawnMonsters()
         {
-            //Given
-            var explorationState = new DungeonState(displayer.Object, gameController.Object, player.Object, world.Object);
+            // Given
+            var quantity = 5;
+            var seeds = new int[] { 1, 1, 1, 1, 1 };
+            var monster = new Monster(null, null, null, null);
+            var monsters = new IMonster[] { monster, monster, monster, monster, monster };
+            seededRandomSystem.Setup(srs => srs.GetRandom(1, 10)).Returns((ulong)quantity);
+            seededRandomSystem.Setup(srs => srs.CreateSeeds(quantity)).Returns(seeds);
+            monsterCreationSystem.Setup(srs => srs.CreateMultiple(quantity, seeds)).Returns(monsters);
+            presenter.Setup(p => p.PrintParty(monsters));
 
-            //When
-            explorationState.StartState();
+            // When
+            gameState.StartState();
 
-            //Then
-            displayer.VerifyAll();
-            gameController.VerifyAll();
-            player.VerifyAll();
+            // Then
+            seededRandomSystem.VerifyAll();
+            monsterCreationSystem.VerifyAll();
+            presenter.VerifyAll();
         }
+
+        [Fact]
+        public void StartCombat()
+        {
+            // Given
+            var character = new Character(null, null, null, null, null);
+            var monster = new Monster(null, null, null, null);
+            gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>() { character });
+            gameRepository.Setup(gr => gr.MonsterParty).Returns(new List<IMonster>() { monster });
+            presenter.Setup(p => p.Print("Combat started"));
+            combatSystem.Setup(cs => cs.PlayerTurn(gameRepository.Object.CharacterParty, gameRepository.Object.MonsterParty)).Returns(false);
+            combatSystem.Setup(cs => cs.MonsterTurn(gameRepository.Object.MonsterParty, gameRepository.Object.CharacterParty)).Returns(false);
+
+            // When
+            gameState.StartState();
+
+            // Then
+            presenter.VerifyAll();
+            combatSystem.VerifyAll();
+        }
+
+        // [Fact]
+        // public void GoToNextState()
+        // {
+        //     // Given
+        
+        //     // When
+        
+        //     // Then
+        // }
     }
 }

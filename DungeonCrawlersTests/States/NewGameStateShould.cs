@@ -1,6 +1,5 @@
-using DungeonCrawlers.Display;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.States;
-using DungeonCrawlers.States.GameControl;
 using Moq;
 using Xunit;
 
@@ -8,31 +7,29 @@ namespace DungeonCrawlersTests.States
 {
     public class NewGameStateShould
     {
-        private readonly Mock<IDisplayer> displayer;
-        private readonly Mock<IGameController> gameController;
+        private readonly Mock<IGameStateRepository> gameStateRepository = new();
+        private readonly Mock<IPresenter> presenter = new();
+        private readonly IGameState gameState;
 
         public NewGameStateShould()
         {
-            displayer = new Mock<IDisplayer>();
-            displayer.Setup(x => x.WriteLine("New game selected..."));
-
-            gameController = new Mock<IGameController>();
-            gameController.Setup(x => x.CurrentGameState).Returns(new NewGameState(displayer.Object, gameController.Object));
-            gameController.Setup(x => x.CurrentGameState.StartState());
+            gameStateRepository.Setup(gsr => gsr.GameState).Returns(gameState);
+            gameStateRepository.Setup(gsr => gsr.GameState.StartState());
+            gameState = new NewGameState(gameStateRepository.Object, presenter.Object);
         }
 
         [Fact]
-        public void ExecutesTheStartState()
+        public void StartGame()
         {
-            //Given
-            var newGameState = new NewGameState(displayer.Object, gameController.Object);
+            // Given
+            presenter.Setup(p => p.Print("New game started"));
 
-            //When
-            newGameState.StartState();
+            // When
+            gameState.StartState();
 
-            //Then
-            displayer.VerifyAll();
-            gameController.VerifyAll();
+            // Then
+            presenter.VerifyAll();
+            gameStateRepository.VerifyAll();
         }
     }
 }

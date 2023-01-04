@@ -1,5 +1,6 @@
-using DungeonCrawlers.Display;
-using DungeonCrawlers.States.GameControl;
+using System.Collections.Generic;
+using System.Linq;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.Systems;
 using DungeonCrawlersTests.Systems;
 
@@ -7,22 +8,29 @@ namespace DungeonCrawlers.States
 {
     public class CharacterCreationState : GameState
     {
-        private readonly IDisplayer displayer;
-        private readonly IGameController gameController;
-        private readonly ICharacterCreationSystem characterCreationSystem;
+        private readonly IGameStateRepository gameStateRepository;
+        private readonly IPresenter presenter;
+        private readonly IGameRepository gameRepository;
+        private readonly ICharacterCreationSystem characterCreation;
+        private readonly IEnumerable<int> seeds;
 
-        public CharacterCreationState(IDisplayer displayer, IGameController gameController, ICharacterCreationSystem characterCreationSystem) : base(gameController)
+        public CharacterCreationState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, ICharacterCreationSystem characterCreation, IEnumerable<int> seeds) : base(gameStateRepository)
         {
-            this.displayer = displayer;
-            this.gameController = gameController;
-            this.characterCreationSystem = characterCreationSystem;
+            this.gameStateRepository = gameStateRepository;
+            this.presenter = presenter;
+            this.gameRepository = gameRepository;
+            this.characterCreation = characterCreation;
+            this.seeds = seeds;
         }
 
         public override void StartState()
         {
-            displayer.WriteLine("Character creation started...");
-            var player = characterCreationSystem.Create(displayer);
-            GoToState(new WorldCreationState(displayer, gameController, player, new WorldCreationSystem()));
+            gameRepository.CharacterParty.AddRange(characterCreation.CreateMultiple(3, seeds.ToArray()));
+            gameRepository.CharacterParty.Add(characterCreation.Create());
+
+            presenter.PrintParty(gameRepository.CharacterParty);
+
+            GoToState(new DungeonState(gameStateRepository, presenter, gameRepository, new MonsterCreationSystem(), new CombatSystem(presenter, new SeededRandomSystem()), new SeededRandomSystem()));
         }
     }
 }

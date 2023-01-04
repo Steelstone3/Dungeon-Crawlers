@@ -6,13 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ArmorySystem\**" />
-    <EmbeddedResource Remove="ArmorySystem\**" />
-    <None Remove="ArmorySystem\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="WorldSystem\" />
+    <PackageReference Include="Spectre.Console" Version="0.45.0" />
+    <!-- <PackageReference Include="Newtonsoft.Json" Version="13.0.1" /> -->
   </ItemGroup>
 
 </Project>

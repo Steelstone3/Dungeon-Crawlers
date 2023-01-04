@@ -1,17 +1,16 @@
-using DungeonCrawlers.Display;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.States;
-using DungeonCrawlers.States.GameControl;
 
 namespace DungeonCrawlers
 {
     class Program
     {
-        static void Main( string[] args )
+        static void Main()
         {
-            var displayer = new Displayer();
-            var gameController = new GameController();
+            IPresenter presenter = new Presenter();
+            IGameStateRepository gameStateRepository = new GameStateRepository();
 
-            new NewGameState(displayer, gameController).StartState();
+            new NewGameState(gameStateRepository, presenter).StartState();
         }
     }
 }

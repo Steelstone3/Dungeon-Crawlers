@@ -1,21 +1,22 @@
 using DungeonCrawlers.Components;
-using DungeonCrawlers.Components.Character;
 
 namespace DungeonCrawlers.Entities
 {
     public class Character : ICharacter
     {
-        private readonly CharacterMetaData characterMetaData;
-
-        public Character(CharacterMetaData characterMetaData)
+        public Character(IName name, IRace race, IHealth health, IArmour armour, IWeapon weapon)
         {
-            this.characterMetaData = characterMetaData;
+            Name = name;
+            Race = race;
+            Health = health;
+            Armour = armour;
+            Weapon = weapon;
         }
 
-        public CharacterMetaData MetaData => characterMetaData;
-
-        public ILocation Location => new Location(1, 1);
-
-        public char GetDisplaySymbol() => 'P';
+        public IName Name { get; }
+        public IRace Race { get; }
+        public IHealth Health { get; }
+        public IArmour Armour { get; }
+        public IWeapon Weapon { get; }
     }
 }

@@ -1,10 +1,11 @@
-using DungeonCrawlers.Display;
+using System.Collections.Generic;
 using DungeonCrawlers.Entities;
 
-namespace DungeonCrawlers.Systems
+namespace DungeonCrawlersTests.Systems
 {
     public interface ICharacterCreationSystem
     {
-        ICharacter Create(IDisplayer displayer);
+        ICharacter Create();
+        IEnumerable<ICharacter> CreateMultiple(byte quantity, int[] seeds);
     }
 }

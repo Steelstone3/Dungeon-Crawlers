@@ -1,24 +1,24 @@
-using DungeonCrawlers.Display;
-using DungeonCrawlers.States.GameControl;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlers.States
 {
     public class NewGameState : GameState
     {
-        private readonly IDisplayer displayer;
-        private readonly IGameController gameController;
+        private readonly IGameStateRepository gameStateRepository;
+        private readonly IPresenter presenter;
 
-        public NewGameState(IDisplayer displayer, IGameController gameController) : base(gameController)
+        public NewGameState(IGameStateRepository gameStateRepository, IPresenter presenter) : base(gameStateRepository)
         {
-            this.displayer = displayer;
-            this.gameController = gameController;
+            this.gameStateRepository = gameStateRepository;
+            this.presenter = presenter;
         }
 
         public override void StartState()
         {
-            displayer.WriteLine("New game selected...");
-            GoToState(new CharacterCreationState(displayer, gameController, new CharacterCreationSystem()));
+            presenter.Print("New game started");
+
+            GoToState(new CharacterCreationState(gameStateRepository, presenter, new GameRepository(), new CharacterCreationSystem(new GamePresenter(presenter)), new SeededRandomSystem().CreateSeeds(3)));
         }
     }
 }
