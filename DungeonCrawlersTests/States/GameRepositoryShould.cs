@@ -16,11 +16,10 @@ namespace DungeonCrawlersTests.States
         }
 
         [Fact]
-        public void ContainsMonsterParty()
+        public void ContainsDungeon()
         {
             // Then
-            Assert.NotNull(gameRepository.MonsterParty);
-            Assert.Empty(gameRepository.MonsterParty);
+            Assert.NotNull(gameRepository.Dungeon);
         }
     }
 }
