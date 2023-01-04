@@ -49,7 +49,7 @@ namespace DungeonCrawlers.Systems
         }
 
         private static byte CalculateDamage(IWeapon weapon) => (byte)new Random().Next(weapon.MinimumDamage, weapon.MaximumDamage);
-        private static byte AssignDamage(IHealth health, byte damage) => health.CurrentHealth > damage ? (health.CurrentHealth -= damage) : (health.CurrentHealth = 0);
+        private static byte AssignDamage(IHealth health, byte damage) => health.CurrentHealth > damage ? (health.CurrentHealth = (byte)(health.CurrentHealth - damage)) : (health.CurrentHealth = 0);
         private static bool IsInCombat(IEnumerable<ICharacter> characters, IEnumerable<IMonster> monsters) =>
             !(characters.Where(c => c.Health.CurrentHealth > 0).ToList().Count == 0) &&
             !(monsters.Where(c => c.Health.CurrentHealth > 0).ToList().Count == 0);
