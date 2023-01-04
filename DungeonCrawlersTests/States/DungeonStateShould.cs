@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.Presenters;
 using DungeonCrawlers.States;
 using DungeonCrawlers.Systems;
+using DungeonCrawlersTests.Entities;
 using Moq;
 using Xunit;
 
@@ -13,39 +15,37 @@ namespace DungeonCrawlersTests.States
         private readonly Mock<IGameStateRepository> gameStateRepository = new();
         private readonly Mock<IPresenter> presenter = new();
         private readonly Mock<IGameRepository> gameRepository = new();
-        private readonly Mock<IMonsterCreationSystem> monsterCreationSystem = new();
+        private readonly Mock<IDungeonCreationSystem> dungeonCreationSystem = new();
         private readonly Mock<ICombatSystem> combatSystem = new();
         private readonly Mock<ISeededRandomSystem> seededRandomSystem = new();
         private readonly IGameState gameState;
 
         public DungeonStateShould()
         {
-            gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>());
-            gameRepository.Setup(gr => gr.MonsterParty).Returns(new List<IMonster>());
+            var monster = new Monster(null, null, null, null);
+            var monsters = new List<IMonster>() { monster, monster };
+            var room = new Room(monsters);
+            var rooms = new List<IRoom>() { room, room };
+            gameRepository.Setup(gr => gr.Dungeon).Returns(new Dungeon(rooms));
+            var character = new Character(null, null, null, null, null);
+            gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>() { character, character });
             gameStateRepository.Setup(gsr => gsr.GameState).Returns(gameState);
             gameStateRepository.Setup(gsr => gsr.GameState.StartState());
-            gameState = new DungeonState(gameStateRepository.Object, presenter.Object, gameRepository.Object, monsterCreationSystem.Object, combatSystem.Object, seededRandomSystem.Object);
+            gameState = new DungeonState(gameStateRepository.Object, presenter.Object, gameRepository.Object, dungeonCreationSystem.Object, combatSystem.Object, seededRandomSystem.Object);
         }
 
         [Fact]
-        public void SpawnMonsters()
+        public void SpawnDungeon()
         {
             // Given
-            var quantity = 5;
-            var seeds = new int[] { 1, 1, 1, 1, 1 };
-            var monster = new Monster(null, null, null, null);
-            var monsters = new IMonster[] { monster, monster, monster, monster, monster };
-            seededRandomSystem.Setup(srs => srs.GetRandom(1, 10)).Returns((ulong)quantity);
-            seededRandomSystem.Setup(srs => srs.CreateSeeds(quantity)).Returns(seeds);
-            monsterCreationSystem.Setup(srs => srs.CreateMultiple(quantity, seeds)).Returns(monsters);
-            presenter.Setup(p => p.PrintParty(monsters));
+            dungeonCreationSystem.Setup(srs => srs.CreateDungeon());
 
             // When
             gameState.StartState();
 
             // Then
             seededRandomSystem.VerifyAll();
-            monsterCreationSystem.VerifyAll();
+            dungeonCreationSystem.VerifyAll();
             presenter.VerifyAll();
         }
 
@@ -53,13 +53,9 @@ namespace DungeonCrawlersTests.States
         public void StartCombat()
         {
             // Given
-            var character = new Character(null, null, null, null, null);
-            var monster = new Monster(null, null, null, null);
-            gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>() { character });
-            gameRepository.Setup(gr => gr.MonsterParty).Returns(new List<IMonster>() { monster });
+            combatSystem.Setup(cs => cs.PlayerTurn(gameRepository.Object.CharacterParty, gameRepository.Object.Dungeon.Rooms[0].Monsters));
+            combatSystem.Setup(cs => cs.MonsterTurn(gameRepository.Object.Dungeon.Rooms[0].Monsters, gameRepository.Object.CharacterParty));
             presenter.Setup(p => p.Print("Combat started"));
-            combatSystem.Setup(cs => cs.PlayerTurn(gameRepository.Object.CharacterParty, gameRepository.Object.MonsterParty)).Returns(false);
-            combatSystem.Setup(cs => cs.MonsterTurn(gameRepository.Object.MonsterParty, gameRepository.Object.CharacterParty)).Returns(false);
 
             // When
             gameState.StartState();
@@ -68,15 +64,5 @@ namespace DungeonCrawlersTests.States
             presenter.VerifyAll();
             combatSystem.VerifyAll();
         }
-
-        // [Fact]
-        // public void GoToNextState()
-        // {
-        //     // Given
-        
-        //     // When
-        
-        //     // Then
-        // }
     }
 }

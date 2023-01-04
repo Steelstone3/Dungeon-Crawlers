@@ -18,7 +18,7 @@ namespace DungeonCrawlers.States
         {
             presenter.Print("New game started");
 
-            GoToState(new CharacterCreationState(gameStateRepository, presenter, new GameRepository(), new CharacterCreationSystem(new GamePresenter(presenter)), new SeededRandomSystem().CreateSeeds(3)));
+            GoToState(new CharacterCreationState(gameStateRepository, presenter, new GameRepository(), new CharacterCreationSystem(new GamePresenter(presenter)), new SeededRandomSystem()));
         }
     }
 }

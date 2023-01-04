@@ -19,7 +19,7 @@ namespace DungeonCrawlersTests.States
         public void ContainsDungeon()
         {
             // Then
-            Assert.NotNull(gameRepository.Dungeon);
+            Assert.Null(gameRepository.Dungeon);
         }
     }
 }

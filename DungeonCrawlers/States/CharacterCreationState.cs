@@ -8,29 +8,30 @@ namespace DungeonCrawlers.States
 {
     public class CharacterCreationState : GameState
     {
+        private const int CHARACTER_QUANTITY = 3;
         private readonly IGameStateRepository gameStateRepository;
         private readonly IPresenter presenter;
         private readonly IGameRepository gameRepository;
         private readonly ICharacterCreationSystem characterCreation;
-        private readonly IEnumerable<int> seeds;
+        private readonly ISeededRandomSystem seededRandomSystem;
 
-        public CharacterCreationState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, ICharacterCreationSystem characterCreation, IEnumerable<int> seeds) : base(gameStateRepository)
+        public CharacterCreationState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, ICharacterCreationSystem characterCreation, ISeededRandomSystem seededRandomSystem) : base(gameStateRepository)
         {
             this.gameStateRepository = gameStateRepository;
             this.presenter = presenter;
             this.gameRepository = gameRepository;
             this.characterCreation = characterCreation;
-            this.seeds = seeds;
+            this.seededRandomSystem = seededRandomSystem;
         }
 
         public override void StartState()
         {
-            gameRepository.CharacterParty.AddRange(characterCreation.CreateMultiple(3, seeds.ToArray()));
+            gameRepository.CharacterParty.AddRange(characterCreation.CreateMultiple(CHARACTER_QUANTITY, seededRandomSystem.CreateSeeds(CHARACTER_QUANTITY)));
             gameRepository.CharacterParty.Add(characterCreation.Create());
 
             presenter.PrintParty(gameRepository.CharacterParty);
 
-            GoToState(new DungeonState(gameStateRepository, presenter, gameRepository, new MonsterCreationSystem(), new CombatSystem(presenter, new SeededRandomSystem()), new SeededRandomSystem()));
+            GoToState(new DungeonState(gameStateRepository, presenter, gameRepository, new DungeonCreationSystem(new RoomCreationSystem(seededRandomSystem, new MonsterCreationSystem())), new CombatSystem(presenter, new SeededRandomSystem()), new SeededRandomSystem()));
         }
     }
 }

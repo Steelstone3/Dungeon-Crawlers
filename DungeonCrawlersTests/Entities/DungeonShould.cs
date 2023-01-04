@@ -7,7 +7,7 @@ namespace DungeonCrawlersTests.Entities
 {
     public class DungeonShould
     {
-        private readonly Mock<IEnumerable<IRoom>> rooms = new();
+        private readonly Mock<List<IRoom>> rooms = new();
         private readonly IDungeon dungeon;
 
         public DungeonShould()

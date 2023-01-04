@@ -5,11 +5,11 @@ namespace DungeonCrawlersTests.Entities
 {
     public class Dungeon : IDungeon
     {
-        public Dungeon(IEnumerable<IRoom> rooms)
+        public Dungeon(List<IRoom> rooms)
         {
             Rooms = rooms;
         }
 
-        public IEnumerable<IRoom> Rooms { get; }
+        public List<IRoom> Rooms { get; }
     }
 }

@@ -5,6 +5,6 @@ namespace DungeonCrawlersTests.Entities
 {
     public interface IDungeon
     {
-        IEnumerable<IRoom> Rooms { get; }
+        List<IRoom> Rooms { get; }
     }
 }

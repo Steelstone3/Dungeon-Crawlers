@@ -1,3 +1,4 @@
+using DungeonCrawlers.Entities;
 using DungeonCrawlers.Presenters;
 using DungeonCrawlers.Systems;
 
@@ -7,45 +8,46 @@ namespace DungeonCrawlers.States
     {
         private readonly IPresenter presenter;
         private readonly IGameRepository gameRepository;
-        private readonly IMonsterCreationSystem monsterCreation;
+        private readonly IDungeonCreationSystem dungeonCreation;
         private readonly ICombatSystem combatSystem;
         private readonly ISeededRandomSystem seededRandomSystem;
 
-        public DungeonState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, IMonsterCreationSystem monsterCreation, ICombatSystem combatSystem, ISeededRandomSystem seededRandomSystem) : base(gameStateRepository)
+        public DungeonState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, IDungeonCreationSystem dungeonCreation, ICombatSystem combatSystem, ISeededRandomSystem seededRandomSystem) : base(gameStateRepository)
         {
             this.presenter = presenter;
             this.gameRepository = gameRepository;
-            this.monsterCreation = monsterCreation;
+            this.dungeonCreation = dungeonCreation;
             this.combatSystem = combatSystem;
             this.seededRandomSystem = seededRandomSystem;
         }
 
         public override void StartState()
         {
-            SpawnMonsters();
-            StartCombat();
+            SpawnDungeon();
+            StartDungeon();
         }
 
-        private void SpawnMonsters()
-        {
-            var quantity = seededRandomSystem.GetRandom(1, 10);
+        private void SpawnDungeon() => gameRepository.Dungeon = dungeonCreation.CreateDungeon();
 
-            gameRepository.MonsterParty.AddRange(monsterCreation.CreateMultiple((int)quantity, seededRandomSystem.CreateSeeds((int)quantity)));
-
-            presenter.PrintParty(gameRepository.MonsterParty);
-        }
-
-        private void StartCombat()
+        private void StartDungeon()
         {
             presenter.Print("Combat started");
 
+            foreach (var room in gameRepository.Dungeon.Rooms)
+            {
+                StartCombat(room);
+            }
+        }
+
+        private void StartCombat(IRoom room)
+        {
             var isPlayerInCombat = true;
             var isMonsterInCombat = true;
 
             while (isPlayerInCombat || isMonsterInCombat)
             {
-                isPlayerInCombat = combatSystem.PlayerTurn(gameRepository.CharacterParty, gameRepository.MonsterParty);
-                isMonsterInCombat = combatSystem.MonsterTurn(gameRepository.MonsterParty, gameRepository.CharacterParty);
+                isPlayerInCombat = combatSystem.PlayerTurn(gameRepository.CharacterParty, room.Monsters);
+                isMonsterInCombat = combatSystem.MonsterTurn(room.Monsters, gameRepository.CharacterParty);
             }
         }
     }
