@@ -5,7 +5,7 @@ using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlers.Assets
 {
-    public class WeaponNames
+    public static class WeaponNames
     {
         public static string[] Names => names.OrderBy(n => n).ToArray();
         public static string[] Descriptions => descriptions.OrderBy(d => d).ToArray();

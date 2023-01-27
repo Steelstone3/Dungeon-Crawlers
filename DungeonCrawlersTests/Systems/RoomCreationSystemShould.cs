@@ -17,7 +17,6 @@ namespace DungeonCrawlersTests.Systems
             roomCreationSystem = new RoomCreationSystem(seededRandomSystem.Object, monsterCreationSystem.Object);
         }
 
-
         [Fact]
         public void CreateRoom()
         {

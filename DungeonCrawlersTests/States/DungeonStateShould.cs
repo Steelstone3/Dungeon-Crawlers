@@ -31,7 +31,7 @@ namespace DungeonCrawlersTests.States
             gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>() { character, character });
             gameStateRepository.Setup(gsr => gsr.GameState).Returns(gameState);
             gameStateRepository.Setup(gsr => gsr.GameState.StartState());
-            gameState = new DungeonState(gameStateRepository.Object, presenter.Object, gameRepository.Object, dungeonCreationSystem.Object, combatSystem.Object, seededRandomSystem.Object);
+            gameState = new DungeonState(gameStateRepository.Object, presenter.Object, gameRepository.Object, dungeonCreationSystem.Object, combatSystem.Object);
         }
 
         [Fact]
@@ -44,9 +44,7 @@ namespace DungeonCrawlersTests.States
             gameState.StartState();
 
             // Then
-            seededRandomSystem.VerifyAll();
             dungeonCreationSystem.VerifyAll();
-            presenter.VerifyAll();
         }
 
         [Fact]

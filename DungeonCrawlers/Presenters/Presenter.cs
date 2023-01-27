@@ -79,7 +79,7 @@ namespace DungeonCrawlers.Presenters
                 var race = new Markup(character.Race.Name);
                 var health = new Markup($"[red]♥ {character.Health.CurrentHealth}/{character.Health.MaximumHealth} ♥[/]");
                 var armour = new Markup($"[yellow]{character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}[/]");
-                var expierence = new Markup($"↑ 0xp");
+                var expierence = new Markup("↑ 0xp");
                 var row = new Markup[] { name, race, health, armour, expierence };
 
                 characterPartytable.AddRow(row);

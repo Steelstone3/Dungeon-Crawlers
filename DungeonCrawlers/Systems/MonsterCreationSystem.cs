@@ -38,6 +38,5 @@ namespace DungeonCrawlers.Systems
                 new Weapon("Claw", "Sratch", 5, 1)
             );
         }
-
     }
 }

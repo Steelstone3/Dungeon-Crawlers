@@ -4,7 +4,7 @@ namespace DungeonCrawlers.Systems
 {
     public class DungeonCreationSystem : IDungeonCreationSystem
     {
-        private IRoomCreationSystem roomCreationSystem;
+        private readonly IRoomCreationSystem roomCreationSystem;
 
         public DungeonCreationSystem(IRoomCreationSystem roomCreationSystem)
         {

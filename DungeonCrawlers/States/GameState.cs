@@ -4,7 +4,7 @@ namespace DungeonCrawlers.States
     {
         private readonly IGameStateRepository gameStateRepository;
 
-        public GameState(IGameStateRepository gameStateRepository)
+        protected GameState(IGameStateRepository gameStateRepository)
         {
             this.gameStateRepository = gameStateRepository;
         }

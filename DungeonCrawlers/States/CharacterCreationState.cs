@@ -31,7 +31,7 @@ namespace DungeonCrawlers.States
 
             presenter.PrintParty(gameRepository.CharacterParty);
 
-            GoToState(new DungeonState(gameStateRepository, presenter, gameRepository, new DungeonCreationSystem(new RoomCreationSystem(seededRandomSystem, new MonsterCreationSystem())), new CombatSystem(presenter, new SeededRandomSystem()), new SeededRandomSystem()));
+            GoToState(new DungeonState(gameStateRepository, presenter, gameRepository, new DungeonCreationSystem(new RoomCreationSystem(seededRandomSystem, new MonsterCreationSystem())), new CombatSystem(presenter, seededRandomSystem)));
         }
     }
 }

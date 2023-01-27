@@ -27,7 +27,6 @@ namespace DungeonCrawlersTests.Components
         {
             // Then
             Assert.Equal(MAXIMUM_HEALTH, health.MaximumHealth);
-
         }
 
         [Fact]

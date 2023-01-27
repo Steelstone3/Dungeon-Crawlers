@@ -10,15 +10,13 @@ namespace DungeonCrawlers.States
         private readonly IGameRepository gameRepository;
         private readonly IDungeonCreationSystem dungeonCreation;
         private readonly ICombatSystem combatSystem;
-        private readonly ISeededRandomSystem seededRandomSystem;
 
-        public DungeonState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, IDungeonCreationSystem dungeonCreation, ICombatSystem combatSystem, ISeededRandomSystem seededRandomSystem) : base(gameStateRepository)
+        public DungeonState(IGameStateRepository gameStateRepository, IPresenter presenter, IGameRepository gameRepository, IDungeonCreationSystem dungeonCreation, ICombatSystem combatSystem) : base(gameStateRepository)
         {
             this.presenter = presenter;
             this.gameRepository = gameRepository;
             this.dungeonCreation = dungeonCreation;
             this.combatSystem = combatSystem;
-            this.seededRandomSystem = seededRandomSystem;
         }
 
         public override void StartState()

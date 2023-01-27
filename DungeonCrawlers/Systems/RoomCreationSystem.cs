@@ -6,7 +6,7 @@ namespace DungeonCrawlers.Systems
     public class RoomCreationSystem : IRoomCreationSystem
     {
         private readonly ISeededRandomSystem seededRandomSystem;
-        private IMonsterCreationSystem monsterCreationSystem;
+        private readonly IMonsterCreationSystem monsterCreationSystem;
 
         public RoomCreationSystem(ISeededRandomSystem seededRandomSystem, IMonsterCreationSystem monsterCreationSystem)
         {

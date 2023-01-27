@@ -3,7 +3,7 @@ using DungeonCrawlers.States;
 
 namespace DungeonCrawlers
 {
-    class Program
+    static class Program
     {
         static void Main()
         {

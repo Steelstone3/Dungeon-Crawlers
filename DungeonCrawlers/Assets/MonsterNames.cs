@@ -3,7 +3,7 @@ using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlers.Assets
 {
-    public class MonsterNames
+    public static class MonsterNames
     {
         public static string[] FirstNames => firstNames.OrderBy(fn => fn).ToArray();
         public static string[] Surnames => surnames.OrderBy(sn => sn).ToArray();

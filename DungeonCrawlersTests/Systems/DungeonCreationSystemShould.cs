@@ -8,8 +8,8 @@ namespace DungeonCrawlersTests.Systems
 {
     public class DungeonCreationSystemShould
     {
-        Mock<IRoomCreationSystem> roomCreationSystem = new();
-        IDungeonCreationSystem dungeonCreationSystem;
+        private readonly Mock<IRoomCreationSystem> roomCreationSystem = new();
+        private readonly IDungeonCreationSystem dungeonCreationSystem;
 
         public DungeonCreationSystemShould()
         {
