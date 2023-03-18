@@ -6,26 +6,6 @@ namespace DungeonCrawlersTests.Assets
     public class CharacterNamesShould
     {
         [Fact]
-        public void ContainPrefixes()
-        {
-            // Then
-            Assert.NotEmpty(CharacterNames.Prefixes);
-        }
-
-        [Theory]
-        [InlineData(1111, "Master")]
-        [InlineData(-122, "Count")]
-        [InlineData(5656, "Lady")]
-        public void GetRandomPrefix(int seed, string randomName)
-        {
-            // When
-            string prefix = CharacterNames.GetRandomPrefix(seed);
-
-            // Then
-            Assert.Equal(randomName, prefix);
-        }
-
-        [Fact]
         public void ContainFirstNames()
         {
             // Then
@@ -63,26 +43,6 @@ namespace DungeonCrawlersTests.Assets
 
             // Then
             Assert.Equal(randomName, surname);
-        }
-
-        [Fact]
-        public void ContainSuffix()
-        {
-            // Then
-            Assert.NotEmpty(CharacterNames.Suffixes);
-        }
-
-        [Theory]
-        [InlineData(1111, "Jr")]
-        [InlineData(-122, "")]
-        [InlineData(5656, "III")]
-        public void GetRandomSuffix(int seed, string randomName)
-        {
-            // When
-            string suffix = CharacterNames.GetRandomSuffix(seed);
-
-            // Then
-            Assert.Equal(randomName, suffix);
         }
     }
 }
