@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DungeonCrawlers.Components;
-using DungeonCrawlers.Entities;
-using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Components.Interfaces;
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Presenters.Interfaces;
+using DungeonCrawlers.Systems.Interfaces;
 
 namespace DungeonCrawlers.Systems
 {

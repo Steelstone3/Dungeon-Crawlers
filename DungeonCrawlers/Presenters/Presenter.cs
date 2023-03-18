@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Presenters.Interfaces;
 using Spectre.Console;
 
 namespace DungeonCrawlers.Presenters

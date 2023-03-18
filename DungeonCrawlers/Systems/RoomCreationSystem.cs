@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Systems.Interfaces;
 
 namespace DungeonCrawlers.Systems
 {

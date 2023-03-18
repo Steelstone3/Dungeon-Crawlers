@@ -1,4 +1,5 @@
 using DungeonCrawlers.Components;
+using DungeonCrawlers.Components.Interfaces;
 using Xunit;
 
 namespace DungeonCrawlersTests.Components

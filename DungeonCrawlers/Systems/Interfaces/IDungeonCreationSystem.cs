@@ -1,6 +1,6 @@
-using DungeonCrawlersTests.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 
-namespace DungeonCrawlers.Systems
+namespace DungeonCrawlers.Systems.Interfaces
 {
     public interface IDungeonCreationSystem
     {

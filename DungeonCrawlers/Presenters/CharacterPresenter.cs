@@ -1,6 +1,8 @@
 using DungeonCrawlers.Assets;
 using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Presenters.Interfaces;
 
 namespace DungeonCrawlers.Presenters
 {

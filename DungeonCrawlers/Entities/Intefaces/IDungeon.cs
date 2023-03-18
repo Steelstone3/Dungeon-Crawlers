@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
 
-namespace DungeonCrawlersTests.Entities
+namespace DungeonCrawlers.Entities.Intefaces
 {
     public interface IDungeon
     {

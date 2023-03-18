@@ -1,4 +1,5 @@
 using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Presenters.Interfaces;
 using Xunit;
 
 namespace DungeonCrawlersTests.Presenters

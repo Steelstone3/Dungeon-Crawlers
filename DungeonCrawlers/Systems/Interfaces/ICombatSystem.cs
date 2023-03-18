@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 
-namespace DungeonCrawlers.Systems
+namespace DungeonCrawlers.Systems.Interfaces
 {
     public interface ICombatSystem
     {

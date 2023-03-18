@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
-using DungeonCrawlersTests.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 
-namespace DungeonCrawlers.States
+namespace DungeonCrawlers.States.Interfaces
 {
     public interface IGameRepository
     {

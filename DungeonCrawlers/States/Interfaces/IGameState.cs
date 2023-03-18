@@ -1,6 +1,4 @@
-using System.Runtime.Serialization;
-
-namespace DungeonCrawlers.States
+namespace DungeonCrawlers.States.Interfaces
 {
     public interface IGameState
     {

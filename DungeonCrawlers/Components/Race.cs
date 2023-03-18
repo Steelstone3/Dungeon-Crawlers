@@ -1,3 +1,5 @@
+using DungeonCrawlers.Components.Interfaces;
+
 namespace DungeonCrawlers.Components
 {
     public class Race : IRace

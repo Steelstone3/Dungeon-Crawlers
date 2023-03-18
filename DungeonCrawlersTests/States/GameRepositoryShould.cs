@@ -1,4 +1,5 @@
 using DungeonCrawlers.States;
+using DungeonCrawlers.States.Interfaces;
 using Xunit;
 
 namespace DungeonCrawlersTests.States

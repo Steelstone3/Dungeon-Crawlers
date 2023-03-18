@@ -1,5 +1,6 @@
-using DungeonCrawlers.Components;
+using DungeonCrawlers.Components.Interfaces;
 using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 using Moq;
 using Xunit;
 

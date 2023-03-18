@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
-using DungeonCrawlersTests.Entities;
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.States.Interfaces;
 
 namespace DungeonCrawlers.States
 {

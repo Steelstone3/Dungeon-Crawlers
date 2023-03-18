@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 
-namespace DungeonCrawlers.Presenters
+namespace DungeonCrawlers.Presenters.Interfaces
 {
     public interface IPresenter
     {

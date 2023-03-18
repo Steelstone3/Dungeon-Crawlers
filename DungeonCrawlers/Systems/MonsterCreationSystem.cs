@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using DungeonCrawlers.Assets;
 using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Systems.Interfaces;
 
 namespace DungeonCrawlers.Systems
 {

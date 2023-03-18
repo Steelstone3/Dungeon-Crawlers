@@ -1,4 +1,6 @@
 using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Presenters.Interfaces;
+using DungeonCrawlers.States.Interfaces;
 using DungeonCrawlers.Systems;
 
 namespace DungeonCrawlers.States

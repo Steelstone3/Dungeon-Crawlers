@@ -1,6 +1,7 @@
 using System.Linq;
-using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Presenters.Interfaces;
 using Moq;
 using Xunit;
 

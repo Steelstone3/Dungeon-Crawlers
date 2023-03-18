@@ -1,6 +1,6 @@
-using DungeonCrawlers.Components;
+using DungeonCrawlers.Components.Interfaces;
 
-namespace DungeonCrawlers.Entities
+namespace DungeonCrawlers.Entities.Intefaces
 {
     public interface IMonster
     {

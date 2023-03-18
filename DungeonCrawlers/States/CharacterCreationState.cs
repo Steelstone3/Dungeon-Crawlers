@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Presenters.Interfaces;
+using DungeonCrawlers.States.Interfaces;
 using DungeonCrawlers.Systems;
-using DungeonCrawlersTests.Systems;
+using DungeonCrawlers.Systems.Interfaces;
 
 namespace DungeonCrawlers.States
 {

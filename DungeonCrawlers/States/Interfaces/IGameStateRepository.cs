@@ -1,4 +1,4 @@
-namespace DungeonCrawlers.States
+namespace DungeonCrawlers.States.Interfaces
 {
     public interface IGameStateRepository
     {

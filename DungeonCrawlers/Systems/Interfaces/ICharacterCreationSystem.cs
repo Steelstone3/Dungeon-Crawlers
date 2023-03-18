@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 
-namespace DungeonCrawlersTests.Systems
+namespace DungeonCrawlers.Systems.Interfaces
 {
     public interface ICharacterCreationSystem
     {

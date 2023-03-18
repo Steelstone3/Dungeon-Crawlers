@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DungeonCrawlers.Entities
+namespace DungeonCrawlers.Entities.Intefaces
 {
     public interface IRoom
     {

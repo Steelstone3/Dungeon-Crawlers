@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
+using DungeonCrawlers.Entities.Intefaces;
 
 namespace DungeonCrawlersTests.Entities
 {

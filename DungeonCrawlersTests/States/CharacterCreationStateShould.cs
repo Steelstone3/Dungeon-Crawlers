@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Entities;
-using DungeonCrawlers.Presenters;
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Presenters.Interfaces;
 using DungeonCrawlers.States;
-using DungeonCrawlers.Systems;
-using DungeonCrawlersTests.Systems;
+using DungeonCrawlers.States.Interfaces;
+using DungeonCrawlers.Systems.Interfaces;
 using Moq;
 using Xunit;
 

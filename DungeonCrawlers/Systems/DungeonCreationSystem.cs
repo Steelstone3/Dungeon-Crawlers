@@ -1,3 +1,5 @@
+using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Systems.Interfaces;
 using DungeonCrawlersTests.Entities;
 
 namespace DungeonCrawlers.Systems
