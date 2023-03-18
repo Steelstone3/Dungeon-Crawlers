@@ -9,7 +9,7 @@ namespace DungeonCrawlersTests.Systems
 {
     public class CharacterCreationSystemShould
     {
-        private readonly Mock<IGamePresenter> gamePresenter = new();
+        private readonly Mock<ICharacterPresenter> gamePresenter = new();
         private readonly Mock<ICharacter> character = new();
         private readonly ICharacterCreationSystem characterCreationSystem;
 

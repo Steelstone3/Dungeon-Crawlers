@@ -4,11 +4,11 @@ using DungeonCrawlers.Entities;
 
 namespace DungeonCrawlers.Presenters
 {
-    public class GamePresenter : IGamePresenter
+    public class CharacterPresenter : ICharacterPresenter
     {
         private readonly IPresenter presenter;
 
-        public GamePresenter(IPresenter presenter)
+        public CharacterPresenter(IPresenter presenter)
         {
             this.presenter = presenter;
         }

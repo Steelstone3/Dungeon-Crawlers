@@ -2,7 +2,7 @@ using DungeonCrawlers.Entities;
 
 namespace DungeonCrawlers.Presenters
 {
-    public interface IGamePresenter
+    public interface ICharacterPresenter
     {
         ICharacter CreateCharacter();
     }

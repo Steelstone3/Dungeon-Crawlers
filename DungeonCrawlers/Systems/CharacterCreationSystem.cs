@@ -9,9 +9,9 @@ namespace DungeonCrawlers.Systems
 {
     public class CharacterCreationSystem : ICharacterCreationSystem
     {
-        private readonly IGamePresenter gamePresenter;
+        private readonly ICharacterPresenter gamePresenter;
 
-        public CharacterCreationSystem(IGamePresenter gamePresenter)
+        public CharacterCreationSystem(ICharacterPresenter gamePresenter)
         {
             this.gamePresenter = gamePresenter;
         }

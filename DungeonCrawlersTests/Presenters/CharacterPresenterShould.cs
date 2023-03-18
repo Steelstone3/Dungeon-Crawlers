@@ -6,15 +6,15 @@ using Xunit;
 
 namespace DungeonCrawlersTests.Presenters
 {
-    public class GamePresenterShould
+    public class CharacterPresenterShould
     {
         private const string HUMAN = "Human";
         private readonly Mock<IPresenter> presenter = new();
-        private readonly IGamePresenter gamePresenter;
+        private readonly ICharacterPresenter gamePresenter;
 
-        public GamePresenterShould()
+        public CharacterPresenterShould()
         {
-            gamePresenter = new GamePresenter(presenter.Object);
+            gamePresenter = new CharacterPresenter(presenter.Object);
         }
 
         [Fact]
