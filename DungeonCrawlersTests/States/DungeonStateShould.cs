@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.Entities.Intefaces;
 using DungeonCrawlers.Presenters.Interfaces;
@@ -19,7 +18,6 @@ namespace DungeonCrawlersTests.States
         private readonly Mock<IGameRepository> gameRepository = new();
         private readonly Mock<IDungeonCreationSystem> dungeonCreationSystem = new();
         private readonly Mock<ICombatSystem> combatSystem = new();
-        private readonly Mock<ISeededRandomSystem> seededRandomSystem = new();
         private readonly IGameState gameState;
 
         public DungeonStateShould()
