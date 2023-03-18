@@ -26,6 +26,6 @@ This application has been tested to run on debain derived Linux, Windows 10 and 
 Or set the DungeonCrawlersTests.csproj up in your testing enviroment in your IDE of choice.
 
 ## Dependencies
-Follow the steps for installing dotnet 6.0 runtime for your given operating system.
+Follow the steps for installing dotnet 7.0 runtime for your given operating system.
 
-> https://dotnet.microsoft.com/download/dotnet/6.0
+> https://dotnet.microsoft.com/download/dotnet/7.0
