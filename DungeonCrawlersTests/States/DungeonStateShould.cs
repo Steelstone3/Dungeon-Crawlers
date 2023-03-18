@@ -22,12 +22,12 @@ namespace DungeonCrawlersTests.States
 
         public DungeonStateShould()
         {
-            var monster = new Monster(null, null, null, null);
-            var monsters = new List<IMonster>() { monster, monster };
-            var room = new Room(monsters);
-            var rooms = new List<IRoom>() { room, room };
+            Monster monster = new(null, null, null, null);
+            List<IMonster> monsters = new() { monster, monster };
+            Room room = new(monsters);
+            List<IRoom> rooms = new() { room, room };
             gameRepository.Setup(gr => gr.Dungeon).Returns(new Dungeon(rooms));
-            var character = new Character(null, null, null, null, null);
+            Character character = new(null, null, null, null, null);
             gameRepository.Setup(gr => gr.CharacterParty).Returns(new List<ICharacter>() { character, character });
             gameStateRepository.Setup(gsr => gsr.GameState).Returns(gameState);
             gameStateRepository.Setup(gsr => gsr.GameState.StartState());
