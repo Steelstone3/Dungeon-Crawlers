@@ -47,20 +47,20 @@ namespace DungeonCrawlersTests.Systems
             Assert.NotNull(results);
             Assert.NotEmpty(results);
 
-            Assert.Equal("Bob", results[0].Name.FirstName);
-            Assert.Equal("Harken", results[0].Name.Surname);
+            Assert.Equal("Kontas", results[0].Name.FirstName);
+            Assert.Equal("Katz", results[0].Name.Surname);
             Assert.Equal("Half-Elf", results[0].Race.Name);
             Assert.Equal("Halbeard", results[0].Weapon.Name);
             Assert.Equal("Hacked", results[0].Weapon.AttackDescription);
 
-            Assert.Equal("April", results[1].Name.FirstName);
-            Assert.Equal("Billiston", results[1].Name.Surname);
+            Assert.Equal("Baakshi", results[1].Name.FirstName);
+            Assert.Equal("Albertine", results[1].Name.Surname);
             Assert.Equal("Bunny-Folk", results[1].Race.Name);
             Assert.Equal("Axe", results[1].Weapon.Name);
             Assert.Equal("Bashed", results[1].Weapon.AttackDescription);
 
-            Assert.Equal("Bill", results[2].Name.FirstName);
-            Assert.Equal("Bobbinton", results[2].Name.Surname);
+            Assert.Equal("Hemm", results[2].Name.FirstName);
+            Assert.Equal("Fox", results[2].Name.Surname);
             Assert.Equal("Giant", results[2].Race.Name);
             Assert.Equal("Dagger", results[2].Weapon.Name);
             Assert.Equal("Booped", results[2].Weapon.AttackDescription);

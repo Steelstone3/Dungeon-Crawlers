@@ -13,9 +13,9 @@ namespace DungeonCrawlersTests.Assets
         }
 
         [Theory]
-        [InlineData(1111, "Bob")]
-        [InlineData(-122, "April")]
-        [InlineData(5656, "Bill")]
+        [InlineData(1111, "Kontas")]
+        [InlineData(-122, "Baakshi")]
+        [InlineData(5656, "Hemm")]
         public void GetRandomFirstName(int seed, string randomName)
         {
             // When
@@ -33,9 +33,9 @@ namespace DungeonCrawlersTests.Assets
         }
 
         [Theory]
-        [InlineData(1111, "Harken")]
-        [InlineData(-122, "Billiston")]
-        [InlineData(5656, "Bobbinton")]
+        [InlineData(1111, "Katz")]
+        [InlineData(-122, "Albertine")]
+        [InlineData(5656, "Fox")]
         public void GetRandomSurname(int seed, string randomName)
         {
             // When
