@@ -39,10 +39,8 @@ namespace DungeonCrawlers.Systems
             (
                 new Name
                 (
-                    CharacterNames.GetRandomPrefix(seed),
                     CharacterNames.GetRandomFirstName(seed),
-                    CharacterNames.GetRandomSurname(seed),
-                    CharacterNames.GetRandomSuffix(seed)
+                    CharacterNames.GetRandomSurname(seed)
                 ),
                 new Race
                 (

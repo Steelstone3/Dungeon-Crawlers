@@ -25,10 +25,8 @@ namespace DungeonCrawlers.Systems
             (
                 new Name
                 (
-                    "",
                     MonsterNames.GetRandomFirstName(seed),
-                    MonsterNames.GetRandomSurname(seed),
-                    ""
+                    MonsterNames.GetRandomSurname(seed)
                 ),
                 new Race
                 (

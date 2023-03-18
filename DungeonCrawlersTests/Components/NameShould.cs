@@ -5,22 +5,13 @@ namespace DungeonCrawlersTests.Components
 {
     public class NameShould
     {
-        private const string PREFIX = "Dr";
         private const string FIRST_NAME = "Jeff";
         private const string SURNAME = "Loomis";
-        private const string SUFFIX = "Jr";
         private readonly IName name;
 
         public NameShould()
         {
-            name = new Name(PREFIX, FIRST_NAME, SURNAME, SUFFIX);
-        }
-
-        [Fact]
-        public void ContainsPrefix()
-        {
-            // Then
-            Assert.Equal(PREFIX, name.Prefix);
+            name = new Name(FIRST_NAME, SURNAME);
         }
 
         [Fact]
@@ -35,13 +26,6 @@ namespace DungeonCrawlersTests.Components
         {
             // Then
             Assert.Equal(SURNAME, name.Surname);
-        }
-
-        [Fact]
-        public void ContainsSuffix()
-        {
-            // Then
-            Assert.Equal(SUFFIX, name.Suffix);
         }
     }
 }

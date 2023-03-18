@@ -27,8 +27,8 @@ namespace DungeonCrawlersTests.Systems
         public void ExecutePlayerTurn(byte maximumDamage, byte currentHealth, byte remainingHealth, bool combatResult)
         {
             // Given
-            IMonster monster = new Monster(new Name(null, "Bob", "Harris", null), null, new Health(currentHealth, 100, 0), null);
-            ICharacter character = new Character(new Name(null, "Lily", "Jones", null), null, new Health(100, 100, 25), new Armour(100, 100, 5), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
+            IMonster monster = new Monster(new Name("Bob", "Harris"), null, new Health(currentHealth, 100, 0), null);
+            ICharacter character = new Character(new Name("Lily", "Jones"), null, new Health(100, 100, 25), new Armour(100, 100, 5), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
             ICharacter[] characters = new ICharacter[] { character };
             IMonster[] monsters = new IMonster[] { monster };
             presenter.Setup(p => p.PrintParty(characters));
@@ -57,8 +57,8 @@ namespace DungeonCrawlersTests.Systems
         public void ExecuteMonsterTurn(byte maximumDamage, byte currentHealth, byte remainingHealth, bool combatResult)
         {
             // Given
-            IMonster monster = new Monster(new Name(null, "Lily", "Jones", null), null, new Health(100, 100, 0), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
-            ICharacter character = new Character(new Name(null, "Bob", "Harris", null), null, new Health(currentHealth, 100, 25), null, null);
+            IMonster monster = new Monster(new Name("Lily", "Jones"), null, new Health(100, 100, 0), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
+            ICharacter character = new Character(new Name("Bob", "Harris"), null, new Health(currentHealth, 100, 25), null, null);
             IMonster[] monsters = new IMonster[] { monster };
             ICharacter[] characters = new ICharacter[] { character };
             presenter.Setup(p => p.PrintParty(characters));

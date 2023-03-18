@@ -38,10 +38,8 @@ namespace DungeonCrawlersTests.Presenters
             };
             var orderedRaces = races.OrderBy(r => r).ToArray();
             presenter.Setup(p => p.Print("Character creation"));
-            presenter.Setup(p => p.GetString("Enter prefix:"));
             presenter.Setup(p => p.GetString("Enter first name:"));
             presenter.Setup(p => p.GetString("Enter surname:"));
-            presenter.Setup(p => p.GetString("Enter suffix:"));
             presenter.Setup(p => p.SelectString("Enter race:", orderedRaces)).Returns(HUMAN);
             presenter.Setup(p => p.GetString("Enter a weapon name:"));
             presenter.Setup(p => p.GetString("Describe the weapon's attack:"));

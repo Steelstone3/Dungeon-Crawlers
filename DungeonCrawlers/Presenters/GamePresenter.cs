@@ -23,10 +23,8 @@ namespace DungeonCrawlers.Presenters
 
             return new Character(
                 new Name(
-                    presenter.GetString("Enter prefix:"),
                     presenter.GetString("Enter first name:"),
-                    presenter.GetString("Enter surname:"),
-                    presenter.GetString("Enter suffix:")
+                    presenter.GetString("Enter surname:")
                 ),
                 new Race(selectedRace),
                 new Health(100, 100, 25), new Armour(100, 100, 5),
