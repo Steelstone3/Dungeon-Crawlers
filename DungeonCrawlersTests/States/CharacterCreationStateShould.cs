@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.Presenters.Interfaces;
 using DungeonCrawlers.States;
 using DungeonCrawlers.States.Interfaces;
@@ -14,6 +15,7 @@ namespace DungeonCrawlersTests.States
         private const int CHARACTER_QUANTITY = 3;
         private readonly Mock<ICharacter> character = new();
         private readonly Mock<IPresenter> presenter = new();
+        private readonly Mock<ICharacterPresenter> characterPresenter = new();
         private readonly Mock<ISeededRandomSystem> seededRandomSystem = new();
         private readonly Mock<ICharacterCreationSystem> characterCreation = new();
         private readonly Mock<IGameRepository> gameRepository = new();
@@ -38,7 +40,8 @@ namespace DungeonCrawlersTests.States
             characterCreation.Setup(cc => cc.Create()).Returns(character.Object);
             seededRandomSystem.Setup(srs => srs.CreateSeeds(CHARACTER_QUANTITY)).Returns(seeds);
             characterCreation.Setup(cc => cc.CreateMultiple(CHARACTER_QUANTITY, seeds)).Returns(characters);
-            presenter.Setup(p => p.PrintParty(characterParty));
+            characterPresenter.Setup(p => p.PrintParty(characterParty));
+            presenter.Setup(p => p.CharacterPresenter).Returns(characterPresenter.Object);
 
             // When
             gameState.StartState();

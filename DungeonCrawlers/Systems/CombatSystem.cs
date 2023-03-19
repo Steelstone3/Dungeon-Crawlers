@@ -21,7 +21,7 @@ namespace DungeonCrawlers.Systems
 
         public bool PlayerTurn(IEnumerable<ICharacter> characters, IEnumerable<IMonster> monsters)
         {
-            presenter.PrintParty(characters);
+            presenter.CharacterPresenter.PrintParty(characters);
 
             var character = presenter.SelectCharacter(characters);
             var monster = presenter.SelectMonster(monsters);
@@ -29,14 +29,14 @@ namespace DungeonCrawlers.Systems
             character.Health.CurrentHealth = AssignDamage(monster.Health, damage);
 
             presenter.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription} {monster.Name.FirstName} {monster.Name.Surname} for {damage} damage");
-            presenter.PrintParty(monsters);
+            presenter.CharacterPresenter.PrintParty(monsters);
 
             return IsInCombat(characters, monsters);
         }
 
         public bool MonsterTurn(IEnumerable<IMonster> monsters, IEnumerable<ICharacter> characters)
         {
-            presenter.PrintParty(monsters);
+            presenter.CharacterPresenter.PrintParty(monsters);
 
             var monster = random.SelectRandom(monsters);
             var character = random.SelectRandom(characters);
@@ -44,7 +44,7 @@ namespace DungeonCrawlers.Systems
             character.Health.CurrentHealth = AssignDamage(character.Health, damage);
 
             presenter.Print($"{monster.Name.FirstName} {monster.Name.Surname} used {monster.Weapon.Name} and {monster.Weapon.AttackDescription} {character.Name.FirstName} {character.Name.Surname} for {damage} damage");
-            presenter.PrintParty(characters);
+            presenter.CharacterPresenter.PrintParty(characters);
 
             return IsInCombat(characters, monsters);
         }

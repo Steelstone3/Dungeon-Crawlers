@@ -1,8 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using DungeonCrawlers.Components;
+using DungeonCrawlers.Entities;
 using DungeonCrawlers.Entities.Intefaces;
 using DungeonCrawlers.Presenters;
 using DungeonCrawlers.Presenters.Interfaces;
+using DungeonCrawlersTests.Entities;
 using Moq;
+using Spectre.Console;
 using Xunit;
 
 namespace DungeonCrawlersTests.Presenters
@@ -11,11 +17,11 @@ namespace DungeonCrawlersTests.Presenters
     {
         private const string HUMAN = "Human";
         private readonly Mock<IPresenter> presenter = new();
-        private readonly ICharacterPresenter gamePresenter;
+        private readonly ICharacterPresenter characterPresenter;
 
         public CharacterPresenterShould()
         {
-            gamePresenter = new CharacterPresenter(presenter.Object);
+            characterPresenter = new CharacterPresenter(presenter.Object);
         }
 
         [Fact]
@@ -47,7 +53,7 @@ namespace DungeonCrawlersTests.Presenters
             presenter.Setup(p => p.Print($"Selected race: {HUMAN}"));
 
             // When
-            ICharacter character = gamePresenter.CreateCharacter();
+            ICharacter character = characterPresenter.CreateCharacter();
 
             // Then
             presenter.VerifyAll();
@@ -56,6 +62,18 @@ namespace DungeonCrawlersTests.Presenters
             Assert.NotNull(character.Race);
             Assert.NotNull(character.Health);
             Assert.NotNull(character.Armour);
+        }
+
+        [Fact(Skip = "Not easy to test")]
+        public void PrintCharacterParty()
+        {
+
+        }
+
+        [Fact(Skip = "Not easy to test")]
+        public void PrintMonsterParty()
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using DungeonCrawlers.Entities.Intefaces;
 using DungeonCrawlers.Presenters.Interfaces;
@@ -20,7 +21,12 @@ namespace DungeonCrawlers.Presenters
 
         public void Print(string message)
         {
-            AnsiConsole.WriteLine(message);
+            AnsiConsole.MarkupLine(message);
+        }
+
+        public void Print(Table table)
+        {
+            AnsiConsole.Write(table);
         }
 
         public string GetString(string message)
@@ -33,6 +39,16 @@ namespace DungeonCrawlers.Presenters
             return AnsiConsole.Prompt(new SelectionPrompt<string>()
                 .Title(message)
                 .AddChoices(options));
+        }
+
+        public Table CreateTable()
+        {
+            Table table = new();
+            table.AddColumn("Name");
+            table.AddColumn("Race");
+            table.AddColumn("Health");
+
+            return table;
         }
 
         public ICharacter SelectCharacter(IEnumerable<ICharacter> characters)
@@ -51,57 +67,6 @@ namespace DungeonCrawlers.Presenters
             return AnsiConsole.Prompt(selectionPrompt
             .Title("Select monster:")
             .AddChoices(monsters.Where(m => m.Health.CurrentHealth > 0)));
-        }
-
-        public void PrintParty(IEnumerable<ICharacter> characters)
-        {
-            Table characterPartytable = CreateTable();
-            characterPartytable.Title("Character Party");
-            characterPartytable.AddColumn("Armour");
-            characterPartytable.AddColumn("Expierence");
-
-            foreach (var character in characters)
-            {
-                Markup name = new($"{character.Name.FirstName} {character.Name.Surname}");
-                Markup race = new(character.Race.Name);
-                Markup health = new($"[red]♥ {character.Health.CurrentHealth}/{character.Health.MaximumHealth} ♥[/]");
-                Markup armour = new($"[yellow]{character.Armour.CurrentArmour}/{character.Armour.MaximumArmour}[/]");
-                Markup expierence = new("↑ 0xp");
-                Markup[] row = new Markup[] { name, race, health, armour, expierence };
-
-                characterPartytable.AddRow(row);
-            }
-
-            AnsiConsole.Write(characterPartytable);
-        }
-
-        public void PrintParty(IEnumerable<IMonster> monsters)
-        {
-            // AnsiConsole.Clear();
-            Table monsterPartyTable = CreateTable();
-            monsterPartyTable.Title("Monster Party");
-
-            foreach (var monster in monsters)
-            {
-                Markup name = new($"{monster.Name.FirstName}");
-                Markup race = new(monster.Race.Name);
-                Markup health = new($"[red]♥ {monster.Health.CurrentHealth}/{monster.Health.MaximumHealth} ♥[/]");
-                Markup[] row = new Markup[] { name, race, health };
-
-                monsterPartyTable.AddRow(row);
-            }
-
-            AnsiConsole.Write(monsterPartyTable);
-        }
-
-        private static Table CreateTable()
-        {
-            Table table = new();
-            table.AddColumn("Name");
-            table.AddColumn("Race");
-            table.AddColumn("Health");
-
-            return table;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace DungeonCrawlers.States
             gameRepository.CharacterParty.AddRange(characterCreation.CreateMultiple(CHARACTER_QUANTITY, seededRandomSystem.CreateSeeds(CHARACTER_QUANTITY)));
             gameRepository.CharacterParty.Add(characterCreation.Create());
 
-            presenter.PrintParty(gameRepository.CharacterParty);
+            presenter.CharacterPresenter.PrintParty(gameRepository.CharacterParty);
 
             GoToState(new DungeonState(gameStateRepository, presenter, gameRepository, new DungeonCreationSystem(new RoomCreationSystem(seededRandomSystem, new MonsterCreationSystem())), new CombatSystem(presenter, seededRandomSystem)));
         }

@@ -1,6 +1,7 @@
 using DungeonCrawlers.Components;
 using DungeonCrawlers.Entities;
 using DungeonCrawlers.Entities.Intefaces;
+using DungeonCrawlers.Presenters;
 using DungeonCrawlers.Presenters.Interfaces;
 using DungeonCrawlers.Systems;
 using DungeonCrawlers.Systems.Interfaces;
@@ -13,6 +14,7 @@ namespace DungeonCrawlersTests.Systems
     {
         private readonly Mock<ISeededRandomSystem> random = new();
         private readonly Mock<IPresenter> presenter = new();
+        private readonly Mock<ICharacterPresenter> characterPresenter = new();
         private readonly ICombatSystem combatSystem;
 
         public CombatSystemShould()
@@ -33,11 +35,12 @@ namespace DungeonCrawlersTests.Systems
             ICharacter character = new Character(new Name("Lily", "Jones"), null, new Health(100, 100, 25), new Armour(100, 100, 5), new Weapon("Nibbles", "Boop", maximumDamage, maximumDamage));
             ICharacter[] characters = new ICharacter[] { character };
             IMonster[] monsters = new IMonster[] { monster };
-            presenter.Setup(p => p.PrintParty(characters));
-            presenter.Setup(p => p.PrintParty(monsters));
+            characterPresenter.Setup(p => p.PrintParty(characters));
+            characterPresenter.Setup(p => p.PrintParty(monsters));
             presenter.Setup(p => p.SelectCharacter(characters)).Returns(character);
             presenter.Setup(p => p.SelectMonster(monsters)).Returns(monster);
             presenter.Setup(p => p.Print($"{character.Name.FirstName} {character.Name.Surname} used {character.Weapon.Name} and {character.Weapon.AttackDescription} {monster.Name.FirstName} {monster.Name.Surname} for {maximumDamage} damage"));
+            presenter.Setup(p => p.CharacterPresenter).Returns(characterPresenter.Object);
 
             // When
             var isInCombat = combatSystem.PlayerTurn(characters, monsters);
@@ -63,11 +66,12 @@ namespace DungeonCrawlersTests.Systems
             ICharacter character = new Character(new Name("Bob", "Harris"), null, new Health(currentHealth, 100, 25), null, null);
             IMonster[] monsters = new IMonster[] { monster };
             ICharacter[] characters = new ICharacter[] { character };
-            presenter.Setup(p => p.PrintParty(characters));
-            presenter.Setup(p => p.PrintParty(monsters));
+            characterPresenter.Setup(p => p.PrintParty(characters));
+            characterPresenter.Setup(p => p.PrintParty(monsters));
             random.Setup(p => p.SelectRandom(characters)).Returns(character);
             random.Setup(p => p.SelectRandom(monsters)).Returns(monster);
             presenter.Setup(p => p.Print($"{monster.Name.FirstName} {monster.Name.Surname} used {monster.Weapon.Name} and {monster.Weapon.AttackDescription} {character.Name.FirstName} {character.Name.Surname} for {maximumDamage} damage"));
+            presenter.Setup(p => p.CharacterPresenter).Returns(characterPresenter.Object);
 
             // When
             var isInCombat = combatSystem.MonsterTurn(monsters, characters);
