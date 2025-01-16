@@ -15,6 +15,8 @@ This application has been tested to run on debain derived Linux, Windows 10 and 
 > cd ~/DungeonCrawlers
 >
 > go test
+>
+> go test -cover
 
 Or set the DungeonCrawlersTests.csproj up in your testing enviroment in your IDE of choice.
 
