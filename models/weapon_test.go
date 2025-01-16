@@ -7,14 +7,16 @@ import (
 
 func CreateWeapon(t *testing.T) {
 	// Given
+	const maximumDamage = 10
+	const minimumDamage = 5
 	expectedWeapon := Weapon{
-		MaximumDamage: 10,
-		MinimumDamage: 5,
+		MaximumDamage: maximumDamage,
+		MinimumDamage: minimumDamage,
 	}
 
 	// When
-	weapon := createWeapon(5, 10)
+	actualWeapon := createWeapon(minimumDamage, maximumDamage)
 
 	// Then
-	assert.Equal(t, expectedWeapon, weapon);
+	assert.Equal(t, expectedWeapon, actualWeapon);
 }

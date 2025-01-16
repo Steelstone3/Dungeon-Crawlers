@@ -7,14 +7,16 @@ import (
 
 func CreateArmour(t *testing.T) {
 	// Given
+	const maximumArmour = 100
+	const armour = 100
 	expectedArmour := Armour{
-		MaximumArmour: 100,
-		Armour:        100,
+		MaximumArmour: maximumArmour,
+		Armour:        armour,
 	}
 
 	// When
-	armour := createArmour(100, 100)
+	actualArmour := createArmour(maximumArmour, 100)
 
 	// Then
-	assert.Equal(t, expectedArmour, armour);
+	assert.Equal(t, expectedArmour, actualArmour);
 }
