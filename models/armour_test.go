@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestHelperFunction(t *testing.T) {
+func CreateArmour(t *testing.T) {
 	// Given
 	expectedArmour := Armour{
 		MaximumArmour: 100,
