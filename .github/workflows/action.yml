@@ -21,9 +21,9 @@ jobs:
         - os: ubuntu-latest
         - os: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Setup
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v5
       with:
         go-version: 1.*
 
