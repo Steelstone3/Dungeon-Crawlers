@@ -27,7 +27,7 @@ func CreateCharacter(t *testing.T) {
 	}
 
 	// When
-	actualCharacter := createCharacter(name,class)
+	actualCharacter := createCharacter(name, class)
 
 	// Then
 	assert.Equal(t, expectedCharacter, actualCharacter)
