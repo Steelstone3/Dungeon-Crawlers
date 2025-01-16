@@ -1,3 +1,5 @@
+package models
+
 type Character struct {
 	Name string
 	Class string
