@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func CreateArmour(t *testing.T) {
+func TestCreateArmour(t *testing.T) {
 	// Given
 	const maximumArmour = 100
 	const armour = 100

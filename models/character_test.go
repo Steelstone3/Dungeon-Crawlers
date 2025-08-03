@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func CreateCharacter(t *testing.T) {
+func TestCreateCharacter(t *testing.T) {
 	// Given
 	const name = "Jeff"
 	const class = "Mage"
